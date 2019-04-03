@@ -6,4 +6,6 @@
     <string name="textIntro">Bem vindo ao Meau!\nAqui você pode adotar, doar e ajudar cães e gatos com facilidade.\nQual seu interesse?</string>
     <string name="textIntro0">Olá!</string>
     <string name="textLogin">Login</string>
+    <string name="buttonLogin">login</string>
+    <string name="buttonMenu">Menu</string>
 </resources>

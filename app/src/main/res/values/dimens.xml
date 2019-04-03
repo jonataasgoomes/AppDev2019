@@ -2,4 +2,6 @@
 <resources>
     <dimen name="button_intro_width">232dp</dimen>
     <dimen name="button_height">40dp</dimen>
+    <dimen name="logo_splash_width">276</dimen>
+    <dimen name="logo_splash_height">100</dimen>
 </resources>
