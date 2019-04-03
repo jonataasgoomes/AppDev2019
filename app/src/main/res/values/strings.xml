@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Meau</string>
+    <string name="button_adotar">Adotar</string>
+    <string name="button_ajudar">Ajudar</string>
+    <string name="button_cadastrar_animal">Cadastrar animal</string>
+    <string name="textIntro">Bem vindo ao Meau!\nAqui você pode adotar, doar e ajudar cães e gatos com facilidade.\nQual seu interesse?</string>
+    <string name="textIntro0">Olá!</string>
+    <string name="textLogin">Login</string>
 </resources>
