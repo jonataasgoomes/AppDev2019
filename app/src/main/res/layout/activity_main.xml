@@ -9,102 +9,92 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".MainActivity">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonCadastrarAnimal"
             style="@style/button_intro"
-            android:layout_height="42dp"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="44dp"
             android:fontFamily="@font/roboto"
             android:text="@string/button_cadastrar_animal"
             app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/buttonAjudar"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/buttonAjudar" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonAjudar"
             style="@style/button_intro"
-            android:layout_width="@dimen/button_intro_width"
+            android:layout_height="42dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/roboto"
             android:text="@string/button_ajudar"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCadastrarAnimal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonAdotar"
             style="@style/button_intro"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/roboto"
             android:text="@string/button_adotar"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/buttonAjudar"
+            app:layout_constraintEnd_toEndOf="@+id/buttonAjudar"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/buttonAjudar" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="122dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="8dp"
+            android:id="@+id/imageIntroLogo"
+            android:layout_width="@dimen/logo_width"
+            android:layout_height="@dimen/logo_height"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="@+id/buttonLogin"
             app:srcCompat="@drawable/meau" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="287dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="48dp"
+            android:id="@+id/textIntro2"
+            android:layout_width="0dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="44dp"
             android:fontFamily="@font/roboto"
             android:text="@string/textIntro"
             android:textAlignment="center"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAdotar"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.214"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:id="@+id/textIntro1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="56dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="48dp"
             android:layout_marginBottom="52dp"
             android:fontFamily="@font/courgette"
             android:text="@string/textIntro0"
+            android:textAlignment="center"
             android:textColor="#FFD358"
             android:textSize="72sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/textIntro2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttonLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="68dp"
-            android:text="@string/buttonLogin"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/buttonMenu"
@@ -115,6 +105,22 @@
             android:text="@string/buttonMenu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonLogin"
+            style="@style/button_intro"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="68dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/roboto"
+            android:text="@string/buttonLogin"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/colorBtnLogin"
+            android:textSize="@dimen/size_text_button_login"
+            app:layout_constraintBottom_toTopOf="@+id/imageIntroLogo"
+            app:layout_constraintEnd_toEndOf="@+id/buttonCadastrarAnimal"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/buttonCadastrarAnimal" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -4,4 +4,7 @@
     <dimen name="button_height">40dp</dimen>
     <dimen name="logo_splash_width">276</dimen>
     <dimen name="logo_splash_height">100</dimen>
+    <dimen name="size_text_button_login">16sp</dimen>
+    <dimen name="logo_width">122dp</dimen>
+    <dimen name="logo_height">44dp</dimen>
 </resources>

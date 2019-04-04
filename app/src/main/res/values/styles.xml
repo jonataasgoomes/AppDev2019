@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="button_intro" parent="button_intro" tools:ignore="ResourceCycle">
+    <style name="button_intro" tools:ignore="ResourceCycle">
         <item name="android:layout_width">@dimen/button_intro_width</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:background">#FFd358</item>
