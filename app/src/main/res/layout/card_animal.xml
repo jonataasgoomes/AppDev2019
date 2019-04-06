@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="24dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/colorMain1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textNomeAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="5dp"
+                android:text="@string/nome_animal"
+                android:textAlignment="textStart"
+                android:textColor="@color/text_card_color"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonCurtir"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:drawableEnd="@drawable/ic_favorite_border_black_animal_24dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="183dp"
+            android:contentDescription="@string/content_img_animal"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/cachorro1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textEspecie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/especie_animal"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_card_color" />
+
+                <TextView
+                    android:id="@+id/textIdade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/idade_animal"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_card_color" />
+
+                <TextView
+                    android:id="@+id/textPorte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/porte_animal"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_card_color" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textLocalização"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/localizacao_animal"
+                android:textAlignment="center"
+                android:textColor="@color/text_card_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

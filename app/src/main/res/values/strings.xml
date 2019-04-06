@@ -8,4 +8,10 @@
     <string name="textLogin">Login</string>
     <string name="buttonLogin">login</string>
     <string name="buttonMenu">Menu</string>
+    <string name="nome_animal">Nome do animal</string>
+    <string name="content_img_animal">Imagem de um animal</string>
+    <string name="especie_animal">Espécie</string>
+    <string name="idade_animal">Idade</string>
+    <string name="porte_animal">Porte</string>
+    <string name="localizacao_animal">Localização</string>
 </resources>
