@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.Objects;
 
 import br.unb.meau.R;
@@ -15,6 +17,7 @@ import br.unb.meau.activity.CadastroDoAnimalActivity;
 import br.unb.meau.activity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private Button btnLogin;
     private Button btnAdotar;
