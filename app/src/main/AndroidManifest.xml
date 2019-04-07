@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdotarActivity"></activity>
-        <activity android:name=".CadastroDoAnimalActivity" />
-        <activity android:name=".AjudarActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashActivity"
+        <activity android:name=".activity.AdotarActivity"></activity>
+        <activity android:name=".activity.CadastroDoAnimalActivity" />
+        <activity android:name=".activity.AjudarActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.SplashActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>

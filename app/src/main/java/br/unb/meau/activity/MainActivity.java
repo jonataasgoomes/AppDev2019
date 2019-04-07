@@ -1,4 +1,4 @@
-package br.unb.meau;
+package br.unb.meau.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.Objects;
+
+import br.unb.meau.R;
+import br.unb.meau.activity.AdotarActivity;
+import br.unb.meau.activity.AjudarActivity;
+import br.unb.meau.activity.CadastroDoAnimalActivity;
+import br.unb.meau.activity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,38 +26,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        // Remove a action bar
+        //Objects.requireNonNull(getSupportActionBar()).hide();
 
         btnLogin = findViewById(R.id.buttonLogin);
         btnAdotar = findViewById(R.id.buttonAdotar);
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
 
+
+        //Ações dos botões na view - abrem Activitys conrrepondentes.
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);;;;;
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
         btnAdotar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),AdotarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdotarActivity.class);
                 startActivity(intent);
             }
         });
         btnAjudar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),AjudarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AjudarActivity.class);
                 startActivity(intent);
             }
         });
         btnCadastroDoAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CadastroDoAnimalActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CadastroDoAnimalActivity.class);
                 startActivity(intent);
             }
         });
