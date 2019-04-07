@@ -23,5 +23,27 @@
         <item name="android:background">@color/colorBtnLogin</item>
     </style>
 
+    <style name="button_primary_facebook" parent="button_primary_entrar">
+        <item name="android:layout_width">@dimen/button_intro_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">52dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@color/btn_facebook</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="btn_google" parent="button_primary_facebook">
+        <item name="android:layout_width">@dimen/button_intro_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@color/color_google</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
 </resources>

@@ -16,7 +16,9 @@
         <Button
             android:id="@+id/button"
             style="@style/button_primary_entrar"
+            android:fontFamily="@font/roboto"
             android:text="Entrar"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/button4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,13 +28,12 @@
             android:id="@+id/editText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="20dp"
             android:ems="10"
-            android:hint="Nome"
+            android:hint="Email"
             android:inputType="textWebEmailAddress"
-            android:text="Email"
             app:layout_constraintBottom_toTopOf="@+id/editText2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,12 +43,12 @@
             android:id="@+id/editText2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="20dp"
             android:ems="10"
+            android:hint="Senha"
             android:inputType="textPersonName|textPassword"
-            android:text="Name"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,12 +57,8 @@
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="@dimen/button_intro_width"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="8dp"
-            android:text="ENTRAR COM FACEBOOK"
+            style="@style/button_primary_facebook"
+            android:text="entrar com facebook"
             app:layout_constraintBottom_toTopOf="@+id/button5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,12 +66,8 @@
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="@dimen/button_intro_width"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="ENTRAR COM GOOGLE"
+            style="@style/btn_google"
+            android:text="entrar com goole"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +86,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button5"
             app:srcCompat="@drawable/meau" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/courgette"
+            android:text="Crie sua conta grátis"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
