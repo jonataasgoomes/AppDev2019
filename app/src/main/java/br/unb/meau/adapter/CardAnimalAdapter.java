@@ -1,26 +1,29 @@
 package br.unb.meau.adapter;
-
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.List;
-
 import br.unb.meau.R;
-import br.unb.meau.fragment.PerfilAnimalFragment;
+import br.unb.meau.activity.LoginActivity;
+import br.unb.meau.activity.MainActivity;
 import br.unb.meau.model.Animal;
-import br.unb.meau.recycler.RecyclerItemClickListener;
+
 
 public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.AnimalViewHolder> {
     private List<Animal> animais;
-    public CardAnimalAdapter(List<Animal> listaAnimais) {
+    private final Context context;
+
+    public CardAnimalAdapter(List<Animal> listaAnimais, final Context context) {
         this.animais = listaAnimais ;
+        this.context = context;
     }
 
 
@@ -29,9 +32,7 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
         public AnimalViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View itemLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_animal,viewGroup, false);
             return new AnimalViewHolder(itemLista);
-
     }
-
         @Override
         public void onBindViewHolder(@NonNull AnimalViewHolder animalViewHolder, int i) {
             Animal animal = animais.get(i);
@@ -42,23 +43,20 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
             animalViewHolder.textLocalizacao.setText(animal.getLocalizacao());
             animalViewHolder.imageAnimal.setImageResource(animal.getImagem());
 
-
-
         }
-
         @Override
         public int getItemCount() {
             return animais.size();
         }
 
         public class AnimalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
             private TextView textNomeAnimal;
-            protected ImageView imageAnimal;
+            private ImageView imageAnimal;
             private TextView textLocalizacao;
             private TextView textEspecie;
             private TextView textPorte;
             private TextView textIdade;
+            private Button  buttonCurtir;
 
             public AnimalViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -68,15 +66,27 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
                 textEspecie = itemView.findViewById(R.id.textEspecie);
                 textPorte = itemView.findViewById(R.id.textPorte);
                 textIdade = itemView.findViewById(R.id.textIdade);
-
-                imageAnimal.setOnClickListener(this);
-
+                buttonCurtir = itemView.findViewById(R.id.buttonCurtir);
+                //Chamando o perfil atráves da Imagem no card.
+                imageAnimal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(),"PERFIL AINDA NÂO ESTÀ PRONTO", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //Implementação do botão curtir.
+                buttonCurtir.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(),"CURTIR AINDA NÃO ESTÀ PRONTO" , Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(itemView.getContext(),"Imagem Clicada",Toast.LENGTH_SHORT ).show();
+
             }
         }
 

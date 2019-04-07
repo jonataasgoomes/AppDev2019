@@ -23,12 +23,14 @@ public class AdotarActivity extends AppCompatActivity {
         //getSupportActionBar().setTitle("Adotar");
         // Configurar RecyclerView
         recyclerAnimal = findViewById(R.id.recyclerAnimal);
+
         //Definindo layout do Animal
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerAnimal.setLayoutManager(layoutManager);
+
         //Definindo adaptador
         carregarCards();
-        CardAnimalAdapter adapter = new CardAnimalAdapter(cardsAnimais);
+        CardAnimalAdapter adapter = new CardAnimalAdapter(cardsAnimais,this);
         recyclerAnimal.setAdapter(adapter);
     }
 

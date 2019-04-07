@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
 
+
+        //Ações dos botões na view - abrem Activitys conrrepondentes.
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
