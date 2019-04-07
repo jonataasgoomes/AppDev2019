@@ -34,6 +34,7 @@
             android:ems="10"
             android:hint="Email"
             android:inputType="textWebEmailAddress"
+            android:selectAllOnFocus="false"
             app:layout_constraintBottom_toTopOf="@+id/editText2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +49,8 @@
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="Senha"
-            android:inputType="textPersonName|textPassword"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="false"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,11 +82,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button5"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/meau" />
 
         <TextView

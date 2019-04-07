@@ -55,12 +55,13 @@
             android:id="@+id/imageIntroLogo"
             android:layout_width="@dimen/logo_width"
             android:layout_height="@dimen/logo_height"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintStart_toStartOf="@+id/buttonLogin"
+            app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/meau" />
 
         <TextView
