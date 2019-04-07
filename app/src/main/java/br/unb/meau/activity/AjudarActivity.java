@@ -11,6 +11,7 @@ public class AjudarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajudar);
-        getSupportActionBar().setTitle("Ajudar");
+        // Coloca o nome na acton bar
+        //getSupportActionBar().setTitle("Ajudar");
     }
 }

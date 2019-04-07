@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="24dp">
+    app:cardCornerRadius="5dp"
+    app:cardElevation="10dp">
 
 
     <LinearLayout
@@ -23,6 +24,7 @@
                 android:id="@+id/textNomeAnimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:padding="5dp"

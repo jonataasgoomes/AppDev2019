@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        // Remove a action bar
+        //Objects.requireNonNull(getSupportActionBar()).hide();
 
         btnLogin = findViewById(R.id.buttonLogin);
         btnAdotar = findViewById(R.id.buttonAdotar);
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);;;;;
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
