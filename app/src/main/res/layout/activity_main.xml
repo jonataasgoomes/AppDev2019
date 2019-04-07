@@ -3,6 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -64,10 +65,10 @@
 
         <TextView
             android:id="@+id/textIntro2"
-            android:layout_width="320dp"
-            android:layout_height="109dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp"
+            android:layout_width="348dp"
+            android:layout_height="111dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="44dp"
             android:fontFamily="@font/roboto"
             android:text="@string/textIntro"
@@ -75,7 +76,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/buttonAdotar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.214"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
