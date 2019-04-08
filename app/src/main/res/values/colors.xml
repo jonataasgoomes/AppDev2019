@@ -8,4 +8,6 @@
     <color name="colorSplash">#88C9BF</color>
     <color name="colorMain1">#FEE29B</color>
     <color name="text_card_color">#434343</color>
+    <color name="btn_facebook">#194F7C</color>
+    <color name="color_google">#F15F5C</color>
 </resources>
