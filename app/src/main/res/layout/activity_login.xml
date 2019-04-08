@@ -16,32 +16,38 @@
         <Button
             android:id="@+id/buttonEntrar"
             style="@style/button_primary_entrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:fontFamily="@font/roboto"
             android:text="Entrar"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/buttonFacebook"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/senhaText" />
+            app:layout_constraintTop_toBottomOf="@+id/editSenha" />
 
         <EditText
-            android:id="@+id/emailText"
+            android:id="@+id/editEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textWebEmailAddress"
             android:selectAllOnFocus="false"
-            app:layout_constraintBottom_toTopOf="@+id/senhaText"
+            app:layout_constraintBottom_toTopOf="@+id/editSenha"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <EditText
-            android:id="@+id/senhaText"
+            android:id="@+id/editSenha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -53,13 +59,18 @@
             android:selectAllOnFocus="false"
             app:layout_constraintBottom_toTopOf="@+id/buttonEntrar"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailText"
+            app:layout_constraintTop_toBottomOf="@+id/editEmail"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/buttonFacebook"
             style="@style/button_primary_facebook"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:text="entrar com facebook"
             app:layout_constraintBottom_toTopOf="@+id/buttonGoogle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +80,10 @@
         <Button
             android:id="@+id/buttonGoogle"
             style="@style/btn_google"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:text="entrar com goole"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,15 +111,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="50dp"
             android:fontFamily="@font/courgette"
             android:onClick="btnCadastrar"
             android:text="Crie sua conta grátis"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/logoMeau"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonGoogle"
+            app:layout_constraintVertical_bias="0.415" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/courgette"
+            android:text="Acesse sua conta"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

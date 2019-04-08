@@ -32,20 +32,20 @@ public class MainActivity extends AppCompatActivity {
         // Remove a action bar
         //Objects.requireNonNull(getSupportActionBar()).hide();
 
-        btnLogin = findViewById(R.id.buttonLogin);
+        //btnLogin = findViewById(R.id.buttonLogin);
         btnAdotar = findViewById(R.id.buttonAdotar);
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
 
 
         //Ações dos botões na view - abrem Activitys conrrepondentes.
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        /*btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         btnAdotar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
