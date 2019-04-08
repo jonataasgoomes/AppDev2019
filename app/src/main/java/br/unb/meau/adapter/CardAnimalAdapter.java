@@ -19,11 +19,11 @@ import br.unb.meau.model.Animal;
 
 public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.AnimalViewHolder> {
     private List<Animal> animais;
-    private final Context context;
+
 
     public CardAnimalAdapter(List<Animal> listaAnimais, final Context context) {
         this.animais = listaAnimais ;
-        this.context = context;
+
     }
 
 
@@ -41,8 +41,8 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
             animalViewHolder.textPorte.setText(animal.getPorte());
             animalViewHolder.textEspecie.setText(animal.getEspecie());
             animalViewHolder.textLocalizacao.setText(animal.getLocalizacao());
-            animalViewHolder.imageAnimal.setImageResource(animal.getImagem());
-
+            animalViewHolder.imagemAnimal.setImageResource(animal.getImagem());
+            animalViewHolder.imagemAnimal.setBackgroundResource(animal.getImagem());
         }
         @Override
         public int getItemCount() {
@@ -51,7 +51,7 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
 
         public class AnimalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             private TextView textNomeAnimal;
-            private ImageView imageAnimal;
+            private ImageView imagemAnimal;
             private TextView textLocalizacao;
             private TextView textEspecie;
             private TextView textPorte;
@@ -61,14 +61,14 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
             public AnimalViewHolder(@NonNull View itemView) {
                 super(itemView);
                 textNomeAnimal = itemView.findViewById(R.id.textNomeAnimal);
-                imageAnimal = (ImageView)itemView.findViewById(R.id.imageAnimal);
+                imagemAnimal = (ImageView)itemView.findViewById(R.id.imageAnimal);
                 textLocalizacao = itemView.findViewById(R.id.textLocalização);
                 textEspecie = itemView.findViewById(R.id.textEspecie);
                 textPorte = itemView.findViewById(R.id.textPorte);
                 textIdade = itemView.findViewById(R.id.textIdade);
                 buttonCurtir = itemView.findViewById(R.id.buttonCurtir);
                 //Chamando o perfil atráves da Imagem no card.
-                imageAnimal.setOnClickListener(new View.OnClickListener() {
+                imagemAnimal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(v.getContext(),"PERFIL EM BREVE", Toast.LENGTH_SHORT).show();
