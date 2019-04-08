@@ -71,14 +71,14 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
                 imageAnimal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext(),"PERFIL AINDA NÂO ESTÀ PRONTO", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(),"PERFIL EM BREVE", Toast.LENGTH_SHORT).show();
                     }
                 });
                 //Implementação do botão curtir.
                 buttonCurtir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext(),"CURTIR AINDA NÃO ESTÀ PRONTO" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(),"CURTIR EM BREVE" , Toast.LENGTH_SHORT).show();
                     }
                 });
 
