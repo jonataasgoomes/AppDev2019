@@ -51,7 +51,7 @@
             android:background="@drawable/cachorro1"
             android:contentDescription="@string/content_img_animal"
             android:fadingEdge="vertical"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/cachorro1" />
 
         <LinearLayout

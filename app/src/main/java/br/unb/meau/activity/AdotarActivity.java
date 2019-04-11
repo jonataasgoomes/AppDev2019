@@ -19,6 +19,7 @@ public class AdotarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adotar);
+
         // Coloca o nome na acton bar
         //getSupportActionBar().setTitle("Adotar");
         // Configurar RecyclerView
