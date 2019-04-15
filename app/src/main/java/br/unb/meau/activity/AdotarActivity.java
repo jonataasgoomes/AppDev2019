@@ -40,7 +40,8 @@ public class AdotarActivity extends AppCompatActivity {
                     "FILHOTE",
                     "MACHO",
                     "ASA SUL - DF",
-                    "GRANDE",R.drawable.cachorro1);
+                    "GRANDE",
+                    R.drawable.cachorro1);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
@@ -48,7 +49,8 @@ public class AdotarActivity extends AppCompatActivity {
                 "ADULTO",
                 "FEMÊA",
                 "ASA NORTE - DF",
-                "MEDIO",R.drawable.cachorro2);
+                "MEDIO",
+                R.drawable.cachorro2);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
@@ -56,7 +58,8 @@ public class AdotarActivity extends AppCompatActivity {
                 "FILHOTE",
                 "MACHO",
                 "SOBRADINHO - DF",
-                "PEQUENO",R.drawable.cachorro3);
+                "PEQUENO",
+                R.drawable.cachorro3);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
@@ -64,9 +67,9 @@ public class AdotarActivity extends AppCompatActivity {
                 "ADULTO",
                 "MACHO",
                 "TAGUATINGA -DF",
-                "GRANDE",R.drawable.cachorro4);
+                "GRANDE",
+                R.drawable.cachorro4);
         this.cardsAnimais.add(animal);
-
 
     }
 }
