@@ -2,6 +2,9 @@
     <string name="app_name">MeaU</string>
     <string name="button_adotar">Adotar</string>
     <string name="button_ajudar">Ajudar</string>
+    <string name="button_apadrinhar">Apadrinhar</string>
+    <string name="button_adocao">Adoção</string>
+    <string name="button_ajuda">Ajuda</string>
     <string name="button_cadastrar_animal">Cadastrar animal</string>
     <string name="textIntro">Bem vindo ao Meau!\nAqui você pode adotar, doar e ajudar cães e gatos com facilidade.\nQual seu interesse?</string>
     <string name="textIntro0">Olá!</string>
@@ -14,6 +17,7 @@
     <string name="idade_animal">Idade</string>
     <string name="porte_animal">Porte</string>
     <string name="localizacao_animal">Localização</string>
+    <string name="text_cadastro_animal">Tenho interesse em cadastrar o animal para:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
