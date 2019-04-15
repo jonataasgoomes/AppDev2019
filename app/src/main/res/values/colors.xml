@@ -11,4 +11,8 @@
     <color name="text_card_color">#434343</color>
     <color name="btn_facebook">#194F7C</color>
     <color name="color_google">#F15F5C</color>
+    <color name="color_unselected_button">#F1F2F2</color>
+    <color name="color_selected_button">#FFD358</color>
+    <color name="color_disabled_text">#BDBDBD</color>
+    <color name="color_enabled_text">#434343</color>
 </resources>

@@ -46,7 +46,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:background="@color/colorActionBarAdotar"
+                        android:background="@color/color_unselected_button"
+                        android:textColor="@color/color_enabled_text"
                         android:fontFamily="@font/roboto"
                         android:text="@string/button_adocao"
                         android:textSize="12sp" />
@@ -57,8 +58,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:background="@color/colorActionBarAdotar"
-                        android:fontFamily="@font/roboto"
+                        android:background="@color/color_unselected_button"
+                        android:textColor="@color/color_enabled_text"                        android:fontFamily="@font/roboto"
                         android:text="@string/button_apadrinhar"
                         android:textSize="12sp" />
 
@@ -67,8 +68,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@color/colorActionBarAdotar"
-                        android:fontFamily="@font/roboto"
+                        android:background="@color/color_unselected_button"
+                        android:textColor="@color/color_enabled_text"                        android:fontFamily="@font/roboto"
                         android:text="@string/button_ajuda"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -77,17 +78,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/button_adocao"
-                        android:textColor="#434343"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
 
                     <TextView
                         android:id="@+id/textView5"
@@ -101,13 +91,13 @@
                         android:textSize="12sp" />
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/nameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:text="@string/field_name"
+                        android:hint="@string/field_name"
                         android:textColor="#bdbdbd"
                         android:textSize="14sp" />
 
@@ -160,6 +150,7 @@
                             android:layout_width="0px"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="@string/species_option_1"
                             android:textColor="#757575" />
 
@@ -196,6 +187,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="@string/gender_option_1"
                             android:textColor="#757575" />
 
@@ -232,6 +224,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="@string/size_option_1"
                             android:textColor="#757575" />
 
@@ -276,6 +269,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="@string/age_option_1"
                             android:textColor="#757575" />
 
@@ -318,7 +312,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/checkBox"
+                                android:id="@+id/temper_box_1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -327,7 +321,7 @@
                                 android:textColor="#757575" />
 
                             <CheckBox
-                                android:id="@+id/checkBox3"
+                                android:id="@+id/temper_box_2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -336,7 +330,7 @@
                                 android:textColor="#757575" />
 
                             <CheckBox
-                                android:id="@+id/checkBox4"
+                                android:id="@+id/temper_box_3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -353,7 +347,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/checkBox5"
+                                android:id="@+id/temper_box_4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -362,7 +356,7 @@
                                 android:textColor="#757575" />
 
                             <CheckBox
-                                android:id="@+id/checkBox6"
+                                android:id="@+id/temper_box_5"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -371,7 +365,7 @@
                                 android:textColor="#757575" />
 
                             <CheckBox
-                                android:id="@+id/checkBox7"
+                                android:id="@+id/temper_box_6"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -402,10 +396,10 @@
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:weightSum="3">
+                            android:weightSum="2">
 
                             <CheckBox
-                                android:id="@+id/checkBox8"
+                                android:id="@+id/health_box_1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -414,7 +408,7 @@
                                 android:textColor="#757575" />
 
                             <CheckBox
-                                android:id="@+id/checkBox9"
+                                android:id="@+id/health_box_2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -428,10 +422,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="28dp"
-                            android:weightSum="3">
+                            android:weightSum="2">
 
                             <CheckBox
-                                android:id="@+id/checkBox10"
+                                android:id="@+id/health_box_3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -440,7 +434,7 @@
                                 android:textColor="#757575" />
 
                             <CheckBox
-                                android:id="@+id/checkBox11"
+                                android:id="@+id/health_box_4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -453,23 +447,37 @@
                     </TableLayout>
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/diseaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="@string/field_diseases"
+                        android:inputType="textMultiLine"
+                        android:hint="@string/field_diseases"
                         android:textColor="#bdbdbd"
+                        android:textColorLink="@color/colorPrimaryText"
                         android:textSize="14sp" />
 
-                    <LinearLayout
-                        android:id="@+id/fragment_container"
+                    <fragment
+                        android:id="@+id/adopt_fragment"
+                        android:name="br.unb.meau.fragment.CadastroAdocaoFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        tools:layout="@layout/fragment_cadastro_adocao" />
 
-                    </LinearLayout>
+                    <fragment
+                        android:id="@+id/provide_fragment"
+                        android:name="br.unb.meau.fragment.CadastroApadrinhamentoFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:layout="@layout/fragment_cadastro_apadrinhamento" />
+
+                    <fragment
+                        android:id="@+id/help_fragment"
+                        android:name="br.unb.meau.fragment.CadastroAjudaFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:layout="@layout/fragment_cadastro_ajuda" />
 
                     <TextView
                         android:id="@+id/textView15"
@@ -483,15 +491,29 @@
                         android:textSize="12sp" />
 
                     <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/aboutText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="@string/field_about_desc"
+                        android:inputType="textMultiLine"
+                        android:hint="@string/field_about_desc"
                         android:textColor="#bdbdbd"
+                        android:textColorLink="@color/colorPrimaryText"
                         android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/save_button"
+                        android:layout_width="232dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:layout_weight="1"
+                        android:background="@color/color_selected_button"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/color_enabled_text"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
             </LinearLayout>
