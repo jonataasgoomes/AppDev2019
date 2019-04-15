@@ -19,6 +19,46 @@
     <string name="localizacao_animal">Localização</string>
     <string name="text_cadastro_animal">Tenho interesse em cadastrar o animal para:</string>
 
+    <string name="field_name">Nome do animal</string>
+    <string name="field_pics">Fotos do animal</string>
+    <string name="field_pics_add">adicionar fotos</string>
+    <string name="field_species">Espécie</string>
+    <string name="field_gender">Sexo</string>
+    <string name="field_size">Porte</string>
+    <string name="field_age">Idade</string>
+    <string name="field_temper">Temperamento</string>
+    <string name="field_health">Saúde</string>
+    <string name="field_diseases">Doenças do animal</string>
+    <string name="field_about">Sobre o animal</string>
+    <string name="field_about_desc">Compartilhe a história do animal</string>
+
+    <string name="species_option_1">Cachorro</string>
+    <string name="species_option_2">Gato</string>
+
+    <string name="gender_option_1">Macho</string>
+    <string name="gender_option_2">Fêmea</string>
+
+    <string name="size_option_1">Pequeno</string>
+    <string name="size_option_2">Médio</string>
+    <string name="size_option_3">Grande</string>
+
+    <string name="age_option_1">Filhote</string>
+    <string name="age_option_2">Adulto</string>
+    <string name="age_option_3">Idoso</string>
+
+    <string name="temper_option_1">Brincalhão</string>
+    <string name="temper_option_2">Tímido</string>
+    <string name="temper_option_3">Calmo</string>
+    <string name="temper_option_4">Guarda</string>
+    <string name="temper_option_5">Amoroso</string>
+    <string name="temper_option_6">Preguiçoso</string>
+
+    <string name="health_option_1">Vacinado</string>
+    <string name="health_option_2">Vermifugado</string>
+    <string name="health_option_3">Castrado</string>
+    <string name="health_option_4">Doente</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

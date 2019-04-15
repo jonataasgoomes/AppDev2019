@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorActionBarAdotar">#FFD358</color>
+    <color name="colorPrimaryText">#F7A800</color>
     <color name="colorBtnLogin">#88C9BF</color>
     <color name="colorSplash">#88C9BF</color>
     <color name="colorMain1">#FEE29B</color>

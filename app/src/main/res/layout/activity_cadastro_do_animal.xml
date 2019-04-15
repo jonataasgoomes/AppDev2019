@@ -16,14 +16,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -41,29 +41,29 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/adopt_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
                         android:background="@color/colorActionBarAdotar"
                         android:fontFamily="@font/roboto"
                         android:text="@string/button_adocao"
                         android:textSize="12sp" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/provide_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
                         android:background="@color/colorActionBarAdotar"
                         android:fontFamily="@font/roboto"
                         android:text="@string/button_apadrinhar"
                         android:textSize="12sp" />
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/help_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -71,6 +71,428 @@
                         android:fontFamily="@font/roboto"
                         android:text="@string/button_ajuda"
                         android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/button_adocao"
+                        android:textColor="#434343"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_name"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@string/field_name"
+                        android:textColor="#bdbdbd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_pics"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/add_pics_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#f1f2f2"
+                        android:drawableTop="@drawable/ic_add_pictures"
+                        android:fontFamily="@font/roboto"
+                        android:paddingTop="44dp"
+                        android:paddingBottom="48dp"
+                        android:text="@string/field_pics_add"
+                        android:textAllCaps="false"
+                        android:textColor="#757575" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_species"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <RadioGroup
+                        android:id="@+id/species_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <RadioButton
+                            android:id="@+id/radioButton"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/species_option_1"
+                            android:textColor="#757575" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/species_option_2"
+                            android:textColor="#757575" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_gender"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <RadioGroup
+                        android:id="@+id/gender_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <RadioButton
+                            android:id="@+id/radioButton3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/gender_option_1"
+                            android:textColor="#757575" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/gender_option_2"
+                            android:textColor="#757575" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_size"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <RadioGroup
+                        android:id="@+id/size_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <RadioButton
+                            android:id="@+id/radioButton5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/size_option_1"
+                            android:textColor="#757575" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/size_option_2"
+                            android:textColor="#757575" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/size_option_3"
+                            android:textColor="#757575" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_age"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <RadioGroup
+                        android:id="@+id/age_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <RadioButton
+                            android:id="@+id/radioButton7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/age_option_1"
+                            android:textColor="#757575" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/age_option_2"
+                            android:textColor="#757575" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/age_option_3"
+                            android:textColor="#757575" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_temper"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/checkBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/temper_option_1"
+                                android:textColor="#757575" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/temper_option_2"
+                                android:textColor="#757575" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox4"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/temper_option_3"
+                                android:textColor="#757575" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="28dp"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/checkBox5"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/temper_option_4"
+                                android:textColor="#757575" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox6"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/temper_option_5"
+                                android:textColor="#757575" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox7"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/temper_option_6"
+                                android:textColor="#757575" />
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_health"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/checkBox8"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/health_option_1"
+                                android:textColor="#757575" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox9"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/health_option_2"
+                                android:textColor="#757575" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="28dp"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/checkBox10"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/health_option_3"
+                                android:textColor="#757575" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox11"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:text="@string/health_option_4"
+                                android:textColor="#757575" />
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <EditText
+                        android:id="@+id/editText3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@string/field_diseases"
+                        android:textColor="#bdbdbd"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/fragment_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/field_about"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/editText4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@string/field_about_desc"
+                        android:textColor="#bdbdbd"
+                        android:textSize="14sp" />
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
