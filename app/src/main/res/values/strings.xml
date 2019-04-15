@@ -87,6 +87,10 @@
     <string name="help_demand_4">Objetos</string>
     <string name="help_demand_4_desc">Especifique o(s) objeto(s)</string>
 
+    <string name="end_animal_register_yay">Eba!</string>
+    <string name="end_animal_register_text1">O cadastro do seu pet foi realizado com sucesso!</string>
+    <string name="end_animal_register_text2">Certifique-se que permitiu o envio de notificações por push no campo privacidade do menu configurações do aplicativo. Assim, poderemos te avisar assim que alguém interessado entrar em contato!</string>
+    <string name="my_pets_btn">Meus Pets</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

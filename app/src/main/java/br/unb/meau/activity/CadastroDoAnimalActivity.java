@@ -1,5 +1,6 @@
 package br.unb.meau.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -190,6 +191,9 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
                 aboutText.getText().toString(),
                 R.drawable.cachorro1
         );
+
+        Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
+        startActivity(intent);
     }
     private String getCheckedOption (RadioGroup group) {
         int id = group.getCheckedRadioButtonId();

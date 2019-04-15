@@ -6,15 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-
-import java.util.Objects;
-
 import br.unb.meau.R;
-import br.unb.meau.activity.AdotarActivity;
-import br.unb.meau.activity.AjudarActivity;
-import br.unb.meau.activity.CadastroDoAnimalActivity;
-import br.unb.meau.activity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         //Objects.requireNonNull(getSupportActionBar()).hide();
 
         //btnLogin = findViewById(R.id.buttonLogin);
-        btnAdotar = findViewById(R.id.buttonAdotar);
+        btnAdotar = findViewById(R.id.buttonPets);
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
 
