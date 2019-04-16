@@ -2,6 +2,9 @@
     <string name="app_name">MeaU</string>
     <string name="button_adotar">Adotar</string>
     <string name="button_ajudar">Ajudar</string>
+    <string name="button_apadrinhar">Apadrinhar</string>
+    <string name="button_adocao">Adoção</string>
+    <string name="button_ajuda">Ajuda</string>
     <string name="button_cadastrar_animal">Cadastrar animal</string>
     <string name="textIntro">Bem vindo ao Meau!\nAqui você pode adotar, doar e ajudar cães e gatos com facilidade.\nQual seu interesse?</string>
     <string name="textIntro0">Olá!</string>
@@ -14,6 +17,81 @@
     <string name="idade_animal">Idade</string>
     <string name="porte_animal">Porte</string>
     <string name="localizacao_animal">Localização</string>
+    <string name="text_cadastro_animal">Tenho interesse em cadastrar o animal para:</string>
+
+    <string name="field_name">Nome do animal</string>
+    <string name="field_pics">Fotos do animal</string>
+    <string name="field_pics_add">adicionar fotos</string>
+    <string name="field_species">Espécie</string>
+    <string name="field_gender">Sexo</string>
+    <string name="field_size">Porte</string>
+    <string name="field_age">Idade</string>
+    <string name="field_temper">Temperamento</string>
+    <string name="field_health">Saúde</string>
+    <string name="field_diseases">Doenças do animal</string>
+    <string name="field_about">Sobre o animal</string>
+    <string name="field_about_desc">Compartilhe a história do animal</string>
+
+    <string name="species_option_1">Cachorro</string>
+    <string name="species_option_2">Gato</string>
+
+    <string name="gender_option_1">Macho</string>
+    <string name="gender_option_2">Fêmea</string>
+
+    <string name="size_option_1">Pequeno</string>
+    <string name="size_option_2">Médio</string>
+    <string name="size_option_3">Grande</string>
+
+    <string name="age_option_1">Filhote</string>
+    <string name="age_option_2">Adulto</string>
+    <string name="age_option_3">Idoso</string>
+
+    <string name="temper_option_1">Brincalhão</string>
+    <string name="temper_option_2">Tímido</string>
+    <string name="temper_option_3">Calmo</string>
+    <string name="temper_option_4">Guarda</string>
+    <string name="temper_option_5">Amoroso</string>
+    <string name="temper_option_6">Preguiçoso</string>
+
+    <string name="health_option_1">Vacinado</string>
+    <string name="health_option_2">Vermifugado</string>
+    <string name="health_option_3">Castrado</string>
+    <string name="health_option_4">Doente</string>
+
+    <string name="save_animal_adopt">Colocar para adoção</string>
+    <string name="save_animal_help">Colocar para ajuda</string>
+    <string name="save_animal_provide">Colocar para apadrinhamento</string>
+
+    <string name="adopt_demands">Exigências para adoção</string>
+    <string name="adopt_demand_1">Termo de adoção</string>
+    <string name="adopt_demand_2">Fotos da casa</string>
+    <string name="adopt_demand_3">Visita prévia ao animal</string>
+    <string name="adopt_demand_4">Acompanhamento pós-adoção</string>
+    <string name="time_demand_1">1 mês</string>
+    <string name="time_demand_2">3 meses</string>
+    <string name="time_demand_3">6 meses</string>
+
+    <string name="provide_demands">Exigências para apadrinhamento</string>
+    <string name="provide_demand_1">Termo de apadrinhamento</string>
+    <string name="provide_demand_2">Auxílio financeiro</string>
+    <string name="provide_demand_3">Visitas ao animal</string>
+    <string name="support_demand_1">Alimentação</string>
+    <string name="support_demand_2">Saúde</string>
+    <string name="support_demand_3">Objetos</string>
+
+    <string name="help_demands">Necessidades do animal</string>
+    <string name="help_demand_1">Alimento</string>
+    <string name="help_demand_2">Auxílio financeiro</string>
+    <string name="help_demand_3">Medicamento</string>
+    <string name="help_demand_3_desc">Nome do medicamento</string>
+    <string name="help_demand_4">Objetos</string>
+    <string name="help_demand_4_desc">Especifique o(s) objeto(s)</string>
+
+    <string name="end_animal_register_yay">Eba!</string>
+    <string name="end_animal_register_text1">O cadastro do seu pet foi realizado com sucesso!</string>
+    <string name="end_animal_register_text2">Certifique-se que permitiu o envio de notificações por push no campo privacidade do menu configurações do aplicativo. Assim, poderemos te avisar assim que alguém interessado entrar em contato!</string>
+    <string name="my_pets_btn">Meus Pets</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

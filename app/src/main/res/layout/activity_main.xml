@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/buttonAdotar"
+            android:id="@+id/buttonPets"
             style="@style/button_intro"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="12dp"
@@ -88,7 +88,7 @@
             android:text="@string/textIntro"
             android:textAlignment="center"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonAdotar"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPets"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent" />

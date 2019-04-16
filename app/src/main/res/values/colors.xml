@@ -4,10 +4,15 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorActionBarAdotar">#FFD358</color>
+    <color name="colorPrimaryText">#F7A800</color>
     <color name="colorBtnLogin">#88C9BF</color>
     <color name="colorSplash">#88C9BF</color>
     <color name="colorMain1">#FEE29B</color>
     <color name="text_card_color">#434343</color>
     <color name="btn_facebook">#194F7C</color>
     <color name="color_google">#F15F5C</color>
+    <color name="color_unselected_button">#F1F2F2</color>
+    <color name="color_selected_button">#FFD358</color>
+    <color name="color_disabled_text">#BDBDBD</color>
+    <color name="color_enabled_text">#434343</color>
 </resources>
