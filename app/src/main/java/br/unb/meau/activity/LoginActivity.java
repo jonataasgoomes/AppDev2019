@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
     public void UsuarioLogado(){
         auth = ConfigFirebase.getFirebaseAuth();
         if (auth.getCurrentUser()!=null){
+            finish();
             startActivity(new Intent(this,MainActivity.class));
         }
     }

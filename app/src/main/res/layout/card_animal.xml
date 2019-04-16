@@ -51,7 +51,7 @@
             android:background="@drawable/cachorro1"
             android:contentDescription="@string/content_img_animal"
             android:fadingEdge="vertical"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/cachorro1" />
 
         <LinearLayout
@@ -68,6 +68,7 @@
                     android:id="@+id/textEspecie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="@string/especie_animal"
                     android:textAlignment="center"
@@ -77,6 +78,7 @@
                     android:id="@+id/textIdade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="@string/idade_animal"
                     android:textAlignment="center"
@@ -86,6 +88,7 @@
                     android:id="@+id/textPorte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="@string/porte_animal"
                     android:textAlignment="center"
@@ -96,6 +99,7 @@
                 android:id="@+id/textLocalização"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="@string/localizacao_animal"
                 android:textAlignment="center"
                 android:textColor="@color/text_card_color" />
