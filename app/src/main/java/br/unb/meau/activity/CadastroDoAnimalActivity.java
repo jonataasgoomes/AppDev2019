@@ -23,7 +23,10 @@ import br.unb.meau.R;
 import br.unb.meau.fragment.CadastroAdocaoFragment;
 import br.unb.meau.fragment.CadastroAjudaFragment;
 import br.unb.meau.fragment.CadastroApadrinhamentoFragment;
+import br.unb.meau.model.Adocao;
+import br.unb.meau.model.Ajuda;
 import br.unb.meau.model.Animal;
+import br.unb.meau.model.Apadrinhamento;
 import br.unb.meau.viewmodel.CadastroDoAnimalViewModel;
 
 public class CadastroDoAnimalActivity extends AppCompatActivity implements CadastroApadrinhamentoFragment.OnFragmentInteractionListener, CadastroAdocaoFragment.OnFragmentInteractionListener, CadastroAjudaFragment.OnFragmentInteractionListener {
@@ -179,7 +182,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             }
         }
 
-        new Animal(
+        Animal toSave = new Animal(
                 nameText.getText().toString(),
                 getCheckedOption(age),
                 getCheckedOption(species),
@@ -191,6 +194,52 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
                 aboutText.getText().toString(),
                 R.drawable.cachorro1
         );
+
+        if (mViewModel.getAdopting()) {
+            CheckBox cb1 = findViewById(R.id.adopt_demand_box_1);
+            CheckBox cb2 = findViewById(R.id.adopt_demand_box_2);
+            CheckBox cb3 = findViewById(R.id.adopt_demand_box_3);
+            CheckBox cb4 = findViewById(R.id.adopt_demand_box_4);
+            boolean[] months = new boolean[3];
+            int[] monthsIds = {R.id.time_demand_box_1, R.id.time_demand_box_2, R.id.time_demand_box_3};
+            if (cb4.isChecked()) {
+                for(int i = 0; i < 3; i++) {
+                    CheckBox view = findViewById(monthsIds[i]);
+                    months[i] = view.isChecked();
+                }
+            }
+            toSave.setAdoptData(new Adocao(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), cb4.isChecked(), months));
+        } else if (mViewModel.getProviding()) {
+            CheckBox cb1 = findViewById(R.id.prov_demand_box_1);
+            CheckBox cb2 = findViewById(R.id.prov_demand_box_2);
+            CheckBox cb3 = findViewById(R.id.prov_demand_box_3);
+            boolean[] financial = new boolean[3];
+            int[] financialIds = {R.id.support_demand_box_1, R.id.support_demand_box_2, R.id.support_demand_box_3};
+            if (cb3.isChecked()) {
+                for(int i = 0; i < 3; i++) {
+                    CheckBox view = findViewById(financialIds[i]);
+                    financial[i] = view.isChecked();
+                }
+            }
+            toSave.setProvideData(new Apadrinhamento(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), financial));
+        }
+        if (mViewModel.getHelping()) {
+            CheckBox cb1 = findViewById(R.id.help_demand_box_1);
+            CheckBox cb2 = findViewById(R.id.help_demand_box_2);
+            CheckBox cb3 = findViewById(R.id.help_demand_box_3);
+            CheckBox cb4 = findViewById(R.id.help_demand_box_4);
+            String medicines = "";
+            String objects = "";
+            if (cb3.isChecked()) {
+                EditText view = findViewById(R.id.medicineText);
+                medicines = view.getText().toString();
+            }
+            if (cb4.isChecked()) {
+                EditText view = findViewById(R.id.objectText);
+                objects = view.getText().toString();
+            }
+            toSave.setHelpData(new Ajuda(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), medicines, cb4.isChecked(), objects));
+        }
 
         Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
         startActivity(intent);

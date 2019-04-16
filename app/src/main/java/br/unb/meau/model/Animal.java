@@ -16,6 +16,33 @@ public class Animal {
     private String doencas;
     private String sobre;
     private int imagem;
+    private Adocao adoptData;
+    private Ajuda helpData;
+    private Apadrinhamento provideData;
+
+    public Adocao getAdoptData() {
+        return adoptData;
+    }
+
+    public void setAdoptData(Adocao adoptData) {
+        this.adoptData = adoptData;
+    }
+
+    public Ajuda getHelpData() {
+        return helpData;
+    }
+
+    public void setHelpData(Ajuda helpData) {
+        this.helpData = helpData;
+    }
+
+    public Apadrinhamento getProvideData() {
+        return provideData;
+    }
+
+    public void setProvideData(Apadrinhamento provideData) {
+        this.provideData = provideData;
+    }
 
     public Animal() {
         this.nome = "";
@@ -28,6 +55,9 @@ public class Animal {
         this.saude = new ArrayList<String>();
         this.doencas = "";
         this.sobre = "";
+        this.adoptData = new Adocao();
+        this.helpData = new Ajuda();
+        this.provideData = new Apadrinhamento();
     }
 
     public Animal(String nome, String idade, String especie, String localizacao, String porte, int imagem) {
