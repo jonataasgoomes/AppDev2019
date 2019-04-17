@@ -1,15 +1,12 @@
 package br.unb.meau.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.WindowManager;
 
-import java.util.Objects;
-
 import br.unb.meau.R;
-import br.unb.meau.activity.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -27,6 +24,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 finish();
             }
-        },3000);
+        },500);
     }
 }
