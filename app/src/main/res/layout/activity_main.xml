@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/main_actity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".activity.MainActivity">
 
-        <android.support.v7.widget.Toolbar
+        <include
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            layout="@layout/main_toolbar" />
+        <include
+            android:layout_width="304dp"
+            android:layout_height="match_parent"
+            layout="@layout/navigation_view" />
         <Button
             android:id="@+id/buttonCadastrarAnimal"
             style="@style/button_intro"
@@ -113,7 +107,6 @@
 
         <Button
             android:id="@+id/buttonLogin"
-            android:visibility="invisible"
             style="@style/button_intro"
             android:layout_width="wrap_content"
             android:layout_marginEnd="8dp"
@@ -124,10 +117,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/colorBtnLogin"
             android:textSize="@dimen/size_text_button_login"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/imageIntroLogo"
             app:layout_constraintEnd_toEndOf="@+id/buttonCadastrarAnimal"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="@+id/buttonCadastrarAnimal" />
-
     </android.support.constraint.ConstraintLayout>
-</ScrollView>
+
+</android.support.v4.widget.DrawerLayout>
