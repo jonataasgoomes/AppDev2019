@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
         drawerLayout = findViewById(R.id.main_actity);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.drawer);
+        NavigationView navigationView = findViewById(R.id.drawer);
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
@@ -89,11 +89,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void closeDrawer() {
-
         drawerLayout.closeDrawer(GravityCompat.START);
     }
     private void openDrawer(){
-
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
