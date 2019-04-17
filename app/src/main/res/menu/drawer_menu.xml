@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/item_a"
-        android:checkable="true"
-        android:icon="@android:drawable/ic_dialog_email"
-        android:title="Action A"
-        />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/meu_perfil"
+            android:title="Meu Perfil" />
+        <item
+            android:id="@+id/meus_pets"
+            android:title="Meu Pets" />
+        <item
+            android:id="@+id/favoritos"
+            android:title="favoritos" />
+        <item
+            android:id="@+id/chat"
+            android:title="Chat" />
+    </group>
+    <item android:title="Atalhos" >
+        <menu android:id="@+id/atalhos">
+            <item
+                android:id="@+id/cadastrar_um_pet"
+                android:title="Cadastrar um pet" />
+            <item
+                android:id="@+id/adotar_um_pet"
+                android:title="Adotar um pet" />
+            <item
+                android:id="@+id/ajudar_um_pet"
+                android:title="Ajudar um pet" />
+            <item
+                android:id="@+id/apadrinhar_um_pet"
+                android:title="Apadrinhar um pet" />
+        </menu>
+    </item>
+    <item android:title="Informações">
+        <menu android:id="@+id/informacoes">
+            <item
+                android:id="@+id/dicas"
+                android:title="Dicas" />
+            <item
+                android:id="@+id/eventos"
+                android:title="Eventos" />
+            <item
+                android:id="@+id/legislacao"
+                android:title="Legislação" />
+            <item
+                android:id="@+id/termo_de_uso"
+                android:title="Termo de Uso" />
+            <item
+                android:id="@+id/hist_de_adocao"
+                android:title="Historias de adoção" />
+        </menu>
+    </item>
+    <item android:title="Configurações">
+        <menu android:id="@+id/config">
+            <item
+                android:id="@+id/privacidade"
+                android:title="Privacidade" />
+        </menu>
+    </item>
+
 </menu>

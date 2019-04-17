@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import br.unb.meau.R;
 
@@ -28,9 +29,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //configura toolbar
+        //configurar toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
         drawerLayout = findViewById(R.id.main_actity);
         NavigationView navigationView = (NavigationView) findViewById(R.id.drawer);
         navigationView.setNavigationItemSelectedListener(this);
@@ -42,20 +44,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        //btnLogin = findViewById(R.id.buttonLogin);
+        btnLogin = findViewById(R.id.buttonLogin);
         btnAdotar = findViewById(R.id.buttonPets);
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
 
 
         //Ações dos botões na view - abrem Activitys conrrepondentes.
-        /*btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
         btnAdotar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,14 +83,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Toast.makeText(this, "Item selecionado", Toast.LENGTH_SHORT).show();
         closeDrawer();
         return true;
     }
 
     private void closeDrawer() {
+
         drawerLayout.closeDrawer(GravityCompat.START);
     }
     private void openDrawer(){
+
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
