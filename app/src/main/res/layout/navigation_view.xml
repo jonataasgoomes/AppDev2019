@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:nestedScrollingEnabled="true"
     app:headerLayout="@layout/drawer_header"
-    app:menu="@menu/drawer_menu"></android.support.design.widget.NavigationView>
+    app:menu="@menu/drawer_menu"
+    >
+
+
+</android.support.design.widget.NavigationView>

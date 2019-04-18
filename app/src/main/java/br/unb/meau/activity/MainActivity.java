@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (auth.getCurrentUser()== null){
             Menu menu = navigationView.getMenu();
             MenuItem menuSair = menu.findItem(R.id.menu_sair);
-            menuSair.setEnabled(true);
+            menuSair.setEnabled(false);
             btnLogin.setVisibility(View.VISIBLE);
         }
 
