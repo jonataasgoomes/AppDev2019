@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PerfilActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="148dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/perfil_img_size"
+                app:srcCompat="@drawable/user" />
+
+            <TextView
+                android:id="@+id/textNomePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="@string/text_nome_perfil"
+                android:textAlignment="center"
+                android:textColor="@color/text_card_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textPerfil1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="NOME COMPLETO"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textNomeCompletoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_nome"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="IDADE"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textIdadePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_idade"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="EMAIL"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textEmailPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_email"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="LOCALIZAÇÂO"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textLocalizaçãoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_localizacao"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="ENDEREÇO"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textEnderecoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_endereco"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="TELEFONE"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textTelefonePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_telefone"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="NOME DE USUÁRIO"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textNomeDeUsuárioPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/text_nome_usuario"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <TextView
+                android:id="@+id/textPerfil8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="36dp"
+                android:text="HISTÓRICO"
+                android:textAlignment="center"
+                android:textColor="@color/colorAzulTxt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textHistoricoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="32dp"
+                android:text="@string/text_histórico"
+                android:textAlignment="center"
+                android:textColor="@color/text_field_perfil" />
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="410dp"
+                android:layout_height="100dp">
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="232dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="0dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@color/colorAzul"
+                    android:padding="0dp"
+                    android:text="@string/editar_perfil"
+                    android:textColor="@color/text_gray_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/main_toolbar" />
+
+
+</android.support.constraint.ConstraintLayout>

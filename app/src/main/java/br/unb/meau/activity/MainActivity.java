@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar ,
                 R.string.drawer_open
                 ,R.string.drawer_close);
+
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
@@ -104,20 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_sair:
-                deslogar();
-                finish();
-                startActivity(new Intent(this,MainActivity.class));
-                overridePendingTransition(0, 0);
-                Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void openDrawer(){
         drawerLayout.openDrawer(GravityCompat.START);
@@ -131,6 +118,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
+            case R.id.meu_perfil:
+                closeDrawer();
+                Intent perfil = new Intent(this, PerfilActivity.class);
+                startActivity(perfil);
+                break;
+            case R.id.cadastrar_um_pet:
+                closeDrawer();
+                Intent cadastarPet = new Intent(this, CadastroDoAnimalActivity.class);
+                startActivity(cadastarPet);
+                break;
+            case R.id.adotar_um_pet:
+                closeDrawer();
+                Intent adotar = new Intent(this, AdotarActivity.class);
+                startActivity(adotar);
+                break;
+            case R.id.ajudar_um_pet:
+                closeDrawer();
+                Intent ajudar = new Intent(this, AjudarActivity.class);
+                startActivity(ajudar);
+                break;
+            case R.id.apadrinhar_um_pet:
+                closeDrawer();
+                Intent apadrinhar = new Intent(this, ApadrinharActivity.class);
+                startActivity(apadrinhar);
+                break;
             case R.id.menu_sair:
                 deslogar();
                 closeDrawer();

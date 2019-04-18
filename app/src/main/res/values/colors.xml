@@ -5,6 +5,7 @@
     <color name="colorAzul">#88C9BF</color>
     <color name="colorAzulEscuro">#F85F8D86</color>
     <color name="colorAzulMensagem">#cfe9e5</color>
+    <color name="colorAzulTxt">#589b9b</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorActionBarAdotar">#FFD358</color>
@@ -12,7 +13,9 @@
     <color name="colorBtnLogin">#88C9BF</color>
     <color name="colorSplash">#88C9BF</color>
     <color name="colorMain1">#FEE29B</color>
+    <color name="text_gray_color">#757575</color>
     <color name="text_card_color">#434343</color>
+    <color name="text_field_perfil">#757575</color>
     <color name="btn_facebook">#194F7C</color>
     <color name="color_google">#F15F5C</color>
     <color name="card_view_color">#FAFAFA</color>
