@@ -14,7 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import br.unb.meau.R;
+import br.unb.meau.helper.ConfigFirebase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
-        drawerLayout = findViewById(R.id.main_actity);
+        drawerLayout = findViewById(R.id.main_activity);
         NavigationView navigationView = findViewById(R.id.drawer);
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
@@ -48,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         btnAdotar = findViewById(R.id.buttonPets);
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
+
+        FirebaseAuth auth;
+        auth = ConfigFirebase.getFirebaseAuth();
+        if (auth.getCurrentUser()== null){
+            btnLogin.setVisibility(View.VISIBLE);
+        }
 
 
         //Ações dos botões na view - abrem Activitys conrrepondentes.

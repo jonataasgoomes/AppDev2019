@@ -1,9 +1,11 @@
 package br.unb.meau.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 import br.unb.meau.R;
-import br.unb.meau.config.ConfigFirebase;
+import br.unb.meau.helper.ConfigFirebase;
 import br.unb.meau.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,12 +29,16 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         UsuarioLogado();
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Login");
+        toolbar.setBackgroundResource(R.color.colorBtnLogin);
 
         campoEmail = findViewById(R.id.editEmail);
         campoSenha = findViewById( R.id.editSenha);
@@ -76,19 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         }else
             Log.i("CreateUser", "Usuário deslogado");*/
 
-        /*Cadastro de um usuario
-        usuario.createUserWithEmailAndPassword("jonataasgoomes@gmail.com","jr12345")
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    Log.i("CreateUser", "Sucesso ao cadastrar");
-                                }
-                                else{
-                                    Log.i("CreateUser", "Erro ao cadastrar usuario");
-                                }
-                            }
-                        });*/
+
 
     }
 
@@ -131,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void UsuarioLogado(){
         auth = ConfigFirebase.getFirebaseAuth();
+        auth.signOut();
         if (auth.getCurrentUser()!=null){
             finish();
             startActivity(new Intent(this,MainActivity.class));
