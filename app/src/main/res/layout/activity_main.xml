@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/navigation_view" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -126,6 +126,7 @@
                 app:layout_constraintHorizontal_bias="0.507"
                 app:layout_constraintStart_toStartOf="@+id/buttonCadastrarAnimal" />
         </android.support.constraint.ConstraintLayout>
-    </ScrollView>
 
+    </ScrollView>
+        <include layout="@layout/navigation_view" />
 </android.support.v4.widget.DrawerLayout>
