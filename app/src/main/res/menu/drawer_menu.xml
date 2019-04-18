@@ -1,90 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="48dp">
+    <group
+        android:id="@+id/grp_perfil"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/meu_perfil"
+            android:checkable="true"
+            android:title="Meu Perfil" />
+    </group>
+    <group
+        android:id="@+id/grp_pets"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/meus_pets"
+            android:checkable="true"
+            android:title="Meu Pets" />
+    </group>
+    <group
+        android:id="@+id/grp_favoritos"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/favoritos"
+            android:checkable="true"
+            android:title="Favoritos" />
+    </group>
+    <group
+        android:id="@+id/grp_chat"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/chat"
+            android:checkable="true"
+            android:title="Chat" />
+    </group>
 
-    <item
-        android:id="@+id/item1"
-        android:title="Nome da pessoa">
-        <menu>
-            <item
-                android:id="@+id/meu_perfil"
-                android:checkable="true"
-                android:title="Meu Perfil" />
-            <item
-                android:id="@+id/meus_pets"
-                android:checkable="true"
-                android:title="Meu Pets" />
-            <item
-                android:id="@+id/favoritos"
-                android:checkable="true"
-                android:title="Favoritos" />
-            <item
-                android:id="@+id/chat"
-                android:checkable="true"
-                android:title="Chat" />
-        </menu>
-    </item>
+    <group
+        android:id="@+id/grp_atalhos"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_pets_black_24dp"
+            android:id="@+id/atalhos"
+            android:checkable="true"
+            android:enabled="false"
+            android:title="Atalhos" />
+    </group>
+    <group
+        android:id="@+id/grp_cadastrar_pet"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/cadastrar_um_pet"
+            android:checkable="true"
+            android:title="Cadastrar um pet" />
+    </group>
+    <group
+        android:id="@+id/grp_adotar_pet"
+        android:checkableBehavior="single">
+        <item
 
-    <item
-        android:id="@+id/item2"
-        android:title="Atalhos">
-        <menu>
-            <item
-                android:id="@+id/cadastrar_um_pet"
-                android:checkable="true"
-                android:title="Cadastrar um pet" />
-            <item
-                android:id="@+id/adotar_um_pet"
-                android:checkable="true"
-                android:title="Adotar um pet" />
-            <item
-                android:id="@+id/ajudar_um_pet"
-                android:checkable="true"
-                android:title="Ajudar um pet" />
-            <item
-                android:id="@+id/apadrinhar_um_pet"
-                android:checkable="true"
-                android:title="Apadrinhar um pet" />
-        </menu>
-    </item>
+            android:id="@+id/adotar_um_pet"
+            android:checkable="true"
+            android:title="Adotar um pet" />
+    </group>
+    <group
+        android:id="@+id/grp_ajudar_pet"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/ajudar_um_pet"
+            android:checkable="true"
+            android:title="Ajudar um pet" />
+    </group>
+    <group
+        android:id="@+id/grp_apadrinhar_pet"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/apadrinhar_um_pet"
+            android:checkable="true"
+            android:title="Apadrinhar um pet" />
+    </group>
+    <group
+        android:id="@+id/grp_informacoes"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_info_black_24dp"
+            android:enabled="false"
+            android:id="@+id/informacoes"
+            android:checkable="true"
+            android:title="Informações" />
+    </group>
 
-    <item
-        android:id="@+id/item3"
-        android:title="Informações">
-        <menu>
-            <item
-                android:id="@+id/dicas"
-                android:checkable="true"
-                android:title="Dicas" />
-            <item
-                android:id="@+id/eventos"
-                android:checkable="true"
-                android:title="Eventos" />
-            <item
-                android:id="@+id/legislacao"
-                android:checkable="true"
-                android:title="Legislação" />
-            <item
-                android:id="@+id/termo_de_uso"
-                android:checkable="true"
-                android:title="Termo de Uso" />
-            <item
-                android:id="@+id/hist_de_adocao"
-                android:checkable="true"
-                android:title="Historias de adoção" />
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/item4"
-        android:title="Configurações">
-        <menu>
-            <item
-                android:id="@+id/privacidade"
-                android:title="Privacidade" />
-            <item
-                android:id="@+id/menu_sair"
-                android:title="Sair" />
-        </menu>
-    </item>
+    <group
+        android:id="@+id/grp_dicas"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/dicas"
+            android:checkable="true"
+            android:title="Dicas" />
+    </group>
+    <group
+        android:id="@+id/grp_eventos"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/eventos"
+            android:checkable="true"
+            android:title="Eventos" />
+    </group>
+    <group
+        android:id="@+id/grp_legis"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/legislacao"
+            android:checkable="true"
+            android:title="Legislação" />
+    </group>
+    <group
+        android:id="@+id/grp_termo"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/termo_de_uso"
+            android:checkable="true"
+            android:title="Termo de Uso" />
+    </group>
+    <group
+        android:id="@+id/grp_hist"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/hist_de_adocao"
+            android:checkable="true"
+            android:title="Historias de adoção" />
+    </group>
+    <group
+        android:id="@+id/grp_conf"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:id="@+id/item4"
+            android:enabled="false"
+            android:title="Configurações"/>
+    </group>
+    <group
+        android:id="@+id/grp_priv"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/privacidade"
+            android:title="Privacidade" />
+    </group>
+    <group
+        android:id="@+id/grp_sair"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_sair"
+            android:title="Sair" />
+    </group>
 
 </menu>
