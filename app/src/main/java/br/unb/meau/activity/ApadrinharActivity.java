@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,13 @@ public class ApadrinharActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apadrinhar);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Apadrinhar");
+        toolbar.setBackgroundResource(R.color.colorAmarelo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         recyclerAnimal = findViewById(R.id.recyclerAnimal);
 
@@ -39,7 +47,7 @@ public class ApadrinharActivity extends AppCompatActivity {
                 "MACHO",
                 "SANTA MARIA - DF",
                 "GRANDE",
-                R.drawable.cachorro11);
+                R.drawable.cachorro15);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
@@ -48,7 +56,7 @@ public class ApadrinharActivity extends AppCompatActivity {
                 "FEMÊA",
                 "GAMA - DF",
                 "GRANDE",
-                R.drawable.cachorro12);
+                R.drawable.cachorro16);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
@@ -57,7 +65,7 @@ public class ApadrinharActivity extends AppCompatActivity {
                 "MACHO",
                 "SOBRADINHO - DF",
                 "GRANDE",
-                R.drawable.cachorro13);
+                R.drawable.cachorro17);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
@@ -66,9 +74,14 @@ public class ApadrinharActivity extends AppCompatActivity {
                 "MACHO",
                 "TAGUATINGA -DF",
                 "GRANDE",
-                R.drawable.cachorro14);
+                R.drawable.cachorro18);
         this.cardsAnimais.add(animal);
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 }
 

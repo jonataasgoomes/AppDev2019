@@ -23,6 +23,7 @@ import br.unb.meau.helper.ConfigFirebase;
 import br.unb.meau.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
+
     private EditText campoEmail, campoSenha;
     private Button btnEntrar;
     private Usuario usuario;
@@ -35,10 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         UsuarioLogado();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Login");
         toolbar.setBackgroundResource(R.color.colorBtnLogin);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         campoEmail = findViewById(R.id.editEmail);
         campoSenha = findViewById( R.id.editSenha);
@@ -130,5 +134,10 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this,MainActivity.class));
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 }

@@ -1,9 +1,16 @@
 package br.unb.meau.model;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Exclude;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Usuario {
     private String id;
     private String nome;
-    private int idade;
+    private String idade;
     private String email;
     private String estado;
     private String cidade;
@@ -11,6 +18,13 @@ public class Usuario {
     private String telefone;
     private String usuario;
     private String senha;
+    private String picPath;
+
+
+    public Usuario() {
+    }
+
+
 
     public String getId() {
         return id;
@@ -28,11 +42,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
     }
 
@@ -84,9 +98,6 @@ public class Usuario {
         this.picPath = picPath;
     }
 
-    private String picPath;
-
-
     public String getEmail() {
         return email;
     }
@@ -95,6 +106,7 @@ public class Usuario {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }
@@ -108,6 +120,32 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Usuario() {
+    public void salvar() {
+        Map<String,Object> usuario = convertMap();
+        FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+        dbRef.collection("user").document(getId()).set(usuario);
+    }
+    public void atualizar() {
+        Map<String,Object> usuario = convertMap();
+        FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+        DocumentReference userRef = dbRef.collection("user").document(getId());
+        userRef.update(usuario);
+    }
+
+    public Map<String, Object> convertMap(){
+
+        HashMap<String,Object> userMap = new HashMap<>();
+        userMap.put("id",getId());
+        userMap.put("nome",getNome());
+        userMap.put("email", getEmail());
+        userMap.put("idade",getIdade());
+        userMap.put("estado",getEstado());
+        userMap.put("cidade",getCidade());
+        userMap.put("endereco",getEndereco());
+        userMap.put("telefone",getTelefone());
+        userMap.put("usuario",getUsuario());
+        userMap.put("picPath",getPicPath());
+
+        return userMap;
     }
 }

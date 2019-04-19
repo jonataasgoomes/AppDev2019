@@ -7,4 +7,6 @@
     <dimen name="size_text_button_login">16sp</dimen>
     <dimen name="logo_width">122dp</dimen>
     <dimen name="logo_height">44dp</dimen>
+    <dimen name="perfil_size_width">112dp</dimen>
+    <dimen name="perfil_img_size">112dp</dimen>
 </resources>

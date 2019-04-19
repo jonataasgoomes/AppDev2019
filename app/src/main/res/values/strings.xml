@@ -111,4 +111,8 @@
     <string name="text_add_pic">adicionar foto</string>
     <string name="text_fazer_cadastro">FAZER CADASTRO</string>
     <string name="mensagem_cadastro">As informações preenchidas serão divulgadas apenas para a pessoa com a qual você realizar o processo de adoção e/ou apadrinhamento, após a formalização do processo.</string>
+    <string name="text_nome_perfil">Nome Perfil</string>
+    <string name="text_localizacao">Localização</string>
+    <string name="text_histórico">Histórico</string>
+    <string name="editar_perfil">Editar Perfil</string>
 </resources>
