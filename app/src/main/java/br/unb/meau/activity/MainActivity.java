@@ -1,6 +1,7 @@
 package br.unb.meau.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,12 +14,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.unb.meau.R;
 import br.unb.meau.helper.ConfigFirebase;
+import br.unb.meau.helper.UserFirebase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -28,6 +34,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button btnAjudar;
     private Button btnCadastroDoAnimal;
     private FirebaseAuth auth;
+
+    private ImageView imgMenuPic;
+    private TextView  textMenuNome;
+
+
 
 
     @Override
@@ -54,12 +65,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerToggle.syncState();
 
 
-
-
         btnLogin = findViewById(R.id.buttonLogin);
         btnAdotar = findViewById(R.id.buttonPets);
         btnAjudar = findViewById(R.id.buttonAjudar);
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
+        imgMenuPic = navigationView.getHeaderView(0).findViewById(R.id.menuImgUser);
+        textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
+        FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
+        if (!(UserFirebase.getUsuarioAtual() == null)) {
+            textMenuNome.setText(usuarioPerfil.getDisplayName());
+            Uri url = usuarioPerfil.getPhotoUrl();
+            if(url != null){
+                Glide.with(MainActivity.this)
+                        .load(url)
+                        .into(imgMenuPic);
+            }else {
+                imgMenuPic.setImageResource(R.drawable.user);
+            }
+        }
 
 
 

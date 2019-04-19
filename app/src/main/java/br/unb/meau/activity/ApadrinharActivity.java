@@ -80,8 +80,8 @@ public class ApadrinharActivity extends AppCompatActivity {
     }
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+        finish();
+        return false;
     }
 }
 

@@ -8,7 +8,6 @@
     tools:context=".activity.AdotarActivity">
 
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerAnimal"
         android:layout_width="0dp"
@@ -22,7 +21,6 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/main_toolbar">
-    </include>
+        layout="@layout/main_toolbar"></include>
 
 </android.support.constraint.ConstraintLayout>

@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Login");
         toolbar.setBackgroundResource(R.color.colorBtnLogin);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         campoEmail = findViewById(R.id.editEmail);
         campoSenha = findViewById( R.id.editSenha);
@@ -132,5 +134,10 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this,MainActivity.class));
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 }

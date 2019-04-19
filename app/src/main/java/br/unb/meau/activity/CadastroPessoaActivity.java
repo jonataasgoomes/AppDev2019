@@ -1,9 +1,9 @@
 package br.unb.meau.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -20,13 +20,21 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import br.unb.meau.R;
 import br.unb.meau.helper.ConfigFirebase;
+import br.unb.meau.helper.UserFirebase;
 import br.unb.meau.model.Usuario;
 
 public class CadastroPessoaActivity extends AppCompatActivity {
 
-    private EditText campoNome, campoIdade, campoEmail, campoEstado,
-            campoCidade, campoEndereco, campoTelefone,
-            campoUsuario, campoSenha, campoSenhaConf;
+    private EditText campoNome;
+    private EditText campoIdade;
+    private EditText campoEmail;
+    private EditText campoEstado;
+    private EditText campoCidade;
+    private EditText campoEndereco;
+    private EditText campoTelefone;
+    private EditText campoUsuario;
+    private EditText campoSenha;
+    private EditText campoSenhaConf;
     private Button btnCadastrar, btnPic;
 
     private Usuario usuario;
@@ -42,6 +50,8 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Cadastro Pessoal");
         toolbar.setBackgroundResource(R.color.colorBtnLogin);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //Inicializar campos
         initCampos();
@@ -51,55 +61,63 @@ public class CadastroPessoaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String textNome = campoNome.getText().toString();
-                String textUsuario = campoUsuario.getText().toString();
+                String Idade = campoIdade.getText().toString();
                 String textEmail = campoEmail.getText().toString();
+                String textEstado = campoEstado.getText().toString();
+                String textCidade = campoCidade.getText().toString();
+                String textEndereco = campoEndereco.getText().toString();
+                String textTelefone = campoTelefone.getText().toString();
+                String textUsuario = campoUsuario.getText().toString();
                 String textSenha = campoSenha.getText().toString();
                 String textSenhaConf = campoSenhaConf.getText().toString();
 
-                if (!textNome.isEmpty()){
-                    if (!textUsuario.isEmpty()){
-                        if (!textEmail.isEmpty()){
-                            if (!textSenha.isEmpty()){
-                                if (!textSenhaConf.isEmpty()){
-                                    if (textSenha.equals(textSenhaConf)){
+                if (!textNome.isEmpty()) {
+                    if (!textUsuario.isEmpty()) {
+                        if (!textEmail.isEmpty()) {
+                            if (!textSenha.isEmpty()) {
+                                if (!textSenhaConf.isEmpty()) {
+                                    if (textSenha.equals(textSenhaConf)) {
 
 
                                         usuario = new Usuario();
                                         usuario.setNome(textNome);
-                                        usuario.setUsuario(textUsuario);
+                                        usuario.setIdade((Idade));
                                         usuario.setEmail(textEmail);
+                                        usuario.setEstado(textEstado);
+                                        usuario.setCidade(textCidade);
+                                        usuario.setEndereco(textEndereco);
+                                        usuario.setTelefone(textTelefone);
+                                        usuario.setUsuario(textUsuario);
                                         usuario.setSenha(textSenha);
                                         cadastrar(usuario);
 
 
-
-
-                                    }else {
+                                    } else {
                                         Toast.makeText(CadastroPessoaActivity.this,
                                                 "Senhas diferentes",
                                                 Toast.LENGTH_SHORT).show();
                                     }
-                                }else {
+                                } else {
                                     Toast.makeText(CadastroPessoaActivity.this,
                                             "Confirme a Senha",
                                             Toast.LENGTH_SHORT).show();
                                 }
-                            }else {
+                            } else {
                                 Toast.makeText(CadastroPessoaActivity.this,
                                         "Preencha a Senha",
                                         Toast.LENGTH_SHORT).show();
                             }
-                        }else {
+                        } else {
                             Toast.makeText(CadastroPessoaActivity.this,
                                     "Preencha o E-mail",
                                     Toast.LENGTH_SHORT).show();
                         }
-                    }else {
+                    } else {
                         Toast.makeText(CadastroPessoaActivity.this,
                                 "Preencha o Nome de usuário",
                                 Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(CadastroPessoaActivity.this,
                             "Preencha o nome",
                             Toast.LENGTH_SHORT).show();
@@ -111,10 +129,10 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         //Cadastro de um usuario
 
 
-
     }
+
     //Método responsável por cadastrar o usuário
-    public void cadastrar(Usuario usuario){
+    public void cadastrar(final Usuario usuario) {
         auth = ConfigFirebase.getFirebaseAuth();
         auth.createUserWithEmailAndPassword(
                 usuario.getEmail(),
@@ -123,28 +141,41 @@ public class CadastroPessoaActivity extends AppCompatActivity {
                 this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(CadastroPessoaActivity.this,
-                                    "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                            finish();
+                        if (task.isSuccessful()) {
+                            try {
+                                //Salvar dados do usuario no firebase
+                                String idUsuario = task.getResult().getUser().getUid();
+                                usuario.setId(idUsuario);
+                                usuario.salvar();
 
-                        }else{
+                                //salvar dados no profile do firebase
+                                UserFirebase.attNomeUsuario(usuario.getNome());
+
+                                Toast.makeText(CadastroPessoaActivity.this,
+                                        "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                        } else {
                             String error = "";
-                            try{
+                            try {
                                 throw task.getException();
                             } catch (FirebaseAuthWeakPasswordException e) {
                                 error = "Digite uma senha mais forte!";
-                            }catch (FirebaseAuthInvalidCredentialsException e){
+                            } catch (FirebaseAuthInvalidCredentialsException e) {
                                 error = "Digite um e-mail válido";
-                            }catch (FirebaseAuthUserCollisionException e){
+                            } catch (FirebaseAuthUserCollisionException e) {
                                 error = "email já cadastrado";
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 error = "ao cadastrar usuário:" + e.getMessage();
                                 e.printStackTrace();
                             }
                             Toast.makeText(CadastroPessoaActivity.this,
-                                    "Erro: "+ error, Toast.LENGTH_SHORT).show();
+                                    "Erro: " + error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -154,7 +185,7 @@ public class CadastroPessoaActivity extends AppCompatActivity {
     }
 
     //Metodo para iniciar os componentes
-    public void initCampos(){
+    public void initCampos() {
         campoNome = findViewById(R.id.editTextNome);
         campoIdade = findViewById(R.id.editTextIdade);
         campoEmail = findViewById(R.id.editTextEmail);
@@ -167,6 +198,12 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         campoSenhaConf = findViewById(R.id.editTextPassConf);
         btnCadastrar = findViewById(R.id.buttonFazerCadastro);
         btnPic = findViewById(R.id.buttonAddPic);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 
 

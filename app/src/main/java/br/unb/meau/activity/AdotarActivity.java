@@ -81,7 +81,7 @@ public class AdotarActivity extends AppCompatActivity {
     }
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+        finish();
+        return false;
     }
 }

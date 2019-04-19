@@ -81,7 +81,7 @@ public class AjudarActivity extends AppCompatActivity {
     }
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+        finish();
+        return false;
     }
 }
