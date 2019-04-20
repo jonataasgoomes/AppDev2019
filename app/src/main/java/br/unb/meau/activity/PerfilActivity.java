@@ -5,16 +5,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import javax.annotation.Nullable;
 
 import br.unb.meau.R;
 import br.unb.meau.helper.UserFirebase;
+import br.unb.meau.model.Usuario;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -24,7 +32,10 @@ public class PerfilActivity extends AppCompatActivity {
             campoNomeUsuarioPerfil, campoHistPerfil;
 
     private ImageView imagePerfil;
-
+    private Usuario usuarioLogado, usuarioDados;
+    private FirebaseFirestore dataBaseRef;
+    private DocumentReference userRef;
+    private String TAG = "Error";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,24 +49,17 @@ public class PerfilActivity extends AppCompatActivity {
         toolbar.setBackgroundResource(R.color.colorAzul);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //inicializa os campos
+        //inicializa os campos e configurações iniciais
         initCampos();
-        FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
 
 
         //<<<<<<-----Carrega dados do usuário na view---->>>>>
 
         if (!(UserFirebase.getUsuarioAtual() == null)) {
-            campoNomeCompletoPerfil.setText(usuarioPerfil.getDisplayName());
-            campoEmailPerfil.setText(usuarioPerfil.getEmail());
-            Uri url = usuarioPerfil.getPhotoUrl();
-            if (url != null) {
-                Glide.with(PerfilActivity.this)
-                        .load(url)
-                        .into(imagePerfil);
-            } else {
-                imagePerfil.setImageResource(R.drawable.user);
-            }
+            campoNomeCompletoPerfil.setText(usuarioLogado.getNome());
+            campoEmailPerfil.setText(usuarioLogado.getEmail());
+
         }
 
         btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +69,60 @@ public class PerfilActivity extends AppCompatActivity {
                 startActivity(editPerfil);
             }
         });
+
+    }
+
+    private void recuperarFoto() {
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        String caminhoFoto = usuarioLogado.getPicPath();
+        if (caminhoFoto != null) {
+            Uri url = Uri.parse(caminhoFoto);
+            Glide.with(PerfilActivity.this)
+                    .load(caminhoFoto)
+                    .into(imagePerfil);
+        } else {
+            imagePerfil.setImageResource(R.drawable.user);
+        }
+
+
+    }
+
+    private void recuperarDadosUsuario() {
+        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+            userRef.addSnapshotListener(this,
+                new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                        if (documentSnapshot.exists()) {
+                            Usuario user = documentSnapshot.toObject(Usuario.class);
+                            String cidade = user.getCidade();
+                            String estado = user.getEstado();
+                            String localizacao = cidade + " - " + estado;
+                            String nomeCompleto = user.getNome();
+                            String nome = nomeCompleto.substring(0, nomeCompleto.indexOf(" "));//até o primeiro espaço
+                            campoIdadePerfil.setText(user.getIdade());
+                            campoNomeUsuarioPerfil.setText(user.getUsuario());
+                            campoLocPerfil.setText(localizacao);
+                            campoEndPerfil.setText(user.getEndereco());
+                            campoTelPerfil.setText(user.getTelefone());
+                            campoNomePerfil.setText(nome);
+                        }else if (e != null){
+                            Log.w(TAG, "Got an exception");
+                        }
+                    }
+                }
+        );
+
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarDadosUsuario();
+        recuperarFoto();
+
 
     }
 

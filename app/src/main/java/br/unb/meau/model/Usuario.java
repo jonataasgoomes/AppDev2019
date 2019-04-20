@@ -127,10 +127,13 @@ public class Usuario implements Serializable {
     }
 
     public void atualizar() {
-        Map<String, Object> usuario = convertMap();
+
+        Map objeto = new HashMap();
+        objeto.put("nome", getNome());
+        objeto.put("picPath", getPicPath());
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
         DocumentReference userRef = dbRef.collection("user").document(getId());
-        userRef.update(usuario);
+        userRef.update(objeto);
     }
 
     public Map<String, Object> convertMap() {

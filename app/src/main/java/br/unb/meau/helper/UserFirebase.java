@@ -69,7 +69,7 @@ public class UserFirebase {
     }
 
 
-    public static Usuario getDadosUsuarioLogado() {
+    public static Usuario getAuthDadosUsuarioLogado() {
 
         FirebaseUser firebaseUser = getUsuarioAtual();
 
@@ -83,6 +83,7 @@ public class UserFirebase {
         } else{
             usuario.setPicPath(firebaseUser.getPhotoUrl().toString());
         }
+
         return usuario;
     }
 }

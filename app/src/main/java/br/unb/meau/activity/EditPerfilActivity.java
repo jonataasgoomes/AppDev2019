@@ -55,7 +55,7 @@ public class EditPerfilActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_perfil);
-        usuarioLogado = UserFirebase.getDadosUsuarioLogado();
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
         storageRef = ConfigFirebase.getFirebaseStorage();
         idUsuario = UserFirebase.getIdUser();
 
@@ -217,6 +217,7 @@ public class EditPerfilActivity extends AppCompatActivity {
     public void initCampos() {
 
         imageEditPerfil = findViewById(R.id.imageEditPerfil);
+        textAlterarFoto = findViewById(R.id.textAlterarFoto);
         editNomeCompletoPerfil = findViewById(R.id.editTextNome);
         editIdadePerfil = findViewById(R.id.editTextIdade);
         editEmailPerfil = findViewById(R.id.editTextEmail);
@@ -225,8 +226,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         editEndPerfil = findViewById(R.id.editTextEndereco);
         editTelPerfil = findViewById(R.id.editTextTelefone);
         editNomeUsuarioPerfil = findViewById(R.id.editTextNomeUsuario);
-        btnSalvarEdit = findViewById(R.id.buttonSalvarEdit);
         editEmailPerfil.setFocusable(false);
-        textAlterarFoto = findViewById(R.id.textAlterarFoto);
+        btnSalvarEdit = findViewById(R.id.buttonSalvarEdit);
     }
 }

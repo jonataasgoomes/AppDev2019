@@ -20,11 +20,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import br.unb.meau.R;
 import br.unb.meau.helper.ConfigFirebase;
 import br.unb.meau.helper.UserFirebase;
+import br.unb.meau.model.Usuario;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button btnAjudar;
     private Button btnCadastroDoAnimal;
     private FirebaseAuth auth;
-
+    private Usuario usuarioLogado;
     private ImageView imgMenuPic;
     private TextView  textMenuNome;
 
@@ -68,17 +68,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgMenuPic = navigationView.getHeaderView(0).findViewById(R.id.menuImgUser);
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
 
-        FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
         if (!(UserFirebase.getUsuarioAtual() == null)) {
-            textMenuNome.setText(usuarioPerfil.getDisplayName());
-            Uri url = usuarioPerfil.getPhotoUrl();
-            if(url != null){
-                Glide.with(MainActivity.this)
-                        .load(url)
-                        .into(imgMenuPic);
-            }else {
-                imgMenuPic.setImageResource(R.drawable.user);
-            }
+            textMenuNome.setText(usuarioLogado.getNome());
         }
 
 
@@ -191,5 +183,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         }
     }
+    private void recuperarFoto(){
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        String caminhoFoto = usuarioLogado.getPicPath();
+        if (caminhoFoto != null) {
+            Uri rl = Uri.parse(caminhoFoto);
+            Glide.with(MainActivity.this)
+                    .load(caminhoFoto)
+                    .into(imgMenuPic);
+        } else {
+            imgMenuPic.setImageResource(R.drawable.user);
+        }
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarFoto();
+    }
 }
