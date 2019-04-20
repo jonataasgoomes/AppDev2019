@@ -35,7 +35,7 @@ public class EditPerfilActivity extends AppCompatActivity {
 
 
     private Usuario usuarioLogado;
-    private ImageView imageEditPerfil;
+    private ImageView imageEditPerfil, imagePerfil, imageMenu;
     private TextView textAlterarFoto;
     private TextInputEditText editNomeCompletoPerfil,
             editIdadePerfil,
@@ -66,6 +66,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
+
         //iniciando componentes;
         initCampos();
 
@@ -81,6 +82,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                         .into(imageEditPerfil);
             }else {
                 imageEditPerfil.setImageResource(R.drawable.user);
+
             }
         }
 
@@ -89,6 +91,8 @@ public class EditPerfilActivity extends AppCompatActivity {
         btnSalvarEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String nomeAtt = editNomeCompletoPerfil.getText().toString();
                 String idadeAtt = editIdadePerfil.getText().toString();
                 String cidadeAtt = editCidPerfil.getText().toString();
@@ -108,8 +112,14 @@ public class EditPerfilActivity extends AppCompatActivity {
                 usuarioLogado.setEstado(estadoAtt);
                 usuarioLogado.atualizar();
                 Toast.makeText(getApplicationContext(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
+
+
+
+
+
             }
         });
+
         //Configuração para mudar foto;
         textAlterarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +150,7 @@ public class EditPerfilActivity extends AppCompatActivity {
 
                 //Carregar imagem
                 if(imagem != null){
-                    imageEditPerfil.setImageBitmap(imagem);
+
 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     imagem.compress(Bitmap.CompressFormat.JPEG, 50, baos);
@@ -178,6 +188,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                                     "Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    imageEditPerfil.setImageBitmap(imagem);
                 }
 
             }catch (Exception e){
@@ -204,6 +215,7 @@ public class EditPerfilActivity extends AppCompatActivity {
     }
     //Metodo para iniciar os componentes
     public void initCampos() {
+
         imageEditPerfil = findViewById(R.id.imageEditPerfil);
         editNomeCompletoPerfil = findViewById(R.id.editTextNome);
         editIdadePerfil = findViewById(R.id.editTextIdade);

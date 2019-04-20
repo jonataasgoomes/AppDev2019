@@ -20,15 +20,17 @@ public class PerfilActivity extends AppCompatActivity {
 
     private Button btnEditarPerfil;
     private TextView campoNomePerfil, campoNomeCompletoPerfil, campoIdadePerfil,
-                    campoEmailPerfil, campoLocPerfil, campoEndPerfil, campoTelPerfil,
-                    campoNomeUsuarioPerfil, campoHistPerfil;
+            campoEmailPerfil, campoLocPerfil, campoEndPerfil, campoTelPerfil,
+            campoNomeUsuarioPerfil, campoHistPerfil;
 
     private ImageView imagePerfil;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -38,23 +40,23 @@ public class PerfilActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //inicializa os campos
         initCampos();
-        //Carrega dados do usuário na view
         FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
+
+
+        //<<<<<<-----Carrega dados do usuário na view---->>>>>
+
         if (!(UserFirebase.getUsuarioAtual() == null)) {
             campoNomeCompletoPerfil.setText(usuarioPerfil.getDisplayName());
             campoEmailPerfil.setText(usuarioPerfil.getEmail());
             Uri url = usuarioPerfil.getPhotoUrl();
-            if(url != null){
+            if (url != null) {
                 Glide.with(PerfilActivity.this)
                         .load(url)
                         .into(imagePerfil);
-            }else {
+            } else {
                 imagePerfil.setImageResource(R.drawable.user);
             }
         }
-
-
-
 
         btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +70,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void initCampos() {
         imagePerfil = findViewById(R.id.imagePerfil);
-
+        campoNomeUsuarioPerfil = findViewById(R.id.textNomeDeUsuárioPerfil);
         campoNomePerfil = findViewById(R.id.textNomePerfil);
         campoNomeCompletoPerfil = findViewById(R.id.textNomeCompletoPerfil);
         campoIdadePerfil = findViewById(R.id.textIdadePerfil);
@@ -77,10 +79,8 @@ public class PerfilActivity extends AppCompatActivity {
         campoEndPerfil = findViewById(R.id.textEnderecoPerfil);
         campoTelPerfil = findViewById(R.id.textTelefonePerfil);
         campoHistPerfil = findViewById(R.id.textHistoricoPerfil);
-
         btnEditarPerfil = findViewById(R.id.buttonEditarPerfil);
     }
-
 
     @Override
     public boolean onSupportNavigateUp() {

@@ -38,14 +38,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView imgMenuPic;
     private TextView  textMenuNome;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         auth = ConfigFirebase.getFirebaseAuth();
 
         //configurar toolbar
@@ -71,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
         imgMenuPic = navigationView.getHeaderView(0).findViewById(R.id.menuImgUser);
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
+
         FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
         if (!(UserFirebase.getUsuarioAtual() == null)) {
             textMenuNome.setText(usuarioPerfil.getDisplayName());
@@ -87,14 +84,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
         if (auth.getCurrentUser()== null){
             Menu menu = navigationView.getMenu();
             MenuItem menuSair = menu.findItem(R.id.menu_sair);
             menuSair.setEnabled(false);
             btnLogin.setVisibility(View.VISIBLE);
         }
-
 
         //Ações dos botões na view - abrem Activitys conrrepondentes.
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -142,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.meu_perfil:
-                closeDrawer();
-                Intent perfil = new Intent(this, PerfilActivity.class);
+                Intent perfil = new Intent(getApplicationContext(),PerfilActivity.class);
                 startActivity(perfil);
+                closeDrawer();
                 break;
             case R.id.cadastrar_um_pet:
                 closeDrawer();
@@ -196,4 +191,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         }
     }
+
 }

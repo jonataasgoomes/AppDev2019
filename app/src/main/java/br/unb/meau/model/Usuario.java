@@ -4,10 +4,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String id;
     private String nome;
     private String idade;
@@ -23,7 +24,6 @@ public class Usuario {
 
     public Usuario() {
     }
-
 
 
     public String getId() {
@@ -121,30 +121,31 @@ public class Usuario {
     }
 
     public void salvar() {
-        Map<String,Object> usuario = convertMap();
+        Map<String, Object> usuario = convertMap();
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
         dbRef.collection("user").document(getId()).set(usuario);
     }
+
     public void atualizar() {
-        Map<String,Object> usuario = convertMap();
+        Map<String, Object> usuario = convertMap();
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
         DocumentReference userRef = dbRef.collection("user").document(getId());
         userRef.update(usuario);
     }
 
-    public Map<String, Object> convertMap(){
+    public Map<String, Object> convertMap() {
 
-        HashMap<String,Object> userMap = new HashMap<>();
-        userMap.put("id",getId());
-        userMap.put("nome",getNome());
+        HashMap<String, Object> userMap = new HashMap<>();
+        userMap.put("id", getId());
+        userMap.put("nome", getNome());
         userMap.put("email", getEmail());
-        userMap.put("idade",getIdade());
-        userMap.put("estado",getEstado());
-        userMap.put("cidade",getCidade());
-        userMap.put("endereco",getEndereco());
-        userMap.put("telefone",getTelefone());
-        userMap.put("usuario",getUsuario());
-        userMap.put("picPath",getPicPath());
+        userMap.put("idade", getIdade());
+        userMap.put("estado", getEstado());
+        userMap.put("cidade", getCidade());
+        userMap.put("endereco", getEndereco());
+        userMap.put("telefone", getTelefone());
+        userMap.put("usuario", getUsuario());
+        userMap.put("picPath", getPicPath());
 
         return userMap;
     }
