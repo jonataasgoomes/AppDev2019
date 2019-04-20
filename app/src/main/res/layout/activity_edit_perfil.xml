@@ -29,12 +29,12 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageEditPerfil"
                     android:layout_width="@dimen/perfil_img_size"
                     android:layout_height="@dimen/perfil_img_size"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/user" />
+                    android:src="@drawable/user" />
 
                 <TextView
                     android:id="@+id/textAlterarFoto"

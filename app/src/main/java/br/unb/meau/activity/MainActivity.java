@@ -20,11 +20,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import br.unb.meau.R;
 import br.unb.meau.helper.ConfigFirebase;
 import br.unb.meau.helper.UserFirebase;
+import br.unb.meau.model.Usuario;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -34,18 +34,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button btnAjudar;
     private Button btnCadastroDoAnimal;
     private FirebaseAuth auth;
-
+    private Usuario usuarioLogado;
     private ImageView imgMenuPic;
     private TextView  textMenuNome;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         auth = ConfigFirebase.getFirebaseAuth();
 
         //configurar toolbar
@@ -71,19 +67,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         btnCadastroDoAnimal = findViewById(R.id.buttonCadastrarAnimal);
         imgMenuPic = navigationView.getHeaderView(0).findViewById(R.id.menuImgUser);
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
-        FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            textMenuNome.setText(usuarioPerfil.getDisplayName());
-            Uri url = usuarioPerfil.getPhotoUrl();
-            if(url != null){
-                Glide.with(MainActivity.this)
-                        .load(url)
-                        .into(imgMenuPic);
-            }else {
-                imgMenuPic.setImageResource(R.drawable.user);
-            }
-        }
 
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        if (!(UserFirebase.getUsuarioAtual() == null)) {
+            textMenuNome.setText(usuarioLogado.getNome());
+        }
 
 
 
@@ -94,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             menuSair.setEnabled(false);
             btnLogin.setVisibility(View.VISIBLE);
         }
-
 
         //Ações dos botões na view - abrem Activitys conrrepondentes.
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -142,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.meu_perfil:
-                closeDrawer();
-                Intent perfil = new Intent(this, PerfilActivity.class);
+                Intent perfil = new Intent(getApplicationContext(),PerfilActivity.class);
                 startActivity(perfil);
+                closeDrawer();
                 break;
             case R.id.cadastrar_um_pet:
                 closeDrawer();
@@ -195,5 +182,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    private void recuperarFoto(){
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        String caminhoFoto = usuarioLogado.getPicPath();
+        if (caminhoFoto != null) {
+            Uri rl = Uri.parse(caminhoFoto);
+            Glide.with(MainActivity.this)
+                    .load(caminhoFoto)
+                    .into(imgMenuPic);
+        } else {
+            imgMenuPic.setImageResource(R.drawable.user);
+        }
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarFoto();
     }
 }
