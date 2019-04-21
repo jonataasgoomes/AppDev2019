@@ -1,5 +1,7 @@
 package br.unb.meau.model;
 
+import android.graphics.Bitmap;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,7 +22,15 @@ public class Usuario implements Serializable {
     private String usuario;
     private String senha;
     private String picPath;
+    private Bitmap imagem;
 
+    public Bitmap getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Bitmap imagem) {
+        this.imagem = imagem;
+    }
 
     public Usuario() {
     }

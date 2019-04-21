@@ -3,6 +3,7 @@ package br.unb.meau.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -35,10 +36,10 @@ public class CadastroPessoaActivity extends AppCompatActivity {
     private EditText campoUsuario;
     private EditText campoSenha;
     private EditText campoSenhaConf;
-    private Button btnCadastrar, btnPic;
-
+    private Button btnCadastrar;
+    private static final int SELECTION_GALERY = 200;
+    private AlertDialog dialog;
     private Usuario usuario;
-
     private FirebaseAuth auth;
 
     @Override
@@ -56,7 +57,6 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         //Inicializar campos
         initCampos();
 
-
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +70,7 @@ public class CadastroPessoaActivity extends AppCompatActivity {
                 String textUsuario = campoUsuario.getText().toString();
                 String textSenha = campoSenha.getText().toString();
                 String textSenhaConf = campoSenhaConf.getText().toString();
+
 
                 if (!textNome.isEmpty()) {
                     if (!textUsuario.isEmpty()) {
@@ -122,17 +123,13 @@ public class CadastroPessoaActivity extends AppCompatActivity {
                             "Preencha o nome",
                             Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
-
-        //Cadastro de um usuario
-
-
     }
-
     //Método responsável por cadastrar o usuário
     public void cadastrar(final Usuario usuario) {
+        carregamentoDialog("Cadastrando usuário");
         auth = ConfigFirebase.getFirebaseAuth();
         auth.createUserWithEmailAndPassword(
                 usuario.getEmail(),
@@ -150,30 +147,34 @@ public class CadastroPessoaActivity extends AppCompatActivity {
 
                                 //salvar dados no profile do firebase
                                 UserFirebase.attNomeUsuario(usuario.getNome());
-
+                                dialog.cancel();
                                 Toast.makeText(CadastroPessoaActivity.this,
                                         "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(), AdicionarFotoActivity.class));
                                 finish();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-
 
                         } else {
                             String error = "";
                             try {
                                 throw task.getException();
                             } catch (FirebaseAuthWeakPasswordException e) {
+                                dialog.cancel();
                                 error = "Digite uma senha mais forte!";
                             } catch (FirebaseAuthInvalidCredentialsException e) {
+                                dialog.cancel();
                                 error = "Digite um e-mail válido";
                             } catch (FirebaseAuthUserCollisionException e) {
+                                dialog.cancel();
                                 error = "email já cadastrado";
                             } catch (Exception e) {
+                                dialog.cancel();
                                 error = "ao cadastrar usuário:" + e.getMessage();
                                 e.printStackTrace();
                             }
+                            dialog.cancel();
                             Toast.makeText(CadastroPessoaActivity.this,
                                     "Erro: " + error, Toast.LENGTH_SHORT).show();
                         }
@@ -197,13 +198,23 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         campoSenha = findViewById(R.id.editTextPass);
         campoSenhaConf = findViewById(R.id.editTextPassConf);
         btnCadastrar = findViewById(R.id.buttonFazerCadastro);
-        btnPic = findViewById(R.id.buttonAddPic);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return false;
+    }
+
+    private void carregamentoDialog(String titulo) {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(titulo);
+        alert.setCancelable(false);
+        alert.setView(R.layout.carregamento);
+        dialog = alert.create();
+        dialog.show();
+
     }
 
 

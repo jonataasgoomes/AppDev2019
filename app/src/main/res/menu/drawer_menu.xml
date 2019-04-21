@@ -33,16 +33,15 @@
             android:checkable="true"
             android:title="Chat" />
     </group>
-
     <group
         android:id="@+id/grp_atalhos"
         android:checkableBehavior="single">
         <item
             android:icon="@drawable/ic_pets_black_24dp"
             android:id="@+id/atalhos"
-            android:checkable="true"
-            android:enabled="false"
-            android:title="Atalhos" />
+            android:checkable="false"
+            android:title="Atalhos"
+            />
     </group>
     <group
         android:id="@+id/grp_cadastrar_pet"
@@ -82,9 +81,8 @@
         android:checkableBehavior="single">
         <item
             android:icon="@drawable/ic_info_black_24dp"
-            android:enabled="false"
             android:id="@+id/informacoes"
-            android:checkable="true"
+            android:checkable="false"
             android:title="Informações" />
     </group>
 
@@ -134,7 +132,7 @@
         <item
             android:icon="@drawable/ic_settings_black_24dp"
             android:id="@+id/item4"
-            android:enabled="false"
+            android:checkable="false"
             android:title="Configurações"/>
     </group>
     <group
