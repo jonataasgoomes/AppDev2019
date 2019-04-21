@@ -31,7 +31,6 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/roboto_medium"
             android:layout_marginTop="30dp"
-            android:text="Nome do usuário"
             android:textColor="#434343"
             android:textSize="14sp" />
 

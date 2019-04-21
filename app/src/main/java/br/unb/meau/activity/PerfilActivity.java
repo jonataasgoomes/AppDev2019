@@ -58,14 +58,6 @@ public class PerfilActivity extends AppCompatActivity {
         }
 
 
-        //<<<<<<-----Carrega dados do usuário na view---->>>>>
-
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            campoNomeCompletoPerfil.setText(usuarioLogado.getNome());
-            campoEmailPerfil.setText(usuarioLogado.getEmail());
-
-        }
-
         btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +70,8 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void recuperarFoto() {
         usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        campoNomeCompletoPerfil.setText(usuarioLogado.getNome());
+        campoEmailPerfil.setText(usuarioLogado.getEmail());
         String caminhoFoto = usuarioLogado.getPicPath();
         if (caminhoFoto != null) {
             Uri url = Uri.parse(caminhoFoto);
@@ -93,7 +87,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void recuperarDadosUsuario() {
         userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
-            userRef.addSnapshotListener(this,
+        userRef.addSnapshotListener(this,
                 new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -110,7 +104,7 @@ public class PerfilActivity extends AppCompatActivity {
                             campoEndPerfil.setText(user.getEndereco());
                             campoTelPerfil.setText(user.getTelefone());
                             campoNomePerfil.setText(nome);
-                        }else if (e != null){
+                        } else if (e != null) {
                             Log.w(TAG, "Got an exception");
                         }
                     }

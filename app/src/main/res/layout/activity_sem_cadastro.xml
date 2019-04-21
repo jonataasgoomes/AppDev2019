@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activity.SemCadastroActivity">
+
+    <include android:id="@+id/toolbar"
+        layout="@layout/main_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:fontFamily="@font/courgette"
+            android:text="Ops!"
+            android:textColor="@color/colorAzul"
+            android:textSize="53sp" />
+
+        <TextView
+            android:layout_marginTop="52dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Você não pode realizar esta ação sem possuir um cadastro."
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonFazerCadastro"
+            android:layout_width="232dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="52dp"
+            android:background="@color/colorAzul"
+            android:elevation="2dp"
+            android:text="Fazer cadastro" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Já possui cadastro?" />
+
+        <Button
+            android:id="@+id/buttonFazerLogin"
+            android:layout_width="232dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorAzul"
+            android:elevation="2dp"
+            android:text="Fazer login" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

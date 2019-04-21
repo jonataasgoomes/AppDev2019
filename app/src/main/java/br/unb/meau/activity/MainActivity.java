@@ -69,10 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
 
 
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
-            textMenuNome.setText(usuarioLogado.getNome());
-        }
 
 
         if (auth.getCurrentUser() == null) {
@@ -128,8 +124,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.meu_perfil:
-                Intent perfil = new Intent(getApplicationContext(), PerfilActivity.class);
-                startActivity(perfil);
+                if (!(UserFirebase.getUsuarioAtual() == null)) {
+                    Intent perfil = new Intent(getApplicationContext(), PerfilActivity.class);
+                    startActivity(perfil);
+                }else{
+                    Intent semCadastro = new Intent(getApplicationContext(), SemCadastroActivity.class);
+                    startActivity(semCadastro);
+                }
                 closeDrawer();
                 break;
             case R.id.cadastrar_um_pet:
@@ -188,9 +189,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void recuperarFoto() {
+    private void recuperarDados() {
         if (!(UserFirebase.getUsuarioAtual() == null)) {
             usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+            textMenuNome.setText(usuarioLogado.getNome());
             String caminhoFoto = usuarioLogado.getPicPath();
             if (caminhoFoto != null) {
                 Uri rl = Uri.parse(caminhoFoto);
@@ -208,6 +210,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-        recuperarFoto();
+        recuperarDados();
     }
 }

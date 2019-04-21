@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class EditPerfilActivity extends AppCompatActivity {
 
 
     private Usuario usuarioLogado;
+    private AlertDialog dialog;
     private ImageView imageEditPerfil, imagePerfil, imageMenu;
     private TextView textAlterarFoto;
     private TextInputEditText editNomeCompletoPerfil,
@@ -121,9 +123,6 @@ public class EditPerfilActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
 
 
-
-
-
             }
         });
 
@@ -132,8 +131,9 @@ public class EditPerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent foto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                if(foto.resolveActivity(getPackageManager()) != null){
+                if (foto.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(foto, SELECTION_GALERY);
+
                 }
             }
         });
@@ -144,11 +144,12 @@ public class EditPerfilActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
+            carregamentoDialog("Carregando foto, aguarde!");
             Bitmap imagem = null;
-            try{
+            try {
                 //Galeria de fotos
-                switch (requestCode){
+                switch (requestCode) {
                     case SELECTION_GALERY:
                         Uri localImagemSelect = data.getData();
                         imagem = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelect);
@@ -156,7 +157,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                 }
 
                 //Carregar imagem
-                if(imagem != null){
+                if (imagem != null) {
 
 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -178,27 +179,27 @@ public class EditPerfilActivity extends AppCompatActivity {
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
 
-
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                             //Recuperar local da foto
                             Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl()
                                     .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri url) {
-                                    attPicUser(url);
-                                }
-                            });
+                                        @Override
+                                        public void onSuccess(Uri url) {
+                                            attPicUser(url);
+                                        }
+                                    });
 
                             Toast.makeText(EditPerfilActivity.this,
                                     "Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
+                            dialog.cancel();
                         }
                     });
                     imageEditPerfil.setImageBitmap(imagem);
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -217,7 +218,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         return false;
     }
 
-    private void attPicUser(Uri url){
+    private void attPicUser(Uri url) {
         //atualizar foto
         UserFirebase.attPicUser(url);
         //atualizar no firebase
@@ -226,6 +227,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         Toast.makeText(EditPerfilActivity.this,
                 "Foto atualizada", Toast.LENGTH_SHORT).show();
     }
+
     //Metodo para iniciar os componentes
     public void initCampos() {
 
@@ -251,6 +253,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
                         if (documentSnapshot.exists()) {
                             Usuario user = documentSnapshot.toObject(Usuario.class);
+                            editNomeUsuarioPerfil.setText(user.getNome());
                             editIdadePerfil.setText(user.getIdade());
                             editNomeUsuarioPerfil.setText(user.getUsuario());
                             editEstPerfil.setText(user.getEstado());
@@ -258,7 +261,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                             editEndPerfil.setText(user.getEndereco());
                             editTelPerfil.setText(user.getTelefone());
                             editNomeUsuarioPerfil.setText(user.getUsuario());
-                        }else if (e != null){
+                        } else if (e != null) {
                             Log.w(TAG, "Got an exception");
                         }
                     }
@@ -267,5 +270,19 @@ public class EditPerfilActivity extends AppCompatActivity {
 
 
     }
+
+    private void carregamentoDialog(String titulo){
+
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(titulo);
+        alert.setCancelable(false);
+        alert.setView(R.layout.carregamento);
+
+        dialog = alert.create();
+        dialog.show();
+
+    }
+
 
 }
