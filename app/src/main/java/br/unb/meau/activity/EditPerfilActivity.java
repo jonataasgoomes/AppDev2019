@@ -273,12 +273,10 @@ public class EditPerfilActivity extends AppCompatActivity {
 
     private void carregamentoDialog(String titulo){
 
-
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(titulo);
         alert.setCancelable(false);
         alert.setView(R.layout.carregamento);
-
         dialog = alert.create();
         dialog.show();
 

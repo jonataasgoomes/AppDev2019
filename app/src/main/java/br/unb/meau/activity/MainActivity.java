@@ -69,14 +69,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
 
 
-
-
         if (auth.getCurrentUser() == null) {
             Menu menu = navigationView.getMenu();
             MenuItem menuSair = menu.findItem(R.id.menu_sair);
             menuSair.setEnabled(false);
             btnLogin.setVisibility(View.VISIBLE);
         }
+
 
         //Ações dos botões na view - abrem Activitys conrrepondentes.
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (!(UserFirebase.getUsuarioAtual() == null)) {
                     Intent perfil = new Intent(getApplicationContext(), PerfilActivity.class);
                     startActivity(perfil);
-                }else{
+                } else {
                     Intent semCadastro = new Intent(getApplicationContext(), SemCadastroActivity.class);
                     startActivity(semCadastro);
                 }
@@ -210,6 +209,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
+        recuperarDados();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         recuperarDados();
     }
 }

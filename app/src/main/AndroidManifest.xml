@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_meau_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SemCadastroActivity"></activity>
+        <activity android:name=".activity.AdicionarFotoActivity"></activity>
+        <activity android:name=".activity.SemCadastroActivity" />
         <activity android:name=".activity.TermoDeAdocaoActivity" />
         <activity android:name=".activity.EditPerfilActivity" />
         <activity android:name=".activity.PerfilActivity" />

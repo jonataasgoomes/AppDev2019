@@ -96,14 +96,12 @@ public class PerfilActivity extends AppCompatActivity {
                             String cidade = user.getCidade();
                             String estado = user.getEstado();
                             String localizacao = cidade + " - " + estado;
-                            String nomeCompleto = user.getNome();
-                            String nome = nomeCompleto.substring(0, nomeCompleto.indexOf(" "));//até o primeiro espaço
                             campoIdadePerfil.setText(user.getIdade());
                             campoNomeUsuarioPerfil.setText(user.getUsuario());
                             campoLocPerfil.setText(localizacao);
                             campoEndPerfil.setText(user.getEndereco());
                             campoTelPerfil.setText(user.getTelefone());
-                            campoNomePerfil.setText(nome);
+                            campoNomePerfil.setText(user.getNome());
                         } else if (e != null) {
                             Log.w(TAG, "Got an exception");
                         }
