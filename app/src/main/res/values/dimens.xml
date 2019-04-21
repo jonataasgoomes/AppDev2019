@@ -9,4 +9,5 @@
     <dimen name="logo_height">44dp</dimen>
     <dimen name="perfil_size_width">112dp</dimen>
     <dimen name="perfil_img_size">112dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -115,4 +115,12 @@
     <string name="text_localizacao">Localização</string>
     <string name="text_histórico">Histórico</string>
     <string name="editar_perfil">Editar Perfil</string>
+    <string name="btnAdocao">TERMO DE ADOÇÂO</string>
+    <string name="btnApadrinhamento">TERMO DE APADRANHAMENTO</string>
+    <string name="textTermo">O termo de adoção é um termo que oficializa o processo de adoção de um animal. Similarmente funciona o termo de apadrinhamento. É importante que o doador/dono exija a assinatura deste termo por parte do adotante/padrinho, de forma a ter prova legal de que a pessoa adquiriu o animal. Assim, podem ser tomadas providências legais em caso de maus tratos ou negligência ao animal. Para facilitar o processo, o Meau disponibiliza o termo aos seus doadores e donos de animais que utilizam o aplicativo para encontrar um destino e/ou ajuda para seu bichinho. Este termo é enviado por e-mail para que possa ser feita a impressão e, no momento de entrega do animal (ou quando o padrinho vai conhecê-lo), seja feita a assinatura por parte do adotante/padrinho. Pressionando os botões abaixo, você receberá em seu email o termo em questão, nos formatos .doc (word) e .pdf.</string>
+    <string name="textTermo1">O termo de adoção é um termo que oficializa o processo de adoção de um animal. Similarmente funciona o termo de apadrinhamento.</string>
+    <string name="textTermo2">É importante que o doador/dono exija a assinatura deste termo por parte do adotante/padrinho, de forma a ter prova legal de que a pessoa adquiriu o animal. Assim, podem ser tomadas providências legais em caso de maus tratos ou negligência ao animal.</string>
+    <string name="textTermo3">Para facilitar o processo, o Meau disponibiliza o termo aos seus doadores e donos de animais que utilizam o aplicativo para encontrar um destino e/ou ajuda para seu bichinho. Este termo é enviado por e-mail para que possa ser feita a impressão e, no momento de entrega do animal (ou quando o padrinho vai conhecê-lo), seja feita a assinatura por parte do adotante/padrinho.</string>
+    <string name="textTermo4">Pressionando os botões abaixo, você receberá em seu email o termo em questão, nos formatos .doc (word) e .pdf.</string>
+    <string name="title_activity_sem_cadastro">SemCadastroActivity</string>
 </resources>

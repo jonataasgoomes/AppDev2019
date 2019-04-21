@@ -1,15 +1,12 @@
 package br.unb.meau.activity;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -79,8 +76,6 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
                 saveAnimal();
             }
         });
-        // Coloca o nome na acton bar
-        //getSupportActionBar().setTitle("Cadastro do animal");
     }
     private void setupAdoptButton () {
         if (mViewModel.getAdopting()) {

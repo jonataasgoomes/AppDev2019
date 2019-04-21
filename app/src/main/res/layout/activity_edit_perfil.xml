@@ -33,7 +33,7 @@
                     android:id="@+id/imageEditPerfil"
                     android:layout_width="@dimen/perfil_img_size"
                     android:layout_height="@dimen/perfil_img_size"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:src="@drawable/user" />
 
                 <TextView
