@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +21,11 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -48,7 +53,9 @@ public class EditPerfilActivity extends AppCompatActivity {
     private Button btnSalvarEdit;
     private static final int SELECTION_GALERY = 200;
     private StorageReference storageRef;
-    private String idUsuario;
+    private FirebaseFirestore dataBaseRef;
+    private DocumentReference userRef;
+    private String TAG = "Error";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +64,8 @@ public class EditPerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_perfil);
         usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
         storageRef = ConfigFirebase.getFirebaseStorage();
-        idUsuario = UserFirebase.getIdUser();
+        dataBaseRef = FirebaseFirestore.getInstance();
+        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,18 +79,17 @@ public class EditPerfilActivity extends AppCompatActivity {
         initCampos();
 
         //Dados do Usuário;
-        FirebaseUser usuarioPerfil = UserFirebase.getUsuarioAtual();
         if (!(UserFirebase.getUsuarioAtual() == null)) {
-            editNomeCompletoPerfil.setText(usuarioPerfil.getDisplayName());
-            editEmailPerfil.setText(usuarioPerfil.getEmail());
-            Uri url = usuarioPerfil.getPhotoUrl();
-            if(url != null){
+            editNomeCompletoPerfil.setText(usuarioLogado.getNome());
+            editEmailPerfil.setText(usuarioLogado.getEmail());
+            String caminhoFoto = usuarioLogado.getPicPath();
+            if (caminhoFoto != null) {
+                Uri url = Uri.parse(caminhoFoto);
                 Glide.with(EditPerfilActivity.this)
-                        .load(url)
+                        .load(caminhoFoto)
                         .into(imageEditPerfil);
-            }else {
+            } else {
                 imageEditPerfil.setImageResource(R.drawable.user);
-
             }
         }
 
@@ -159,7 +166,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                     //Salvar imagem no storage
                     StorageReference imgRef = storageRef.child("imagens")
                             .child("perfil")
-                            .child(idUsuario + ".jpeg");
+                            .child(usuarioLogado.getId() + ".jpeg");
                     UploadTask uploadTask = imgRef.putBytes(dadosImagem);
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -199,6 +206,12 @@ public class EditPerfilActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarDadosUsuario();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return false;
@@ -209,7 +222,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         UserFirebase.attPicUser(url);
         //atualizar no firebase
         usuarioLogado.setPicPath(url.toString());
-        usuarioLogado.atualizar();
+        usuarioLogado.atualizarFoto();
         Toast.makeText(EditPerfilActivity.this,
                 "Foto atualizada", Toast.LENGTH_SHORT).show();
     }
@@ -229,4 +242,30 @@ public class EditPerfilActivity extends AppCompatActivity {
         editEmailPerfil.setFocusable(false);
         btnSalvarEdit = findViewById(R.id.buttonSalvarEdit);
     }
+
+    private void recuperarDadosUsuario() {
+        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        userRef.addSnapshotListener(this,
+                new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        if (documentSnapshot.exists()) {
+                            Usuario user = documentSnapshot.toObject(Usuario.class);
+                            editIdadePerfil.setText(user.getIdade());
+                            editNomeUsuarioPerfil.setText(user.getUsuario());
+                            editEstPerfil.setText(user.getEstado());
+                            editCidPerfil.setText(user.getCidade());
+                            editEndPerfil.setText(user.getEndereco());
+                            editTelPerfil.setText(user.getTelefone());
+                            editNomeUsuarioPerfil.setText(user.getUsuario());
+                        }else if (e != null){
+                            Log.w(TAG, "Got an exception");
+                        }
+                    }
+                }
+        );
+
+
+    }
+
 }

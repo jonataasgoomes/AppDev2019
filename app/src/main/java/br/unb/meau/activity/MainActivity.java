@@ -26,7 +26,7 @@ import br.unb.meau.helper.ConfigFirebase;
 import br.unb.meau.helper.UserFirebase;
 import br.unb.meau.model.Usuario;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     private Button btnLogin;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth auth;
     private Usuario usuarioLogado;
     private ImageView imgMenuPic;
-    private TextView  textMenuNome;
+    private TextView textMenuNome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
-                toolbar ,
+                toolbar,
                 R.string.drawer_open
-                ,R.string.drawer_close);
+                , R.string.drawer_close);
 
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -68,15 +68,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgMenuPic = navigationView.getHeaderView(0).findViewById(R.id.menuImgUser);
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
 
-        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+
         if (!(UserFirebase.getUsuarioAtual() == null)) {
+            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
             textMenuNome.setText(usuarioLogado.getNome());
         }
 
 
-
-
-        if (auth.getCurrentUser()== null){
+        if (auth.getCurrentUser() == null) {
             Menu menu = navigationView.getMenu();
             MenuItem menuSair = menu.findItem(R.id.menu_sair);
             menuSair.setEnabled(false);
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -115,10 +114,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-    private void openDrawer(){
+    private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.START);
     }
+
     private void closeDrawer() {
 
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -127,9 +126,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.meu_perfil:
-                Intent perfil = new Intent(getApplicationContext(),PerfilActivity.class);
+                Intent perfil = new Intent(getApplicationContext(), PerfilActivity.class);
                 startActivity(perfil);
                 closeDrawer();
                 break;
@@ -153,11 +152,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent apadrinhar = new Intent(this, ApadrinharActivity.class);
                 startActivity(apadrinhar);
                 break;
+            case R.id.termo_de_adocao:
+                closeDrawer();
+                Intent termo = new Intent(this, TermoDeAdocaoActivity.class);
+                startActivity(termo);
+                break;
             case R.id.menu_sair:
                 deslogar();
                 closeDrawer();
                 finish();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0, 0);
                 Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show();
                 break;
@@ -168,31 +172,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             closeDrawer();
-        }else {
+        } else {
             super.onBackPressed();
         }
 
     }
 
-    private void deslogar(){
+    private void deslogar() {
         try {
             auth.signOut();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void recuperarFoto(){
-        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
-        String caminhoFoto = usuarioLogado.getPicPath();
-        if (caminhoFoto != null) {
-            Uri rl = Uri.parse(caminhoFoto);
-            Glide.with(MainActivity.this)
-                    .load(caminhoFoto)
-                    .into(imgMenuPic);
-        } else {
-            imgMenuPic.setImageResource(R.drawable.user);
+
+    private void recuperarFoto() {
+        if (!(UserFirebase.getUsuarioAtual() == null)) {
+            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+            String caminhoFoto = usuarioLogado.getPicPath();
+            if (caminhoFoto != null) {
+                Uri rl = Uri.parse(caminhoFoto);
+                Glide.with(MainActivity.this)
+                        .load(caminhoFoto)
+                        .into(imgMenuPic);
+            } else {
+                imgMenuPic.setImageResource(R.drawable.user);
+            }
         }
 
 

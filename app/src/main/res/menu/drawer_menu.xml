@@ -116,9 +116,9 @@
         android:id="@+id/grp_termo"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/termo_de_uso"
+            android:id="@+id/termo_de_adocao"
             android:checkable="true"
-            android:title="Termo de Uso" />
+            android:title="Termo de adoçao" />
     </group>
     <group
         android:id="@+id/grp_hist"

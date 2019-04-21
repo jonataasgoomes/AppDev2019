@@ -51,7 +51,11 @@ public class PerfilActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //inicializa os campos e configurações iniciais
         initCampos();
-        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        if (!(UserFirebase.getUsuarioAtual() == null)) {
+            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+            dataBaseRef = FirebaseFirestore.getInstance();
+            userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        }
 
 
         //<<<<<<-----Carrega dados do usuário na view---->>>>>
@@ -120,8 +124,10 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        recuperarDadosUsuario();
-        recuperarFoto();
+        if (!(UserFirebase.getUsuarioAtual() == null)) {
+            recuperarDadosUsuario();
+            recuperarFoto();
+        }
 
 
     }
