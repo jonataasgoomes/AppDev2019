@@ -70,7 +70,6 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +87,6 @@
                     android:inputType="number"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -104,11 +102,9 @@
                     android:layout_marginEnd="16dp"
                     android:ems="10"
                     android:hint="@string/text_email"
-
                     android:inputType="textEmailAddress"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <android.support.design.widget.TextInputEditText
@@ -123,7 +119,6 @@
                     android:inputType="text"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <android.support.design.widget.TextInputEditText
@@ -138,7 +133,6 @@
                     android:inputType="text"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <android.support.design.widget.TextInputEditText
@@ -153,7 +147,6 @@
                     android:inputType="text"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <android.support.design.widget.TextInputEditText
@@ -168,7 +161,6 @@
                     android:inputType="number|phone"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <TextView
@@ -197,7 +189,7 @@
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
 
-                    android:textColor="@color/color_disabled_text"
+
                     android:textSize="14sp" />
 
                 <android.support.design.widget.TextInputEditText
@@ -213,7 +205,6 @@
                     android:inputType="textPassword"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <android.support.design.widget.TextInputEditText
@@ -229,7 +220,6 @@
                     android:inputType="textPassword"
                     android:paddingLeft="8dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/color_disabled_text"
                     android:textSize="14sp" />
 
                 <Button

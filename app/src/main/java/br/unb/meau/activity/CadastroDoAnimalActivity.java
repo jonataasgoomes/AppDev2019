@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,6 +34,13 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_do_animal);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Cadastro do Animal");
+        toolbar.setBackgroundResource(R.color.colorAmarelo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         adoptButton = findViewById(R.id.adopt_button);
         helpButton = findViewById(R.id.help_button);
@@ -274,5 +282,11 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
     @Override
     public void onCadastroApadrinhamentoFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 }
