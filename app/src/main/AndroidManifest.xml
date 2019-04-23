@@ -4,18 +4,41 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_meau"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_meau_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.FavoritosActivity"></activity>
+        <activity android:name=".activity.MeusPetsActivity" />
+        <activity android:name=".activity.AnimalPerfilActivity" />
+        <activity android:name=".activity.AdicionarFotoActivity" />
+        <activity android:name=".activity.SemCadastroActivity" />
+        <activity android:name=".activity.TermoDeAdocaoActivity" />
+        <activity android:name=".activity.EditPerfilActivity" />
+        <activity android:name=".activity.PerfilActivity" />
+        <activity android:name=".activity.ApadrinharActivity" />
+        <activity android:name=".activity.CadastroPessoaActivity" />
+        <activity android:name=".activity.AdotarActivity" />
+        <activity android:name=".activity.CadastroDoAnimalActivity" />
+        <activity android:name=".activity.AjudarActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.FimCadastroAnimalActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

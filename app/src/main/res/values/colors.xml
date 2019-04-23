@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
+    <color name="colorAmarelo">#FFD358</color>
+    <color name="colorAmarelo1">#f7a800</color>
+    <color name="colorAzul">#88C9BF</color>
+    <color name="colorAzulEscuro">#F85F8D86</color>
+    <color name="colorAzulMensagem">#cfe9e5</color>
+    <color name="colorAzulTxt">#589b9b</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorActionBarAdotar">#FFD358</color>
+    <color name="colorPrimaryText">#F7A800</color>
+    <color name="colorBtnLogin">#88C9BF</color>
+    <color name="colorSplash">#88C9BF</color>
+    <color name="colorMain1">#FEE29B</color>
+    <color name="text_gray_color">#757575</color>
+    <color name="text_card_color">#434343</color>
+    <color name="text_field_perfil">#757575</color>
+    <color name="btn_facebook">#194F7C</color>
+    <color name="color_google">#F15F5C</color>
+    <color name="card_view_color">#FAFAFA</color>
+    <color name="color_unselected_button">#F1F2F2</color>
+    <color name="color_selected_button">#FFD358</color>
+    <color name="color_disabled_text">#BDBDBD</color>
+    <color name="color_enabled_text">#434343</color>
 </resources>
