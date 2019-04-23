@@ -5,18 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_view_color"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".activity.AdotarActivity">
+    tools:context=".activity.FavoritosActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/main_toolbar">
+
     </include>
 
-    <android.support.v7.widget.RecyclerView
+    <TextView
         android:id="@+id/recyclerAnimal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="TELA DOS PETS FAVORITOS"
+        android:textColor="@color/colorAzul"
+        android:textSize="77sp" />
 
 
 </LinearLayout>

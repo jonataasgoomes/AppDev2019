@@ -1,10 +1,9 @@
 package br.unb.meau.model;
 
-import android.media.Image;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Animal {
+public class Animal implements Serializable {
 
     private String nome;
     private String idade;

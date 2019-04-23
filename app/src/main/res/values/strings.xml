@@ -123,4 +123,6 @@
     <string name="textTermo3">Para facilitar o processo, o Meau disponibiliza o termo aos seus doadores e donos de animais que utilizam o aplicativo para encontrar um destino e/ou ajuda para seu bichinho. Este termo é enviado por e-mail para que possa ser feita a impressão e, no momento de entrega do animal (ou quando o padrinho vai conhecê-lo), seja feita a assinatura por parte do adotante/padrinho.</string>
     <string name="textTermo4">Pressionando os botões abaixo, você receberá em seu email o termo em questão, nos formatos .doc (word) e .pdf.</string>
     <string name="title_activity_sem_cadastro">SemCadastroActivity</string>
+    <string name="title_activity_animal">AnimalActivity</string>
+    <string name="title_activity_favoritos">FavoritosActivity</string>
 </resources>

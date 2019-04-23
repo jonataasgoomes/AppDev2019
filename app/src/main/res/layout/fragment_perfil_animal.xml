@@ -1,14 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fafafa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.PerfilAnimalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <ScrollView
+        android:background="#fafafa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:layout_gravity="center_horizontal"
+        android:elevation="10dp">
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/fotosPerfilAnimal"
+            android:layout_width="360dp"
+            android:layout_height="184dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/cachorro1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="RAGNAR"
+            android:textColor="@color/color_enabled_text"/>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SEXO"
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Macho" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PORTE" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Médio" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="IDADE" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Adulto" />
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:textColor="@color/colorAmarelo1"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="LOCALIZAÇÂO" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Samambaia Sul - Distrito Federal" />
+        <View
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CASTRADO" />
+
+                <TextView
+                    android:layout_marginBottom="16px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Não" />
+
+                <TextView
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VACINADO" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Não" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VERMIFUGADO" />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sim" />
+
+                <TextView
+                    android:textColor="@color/colorAmarelo1"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DOENÇAS" />
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nenhuma" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/colorAmarelo1"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto"
+                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEMPERAMENTO" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calmo e dócil" />
+
+            <View
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#c0c0c0" />
+
+            <TextView
+                android:textColor="@color/colorAmarelo1"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXIGÊNCIAS DO DOADOR"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Termo de adoção, fotos da casa, visita prévia e acompanhamento durante três meses" />
+
+            <View
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="#e0e0e0" />
+
+            <TextView
+                android:textColor="@color/colorAmarelo1"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MAIS SOBRE BIDU" />
+
+            <TextView
+                android:layout_marginBottom="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bidu é um cão muito dócil e de fácil convivencia." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_marginBottom="28dp"
+                    android:layout_width="232dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@color/colorAmarelo"
+                    android:text="PRETENDO ADOTAR" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

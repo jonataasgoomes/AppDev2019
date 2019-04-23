@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnEntrar;
     private Usuario usuario;
     private FirebaseAuth auth;
+    private AlertDialog dialog;
 
 
     @SuppressLint("ResourceAsColor")
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         UsuarioLogado();
-
+        //configurando a barra de navegação
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Login");
@@ -62,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                        usuario = new Usuario();
                        usuario.setEmail(textoEmail);
                        usuario.setSenha(textoSenha);
+                       carregamentoDialog("Realizando o login");
                        validarLogin();
 
                    }else
@@ -74,17 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-        /*Deslogar usuário
-        usuario.signOut();*/
-
-        /*Verificar usuario logado
-        if (usuario.getCurrentUser() != null){
-            Log.i("CreateUser", "Usuário logado!");
-        }else
-            Log.i("CreateUser", "Usuário deslogado");*/
 
 
 
@@ -107,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 if ( task.isSuccessful() ){
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    dialog.cancel();
                     Toast.makeText(LoginActivity.this, "Login realizado", Toast.LENGTH_SHORT).show();
                     finish();
                 }else {
@@ -114,8 +107,10 @@ public class LoginActivity extends AppCompatActivity {
                     try{
                         throw task.getException();
                     }catch (FirebaseAuthInvalidCredentialsException e){
+                        dialog.cancel();
                         error = "Email ou senha incorretos";
                     }catch (FirebaseAuthInvalidUserException e){
+                        dialog.cancel();
                         error = "Usuário não cadastrado";
                     }catch (Exception e){
                         e.printStackTrace();
@@ -134,6 +129,17 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this,MainActivity.class));
         }
+    }
+
+    private void carregamentoDialog(String titulo) {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(titulo);
+        alert.setCancelable(false);
+        alert.setView(R.layout.carregamento);
+        dialog = alert.create();
+        dialog.show();
+
     }
     @Override
     public boolean onSupportNavigateUp() {

@@ -6,14 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/card_view_color"
     android:orientation="vertical"
-    tools:context=".activity.AdotarActivity">
+    tools:context=".activity.MeusPetsActivity"
+    android:gravity="center_horizontal">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/main_toolbar">
+
     </include>
 
-    <android.support.v7.widget.RecyclerView
+    <TextView
+        android:text="TELA DOS MEUS PETS"
+        android:textColor="@color/colorAzul"
+        android:textSize="120sp"
+        android:gravity="center"
         android:id="@+id/recyclerAnimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

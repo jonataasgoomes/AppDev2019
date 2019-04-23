@@ -1,21 +1,26 @@
 package br.unb.meau.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.unb.meau.R;
 import br.unb.meau.adapter.CardAnimalAdapter;
+import br.unb.meau.helper.RecyclerItemClickListener;
 import br.unb.meau.model.Animal;
 
 public class AjudarActivity extends AppCompatActivity {
     private RecyclerView recyclerAnimal;
     private List<Animal> cardsAnimais = new ArrayList<>();
+    private CardAnimalAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +43,30 @@ public class AjudarActivity extends AppCompatActivity {
 
         //Definindo adaptador
         carregarCards();
-        CardAnimalAdapter adapter = new CardAnimalAdapter(cardsAnimais,this);
+        adapter = new CardAnimalAdapter(cardsAnimais,this);
         recyclerAnimal.setAdapter(adapter);
+
+        recyclerAnimal.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(),
+                recyclerAnimal, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Animal cardSelecionado = cardsAnimais.get(position);
+                Intent cardPerfil = new Intent(getApplicationContext(),AnimalPerfilActivity.class);
+                cardPerfil.putExtra("animalSelecionado", cardSelecionado );
+                startActivity(cardPerfil);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        }));
+
     }
     public void carregarCards(){
         Animal animal = new Animal(

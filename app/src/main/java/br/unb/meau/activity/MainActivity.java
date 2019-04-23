@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Usuario usuarioLogado;
     private ImageView imgMenuPic;
     private TextView textMenuNome;
+    private MenuItem perfil, meusPets, favoritos, chat,sair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +70,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         textMenuNome = navigationView.getHeaderView(0).findViewById(R.id.menuTextNome);
 
 
+
+        //configurando o menu de navegação;
+        Menu menu = navigationView.getMenu();
+        perfil = menu.findItem(R.id.meu_perfil);
+        meusPets = menu.findItem(R.id.meus_pets);
+        favoritos = menu.findItem(R.id.favoritos);
+        chat = menu.findItem(R.id.chat);
+        sair = menu.findItem(R.id.menu_sair);
+
         if (auth.getCurrentUser() == null) {
-            Menu menu = navigationView.getMenu();
-            MenuItem menuSair = menu.findItem(R.id.menu_sair);
-            menuSair.setEnabled(false);
+            textMenuNome.setText("Seja bem-vindo");
+            perfil.setVisible(false);
+            meusPets.setVisible(false);
+            favoritos.setVisible(false);
+            chat.setVisible(false);
+            sair.setVisible(false);
             btnLogin.setVisibility(View.VISIBLE);
+        }else {
+            sair.setVisible(true);
+            perfil.setVisible(true);
+            meusPets.setVisible(true);
+            favoritos.setVisible(true);
+            chat.setVisible(true);
         }
 
 
@@ -123,32 +142,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.meu_perfil:
-                if (!(UserFirebase.getUsuarioAtual() == null)) {
-                    Intent perfil = new Intent(getApplicationContext(), PerfilActivity.class);
+                    Intent perfil = new Intent(this, PerfilActivity.class);
                     startActivity(perfil);
-                } else {
-                    Intent semCadastro = new Intent(getApplicationContext(), SemCadastroActivity.class);
-                    startActivity(semCadastro);
-                }
-                closeDrawer();
                 break;
+            case R.id.meus_pets:
+                    Intent meusPets = new Intent(this, MeusPetsActivity.class);
+                    startActivity(meusPets);
+                    break;
+            case R.id.favoritos:
+                    Intent favoritos = new Intent(this, FavoritosActivity.class);
+                    startActivity(favoritos);
+                    break;
             case R.id.cadastrar_um_pet:
-                closeDrawer();
                 Intent cadastarPet = new Intent(this, CadastroDoAnimalActivity.class);
                 startActivity(cadastarPet);
                 break;
             case R.id.adotar_um_pet:
-                closeDrawer();
                 Intent adotar = new Intent(this, AdotarActivity.class);
                 startActivity(adotar);
                 break;
             case R.id.ajudar_um_pet:
-                closeDrawer();
                 Intent ajudar = new Intent(this, AjudarActivity.class);
                 startActivity(ajudar);
                 break;
             case R.id.apadrinhar_um_pet:
-                closeDrawer();
                 Intent apadrinhar = new Intent(this, ApadrinharActivity.class);
                 startActivity(apadrinhar);
                 break;
@@ -159,11 +176,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_sair:
                 deslogar();
-                closeDrawer();
                 finish();
                 startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0, 0);
                 Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show();
+                closeDrawer();
                 break;
         }
 
@@ -202,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 imgMenuPic.setImageResource(R.drawable.user);
             }
         }
-
 
     }
 
