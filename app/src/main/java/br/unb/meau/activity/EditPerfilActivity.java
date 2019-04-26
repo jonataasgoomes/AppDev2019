@@ -172,6 +172,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            dialog.cancel();
                             Toast.makeText(EditPerfilActivity.this,
                                     "Erro ao carregar a imagem", Toast.LENGTH_SHORT).show();
 
@@ -193,7 +194,7 @@ public class EditPerfilActivity extends AppCompatActivity {
 
                             Toast.makeText(EditPerfilActivity.this,
                                     "Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
-                            dialog.cancel();
+
                         }
                     });
                     imageEditPerfil.setImageBitmap(imagem);
@@ -226,6 +227,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         usuarioLogado.atualizarFoto();
         Toast.makeText(EditPerfilActivity.this,
                 "Foto atualizada", Toast.LENGTH_SHORT).show();
+        dialog.cancel();
     }
 
     //Metodo para iniciar os componentes

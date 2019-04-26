@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="48dp">
     <group
         android:id="@+id/grp_perfil"
@@ -39,7 +40,7 @@
         <item
             android:icon="@drawable/ic_pets_black_24dp"
             android:id="@+id/atalhos"
-            android:checkable="false"
+            android:checkable="true"
             android:title="Atalhos"
             />
     </group>
@@ -82,7 +83,7 @@
         <item
             android:icon="@drawable/ic_info_black_24dp"
             android:id="@+id/informacoes"
-            android:checkable="false"
+            android:checkable="true"
             android:title="Informações" />
     </group>
 
@@ -131,8 +132,8 @@
         android:checkableBehavior="single">
         <item
             android:icon="@drawable/ic_settings_black_24dp"
-            android:id="@+id/item4"
-            android:checkable="false"
+            android:id="@+id/conf"
+            android:checkable="true"
             android:title="Configurações"/>
     </group>
     <group
