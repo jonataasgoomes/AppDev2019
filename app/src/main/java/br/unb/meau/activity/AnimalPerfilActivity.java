@@ -39,7 +39,6 @@ public class AnimalPerfilActivity extends AppCompatActivity {
         if (bundle != null){
             animalSelecionado =(Animal) bundle.getSerializable( "animalSelecionado");
             getSupportActionBar().setTitle(animalSelecionado.getNome());
-            imgAnimal.setImageResource(animalSelecionado.getImagem());
             nome.setText(animalSelecionado.getNome());
             sexo.setText(animalSelecionado.getEspecie());
             porte.setText(animalSelecionado.getPorte());
