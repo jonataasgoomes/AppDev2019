@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -181,13 +184,15 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             CheckBox view = findViewById(healthArray[i]);
             health.put(view.getText().toString(), view.isChecked());
         }
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Animal toSave = new Animal(
+                "user/" + user.getUid(),
                 nameText.getText().toString(),
                 getCheckedOption(age),
                 getCheckedOption(species),
                 "",
                 getCheckedOption(size),
+                getCheckedOption(gender),
                 temper,
                 health,
                 diseaseText.getText().toString(),
@@ -200,12 +205,12 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             CheckBox cb2 = findViewById(R.id.adopt_demand_box_2);
             CheckBox cb3 = findViewById(R.id.adopt_demand_box_3);
             CheckBox cb4 = findViewById(R.id.adopt_demand_box_4);
-            boolean[] months = new boolean[3];
+            HashMap<String, Boolean> months = new HashMap<String, Boolean>();
             int[] monthsIds = {R.id.time_demand_box_1, R.id.time_demand_box_2, R.id.time_demand_box_3};
             if (cb4.isChecked()) {
                 for(int i = 0; i < 3; i++) {
                     CheckBox view = findViewById(monthsIds[i]);
-                    months[i] = view.isChecked();
+                    months.put(view.getText().toString(), view.isChecked());
                 }
             }
             toSave.setAdoptData(new Adocao(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), cb4.isChecked(), months));
@@ -213,12 +218,12 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             CheckBox cb1 = findViewById(R.id.prov_demand_box_1);
             CheckBox cb2 = findViewById(R.id.prov_demand_box_2);
             CheckBox cb3 = findViewById(R.id.prov_demand_box_3);
-            boolean[] financial = new boolean[3];
+            HashMap<String, Boolean> financial = new HashMap<String, Boolean>();
             int[] financialIds = {R.id.support_demand_box_1, R.id.support_demand_box_2, R.id.support_demand_box_3};
             if (cb3.isChecked()) {
                 for(int i = 0; i < 3; i++) {
                     CheckBox view = findViewById(financialIds[i]);
-                    financial[i] = view.isChecked();
+                    financial.put(view.getText().toString(), view.isChecked());
                 }
             }
             toSave.setProvideData(new Apadrinhamento(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), financial));

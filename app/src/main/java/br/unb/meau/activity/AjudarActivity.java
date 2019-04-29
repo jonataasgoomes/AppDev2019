@@ -72,36 +72,40 @@ public class AjudarActivity extends AppCompatActivity {
         Animal animal = new Animal(
                 "RUFFUS",
                 "ADULTO",
-                "MACHO",
+                "CACHORRO",
                 "SANTA MARIA - DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro11);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "PIPOCA",
                 "ADULTO",
-                "FEMÊA",
+                "CACHORRO",
                 "GAMA - DF",
                 "GRANDE",
+                "FEMÊA",
                 R.drawable.cachorro12);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "PICHULLA",
                 "FILHOTE",
-                "MACHO",
+                "CACHORRO",
                 "SOBRADINHO - DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro13);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "ASTOLFO",
                 "ADULTO",
-                "MACHO",
+                "CACHORRO",
                 "TAGUATINGA -DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro14);
         this.cardsAnimais.add(animal);
 
