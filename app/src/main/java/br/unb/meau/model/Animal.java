@@ -20,7 +20,7 @@ public class Animal implements Serializable {
     private HashMap<String, Boolean> saude;
     private String doencas;
     private String sobre;
-    private int imagem;
+    private String imagem;
     private Adocao adoptData;
     private Ajuda helpData;
     private Apadrinhamento provideData;
@@ -57,7 +57,7 @@ public class Animal implements Serializable {
         this.localizacao = "";
         this.porte = "";
         this.sexo = "";
-        this.imagem = 0;
+        this.imagem = "";
         this.temperamento = new HashMap<String, Boolean>();
         this.saude = new HashMap<String, Boolean>();
         this.doencas = "";
@@ -75,14 +75,14 @@ public class Animal implements Serializable {
         this.localizacao = localizacao;
         this.porte = porte;
         this.sexo = sexo;
-        this.imagem = imagem;
+        this.imagem = "";
         this.temperamento = new HashMap<String, Boolean>();
         this.saude = new HashMap<String, Boolean>();
         this.doencas = "";
         this.sobre = "";
     }
 
-    public Animal(String dono, String nome, String idade, String especie, String localizacao, String porte, String sexo, HashMap<String, Boolean> temperamento, HashMap<String, Boolean> saude, String doencas, String sobre, int imagem) {
+    public Animal(String dono, String nome, String idade, String especie, String localizacao, String porte, String sexo, HashMap<String, Boolean> temperamento, HashMap<String, Boolean> saude, String doencas, String sobre, String imagem) {
         this.dono = dono;
         this.nome = nome;
         this.idade = idade;
@@ -145,11 +145,11 @@ public class Animal implements Serializable {
         this.porte = porte;
     }
 
-    public int getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
-    public void setImagem(int imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
 
@@ -203,6 +203,7 @@ public class Animal implements Serializable {
         animalMap.put("temper", getTemperamento());
         animalMap.put("health", getSaude());
         animalMap.put("about", getSobre());
+        animalMap.put("picture", getImagem());
         if (getAdoptData() != null) {
             animalMap.put("adopting", getAdoptData().convertMap());
         } else if (getProvideData() != null) {

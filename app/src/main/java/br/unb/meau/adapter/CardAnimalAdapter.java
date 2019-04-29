@@ -45,8 +45,6 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
         animalViewHolder.textPorte.setText(animal.getPorte());
         animalViewHolder.textEspecie.setText(animal.getEspecie());
         animalViewHolder.textLocalizacao.setText(animal.getLocalizacao());
-        animalViewHolder.imagemAnimal.setImageResource(animal.getImagem());
-        animalViewHolder.imagemAnimal.setBackgroundResource(animal.getImagem());
     }
 
     @Override

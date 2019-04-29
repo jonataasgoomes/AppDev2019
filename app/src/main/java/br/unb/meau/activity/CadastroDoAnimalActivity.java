@@ -2,10 +2,16 @@ package br.unb.meau.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,10 +20,18 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,6 +39,7 @@ import br.unb.meau.R;
 import br.unb.meau.fragment.CadastroAdocaoFragment;
 import br.unb.meau.fragment.CadastroAjudaFragment;
 import br.unb.meau.fragment.CadastroApadrinhamentoFragment;
+import br.unb.meau.helper.ConfigFirebase;
 import br.unb.meau.model.Adocao;
 import br.unb.meau.model.Ajuda;
 import br.unb.meau.model.Animal;
@@ -32,8 +47,13 @@ import br.unb.meau.model.Apadrinhamento;
 import br.unb.meau.viewmodel.CadastroDoAnimalViewModel;
 
 public class CadastroDoAnimalActivity extends AppCompatActivity implements CadastroApadrinhamentoFragment.OnFragmentInteractionListener, CadastroAdocaoFragment.OnFragmentInteractionListener, CadastroAjudaFragment.OnFragmentInteractionListener {
-    private Button adoptButton, helpButton, provideButton, saveButton;
+    private Button adoptButton, helpButton, provideButton, saveButton, addPics;
+    private Bitmap selectedImage;
+    private Animal toSave;
     CadastroDoAnimalViewModel mViewModel;
+    private static final int SELECTION_GALERY = 200;
+    private AlertDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +70,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
         helpButton = findViewById(R.id.help_button);
         provideButton = findViewById(R.id.provide_button);
         saveButton = findViewById(R.id.save_button);
+        addPics = findViewById(R.id.add_pics_button);
         mViewModel = ViewModelProviders.of(this).get(CadastroDoAnimalViewModel.class);
         setupAdoptButton();
         setupProvideButton();
@@ -82,6 +103,16 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             }
         });
 
+        addPics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent foto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if (foto.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(foto, SELECTION_GALERY);
+                }
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +120,33 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            try {
+                //Galeria de fotos
+                switch (requestCode) {
+                    case SELECTION_GALERY:
+                        Uri localImagemSelect = data.getData();
+                        selectedImage = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelect);
+                        break;
+                }
+
+                if (selectedImage != null) {
+                    Bitmap imageBitmap = Bitmap.createScaledBitmap(selectedImage, 300, 300, false);
+                    addPics.setBackground(new BitmapDrawable(getResources(), imageBitmap));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
     private void setupAdoptButton () {
         if (mViewModel.getAdopting()) {
             enableButton(adoptButton);
@@ -185,7 +243,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             health.put(view.getText().toString(), view.isChecked());
         }
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Animal toSave = new Animal(
+        toSave = new Animal(
                 "user/" + user.getUid(),
                 nameText.getText().toString(),
                 getCheckedOption(age),
@@ -197,7 +255,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
                 health,
                 diseaseText.getText().toString(),
                 aboutText.getText().toString(),
-                R.drawable.cachorro1
+                ""
         );
 
         if (mViewModel.getAdopting()) {
@@ -245,9 +303,52 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             }
             toSave.setHelpData(new Ajuda(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), medicines, cb4.isChecked(), objects));
         }
-        toSave.salvar();
-        Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
-        startActivity(intent);
+
+        if (selectedImage != null) {
+            carregamentoDialog("Salvando");
+            StorageReference storageRef = ConfigFirebase.getFirebaseStorage();
+            Long tsLong = System.currentTimeMillis()/1000;
+            String ts = tsLong.toString();
+            //Salvar imagem no storage
+            StorageReference imgRef = storageRef.child("imagens")
+                    .child("animals")
+                    .child(user.getUid() + ts + ".jpeg");
+            StorageTask<UploadTask.TaskSnapshot> uploadTask = imgRef.putBytes(setupImage(selectedImage)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    //Recuperar local da foto
+                    Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl()
+                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri url) {
+                                    toSave.setImagem(url.toString());
+                                    toSave.salvar();
+                                    dialog.cancel();
+                                    Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                }
+            });
+        } else {
+            toSave.salvar();
+            Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void carregamentoDialog(String titulo) {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(titulo);
+        alert.setCancelable(false);
+        alert.setView(R.layout.carregamento);
+        dialog = alert.create();
+        dialog.show();
+
     }
     private String getCheckedOption (RadioGroup group) {
         int id = group.getCheckedRadioButtonId();
@@ -269,6 +370,12 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
     }
     private void unselectButton (Button btn) {
         btn.setBackgroundColor(getResources().getColor(R.color.color_unselected_button));
+    }
+
+    private byte [] setupImage (Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        return baos.toByteArray();
     }
 
     @Override
