@@ -1,17 +1,23 @@
 package br.unb.meau.model;
 
+
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Animal implements Serializable {
 
+    private String dono;
     private String nome;
     private String idade;
     private String especie;
     private String localizacao;
     private String porte;
-    private ArrayList<String> temperamento;
-    private ArrayList<String> saude;
+    private String sexo;
+    private HashMap<String, Boolean> temperamento;
+    private HashMap<String, Boolean> saude;
     private String doencas;
     private String sobre;
     private int imagem;
@@ -45,13 +51,15 @@ public class Animal implements Serializable {
 
     public Animal() {
         this.nome = "";
+        this.dono = "";
         this.idade = "";
         this.especie = "";
         this.localizacao = "";
         this.porte = "";
+        this.sexo = "";
         this.imagem = 0;
-        this.temperamento = new ArrayList<String>();
-        this.saude = new ArrayList<String>();
+        this.temperamento = new HashMap<String, Boolean>();
+        this.saude = new HashMap<String, Boolean>();
         this.doencas = "";
         this.sobre = "";
         this.adoptData = new Adocao();
@@ -59,25 +67,29 @@ public class Animal implements Serializable {
         this.provideData = new Apadrinhamento();
     }
 
-    public Animal(String nome, String idade, String especie, String localizacao, String porte, int imagem) {
+    public Animal(String nome, String idade, String especie, String localizacao, String porte, String sexo, int imagem) {
+        this.dono = "";
         this.nome = nome;
         this.idade = idade;
         this.especie = especie;
         this.localizacao = localizacao;
         this.porte = porte;
+        this.sexo = sexo;
         this.imagem = imagem;
-        this.temperamento = new ArrayList<String>();
-        this.saude = new ArrayList<String>();
+        this.temperamento = new HashMap<String, Boolean>();
+        this.saude = new HashMap<String, Boolean>();
         this.doencas = "";
         this.sobre = "";
     }
 
-    public Animal(String nome, String idade, String especie, String localizacao, String porte, ArrayList<String> temperamento, ArrayList<String> saude, String doencas, String sobre, int imagem) {
+    public Animal(String dono, String nome, String idade, String especie, String localizacao, String porte, String sexo, HashMap<String, Boolean> temperamento, HashMap<String, Boolean> saude, String doencas, String sobre, int imagem) {
+        this.dono = dono;
         this.nome = nome;
         this.idade = idade;
         this.especie = especie;
         this.localizacao = localizacao;
         this.porte = porte;
+        this.sexo = sexo;
         this.temperamento = temperamento;
         this.saude = saude;
         this.doencas = doencas;
@@ -108,6 +120,14 @@ public class Animal implements Serializable {
     public void setEspecie(String especie) {
         this.especie = especie;
     }
+    
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
     public String getLocalizacao() {
         return localizacao;
@@ -133,19 +153,19 @@ public class Animal implements Serializable {
         this.imagem = imagem;
     }
 
-    public ArrayList<String> getTemperamento() {
+    public HashMap<String, Boolean> getTemperamento() {
         return temperamento;
     }
 
-    public void setTemperamento(ArrayList<String> temperamento) {
+    public void setTemperamento(HashMap<String, Boolean> temperamento) {
         this.temperamento = temperamento;
     }
 
-    public ArrayList<String> getSaude() {
+    public HashMap<String, Boolean> getSaude() {
         return saude;
     }
 
-    public void setSaude(ArrayList<String> saude) {
+    public void setSaude(HashMap<String, Boolean> saude) {
         this.saude = saude;
     }
 
@@ -163,5 +183,42 @@ public class Animal implements Serializable {
 
     public void setSobre(String sobre) {
         this.sobre = sobre;
+    }
+
+    public String getDono() {
+        return dono;
+    }
+
+    public void setDono(String dono) {
+        this.dono = dono;
+    }
+
+    public Map<String, Object> convertMap() {
+
+        HashMap<String, Object> animalMap = new HashMap<>();
+        animalMap.put("name", getNome());
+        animalMap.put("gender", getSexo());
+        animalMap.put("age", getIdade());
+        animalMap.put("size", getPorte());
+        animalMap.put("temper", getTemperamento());
+        animalMap.put("health", getSaude());
+        animalMap.put("about", getSobre());
+        if (getAdoptData() != null) {
+            animalMap.put("adopting", getAdoptData().convertMap());
+        } else if (getProvideData() != null) {
+            animalMap.put("providing", getProvideData().convertMap());
+        }
+        if (getHelpData() != null) {
+            animalMap.put("helping", getHelpData().convertMap());
+        }
+
+        return animalMap;
+    }
+
+    public void salvar() {
+        Map<String, Object> animal = convertMap();
+        FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+        animal.put("owner", dbRef.document(getDono()));
+        dbRef.collection("animals").add(animal);
     }
 }

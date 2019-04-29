@@ -69,36 +69,40 @@ public class ApadrinharActivity extends AppCompatActivity {
         Animal animal = new Animal(
                 "STAR",
                 "ADULTO",
-                "MACHO",
+                "CACHORRO",
                 "SANTA MARIA - DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro15);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "KITANNA",
                 "ADULTO",
-                "FEMÊA",
+                "CACHORRO",
                 "GAMA - DF",
                 "GRANDE",
+                "FEMÊA",
                 R.drawable.cachorro16);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "THOR",
                 "FILHOTE",
-                "MACHO",
+                "CACHORRO",
                 "SOBRADINHO - DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro17);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "CHETTOS",
                 "ADULTO",
-                "MACHO",
+                "CACHORRO",
                 "TAGUATINGA -DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro18);
         this.cardsAnimais.add(animal);
 

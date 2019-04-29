@@ -72,36 +72,40 @@ public class AdotarActivity extends AppCompatActivity {
         Animal animal = new Animal(
                 "RAGNAR",
                 "FILHOTE",
-                "MACHO",
+                "CACHORRO",
                 "ASA SUL - DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro1);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "LOLLA",
                 "ADULTO",
-                "FEMÊA",
+                "CACHORRO",
                 "ASA NORTE - DF",
                 "MEDIO",
+                "FEMÊA",
                 R.drawable.cachorro2);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "CHOKYTO",
                 "FILHOTE",
-                "MACHO",
+                "CACHORRO",
                 "SOBRADINHO - DF",
                 "PEQUENO",
+                "MACHO",
                 R.drawable.cachorro3);
         this.cardsAnimais.add(animal);
 
         animal = new Animal(
                 "OLIVER",
                 "ADULTO",
-                "MACHO",
+                "CACHORRO",
                 "TAGUATINGA -DF",
                 "GRANDE",
+                "MACHO",
                 R.drawable.cachorro4);
         this.cardsAnimais.add(animal);
 

@@ -1,6 +1,8 @@
 package br.unb.meau.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Ajuda {
     private boolean food;
@@ -68,5 +70,16 @@ public class Ajuda {
 
     public void setObjectsText(String objectsText) {
         this.objectsText = objectsText;
+    }
+
+    public Map<String, Object> convertMap() {
+        HashMap<String, Object> myMap = new HashMap<>();
+        myMap.put("comida", isFood());
+        myMap.put("acompanhamentoFinanceiro", isFinancialSupport());
+        myMap.put("remedios", isMedicine());
+        myMap.put("remedioNome", getMedicineText());
+        myMap.put("objetos", isObjects());
+        myMap.put("objetoNome", getObjectsText());
+        return myMap;
     }
 }
