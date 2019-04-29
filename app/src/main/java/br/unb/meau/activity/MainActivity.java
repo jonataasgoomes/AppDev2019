@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Usuario usuarioLogado;
     private ImageView imgMenuPic;
     private TextView textMenuNome;
-    private MenuItem perfil, meusPets, favoritos, chat,sair;
+    private MenuItem perfil, meusPets, favoritos, chat,sair, atalhos,info, conf,
+        cadastar, adotar,ajudar,apadrinhar, dicas, eventos, legis, termo, hist,privacidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +74,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //configurando o menu de navegação;
         Menu menu = navigationView.getMenu();
+
         perfil = menu.findItem(R.id.meu_perfil);
         meusPets = menu.findItem(R.id.meus_pets);
         favoritos = menu.findItem(R.id.favoritos);
         chat = menu.findItem(R.id.chat);
+
+        atalhos = menu.findItem(R.id.atalhos);
+        cadastar = menu.findItem(R.id.cadastrar_um_pet);
+        adotar = menu.findItem(R.id.adotar_um_pet);
+        ajudar = menu.findItem(R.id.ajudar_um_pet);
+        apadrinhar = menu.findItem(R.id.apadrinhar_um_pet);
+
+        cadastar.setVisible(false);
+        adotar.setVisible(false);
+        ajudar.setVisible(false);
+        apadrinhar.setVisible(false);
+
+        info = menu.findItem(R.id.informacoes);
+        dicas = menu.findItem(R.id.dicas);
+        eventos = menu.findItem(R.id.eventos);
+        legis = menu.findItem(R.id.legislacao);
+        termo = menu.findItem(R.id.termo_de_adocao);
+        hist = menu.findItem(R.id.hist_de_adocao);
+
+        dicas.setVisible(false);
+        eventos.setVisible(false);
+        legis.setVisible(false);
+        termo.setVisible(false);
+        hist.setVisible(false);
+
+        conf = menu.findItem(R.id.conf);
+        privacidade = menu.findItem(R.id.privacidade);
+
+        privacidade.setVisible(false);
+
+
         sair = menu.findItem(R.id.menu_sair);
+        atalhos.setActionView(R.layout.menu_image);
+        info.setActionView(R.layout.menu_image);
+        conf.setActionView(R.layout.menu_image);
 
         if (auth.getCurrentUser() == null) {
             textMenuNome.setText("Seja bem-vindo");
@@ -140,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        
         switch (menuItem.getItemId()) {
             case R.id.meu_perfil:
                     Intent perfil = new Intent(this, PerfilActivity.class);
@@ -153,26 +191,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Intent favoritos = new Intent(this, FavoritosActivity.class);
                     startActivity(favoritos);
                     break;
+
+            case R.id.atalhos:
+                cadastar.setVisible(true);
+                adotar.setVisible(true);
+                ajudar.setVisible(true);
+                apadrinhar.setVisible(true);
+
+                dicas.setVisible(false);
+                eventos.setVisible(false);
+                legis.setVisible(false);
+                termo.setVisible(false);
+                hist.setVisible(false);
+
+                privacidade.setVisible(false);
+
+                break;
+
             case R.id.cadastrar_um_pet:
                 Intent cadastarPet = new Intent(this, CadastroDoAnimalActivity.class);
                 startActivity(cadastarPet);
                 break;
             case R.id.adotar_um_pet:
-                Intent adotar = new Intent(this, AdotarActivity.class);
-                startActivity(adotar);
+                Intent adotarView = new Intent(this, AdotarActivity.class);
+                startActivity(adotarView);
                 break;
             case R.id.ajudar_um_pet:
-                Intent ajudar = new Intent(this, AjudarActivity.class);
-                startActivity(ajudar);
+                Intent ajudarView = new Intent(this, AjudarActivity.class);
+                startActivity(ajudarView);
                 break;
             case R.id.apadrinhar_um_pet:
-                Intent apadrinhar = new Intent(this, ApadrinharActivity.class);
-                startActivity(apadrinhar);
+                Intent apadrinharView = new Intent(this, ApadrinharActivity.class);
+                startActivity(apadrinharView);
                 break;
+            case R.id.informacoes:
+                cadastar.setVisible(false);
+                adotar.setVisible(false);
+                ajudar.setVisible(false);
+                apadrinhar.setVisible(false);
+
+                dicas.setVisible(true);
+                eventos.setVisible(true);
+                legis.setVisible(true);
+                termo.setVisible(true);
+                hist.setVisible(true);
+
+                privacidade.setVisible(false);
+                break;
+
+
             case R.id.termo_de_adocao:
                 closeDrawer();
-                Intent termo = new Intent(this, TermoDeAdocaoActivity.class);
-                startActivity(termo);
+                Intent termoView = new Intent(this, TermoDeAdocaoActivity.class);
+                startActivity(termoView);
+                break;
+            case R.id.conf:
+                cadastar.setVisible(false);
+                adotar.setVisible(false);
+                ajudar.setVisible(false);
+                apadrinhar.setVisible(false);
+
+                dicas.setVisible(false);
+                eventos.setVisible(false);
+                legis.setVisible(false);
+                termo.setVisible(false);
+                hist.setVisible(false);
+
+                privacidade.setVisible(true);
                 break;
             case R.id.menu_sair:
                 deslogar();
