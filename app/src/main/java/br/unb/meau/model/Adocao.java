@@ -1,6 +1,8 @@
 package br.unb.meau.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Adocao {
     private boolean terms;
@@ -58,5 +60,15 @@ public class Adocao {
 
     public void setPostAdoptionPeriods(boolean[] postAdoptionPeriods) {
         this.postAdoptionPeriods = postAdoptionPeriods;
+    }
+
+    public Map<String, Object> convertMap() {
+        HashMap<String, Object> myMap = new HashMap<>();
+        myMap.put("termos", isTerms());
+        myMap.put("fotos", isPictures());
+        myMap.put("ajudaPosAdocao", isPostAdoptionHelp());
+        myMap.put("visitas", isVisit());
+        myMap.put("periodoPosAdocao", getPostAdoptionPeriods());
+        return myMap;
     }
 }

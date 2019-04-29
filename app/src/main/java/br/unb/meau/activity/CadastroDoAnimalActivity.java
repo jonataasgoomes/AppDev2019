@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import br.unb.meau.R;
 import br.unb.meau.fragment.CadastroAdocaoFragment;
@@ -168,21 +169,17 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
         size = findViewById(R.id.size_group);
         age = findViewById(R.id.age_group);
 
-        ArrayList<String> temper = new ArrayList<String>();
-        ArrayList<String> health = new ArrayList<String>();
+        HashMap<String, Boolean> temper = new HashMap<String, Boolean>();
+        HashMap<String, Boolean> health = new HashMap<String, Boolean>();
 
         for(int i = 0; i < 6; i++) {
             CheckBox view = findViewById(temperArray[i]);
-            if (view.isChecked()) {
-                temper.add(view.getText().toString());
-            }
+            temper.put(view.getText().toString(), view.isChecked());
         }
 
         for(int i = 0; i < 4; i++) {
             CheckBox view = findViewById(healthArray[i]);
-            if (view.isChecked()) {
-                health.add(view.getText().toString());
-            }
+            health.put(view.getText().toString(), view.isChecked());
         }
 
         Animal toSave = new Animal(
@@ -243,7 +240,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             }
             toSave.setHelpData(new Ajuda(cb1.isChecked(), cb2.isChecked(), cb3.isChecked(), medicines, cb4.isChecked(), objects));
         }
-
+        toSave.salvar();
         Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
         startActivity(intent);
     }

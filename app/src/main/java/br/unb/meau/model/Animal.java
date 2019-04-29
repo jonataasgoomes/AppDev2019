@@ -1,7 +1,9 @@
 package br.unb.meau.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Animal implements Serializable {
 
@@ -10,8 +12,9 @@ public class Animal implements Serializable {
     private String especie;
     private String localizacao;
     private String porte;
-    private ArrayList<String> temperamento;
-    private ArrayList<String> saude;
+    private String sexo;
+    private HashMap<String, Boolean> temperamento;
+    private HashMap<String, Boolean> saude;
     private String doencas;
     private String sobre;
     private int imagem;
@@ -50,8 +53,8 @@ public class Animal implements Serializable {
         this.localizacao = "";
         this.porte = "";
         this.imagem = 0;
-        this.temperamento = new ArrayList<String>();
-        this.saude = new ArrayList<String>();
+        this.temperamento = new HashMap<String, Boolean>();
+        this.saude = new HashMap<String, Boolean>();
         this.doencas = "";
         this.sobre = "";
         this.adoptData = new Adocao();
@@ -66,13 +69,13 @@ public class Animal implements Serializable {
         this.localizacao = localizacao;
         this.porte = porte;
         this.imagem = imagem;
-        this.temperamento = new ArrayList<String>();
-        this.saude = new ArrayList<String>();
+        this.temperamento = new HashMap<String, Boolean>();
+        this.saude = new HashMap<String, Boolean>();
         this.doencas = "";
         this.sobre = "";
     }
 
-    public Animal(String nome, String idade, String especie, String localizacao, String porte, ArrayList<String> temperamento, ArrayList<String> saude, String doencas, String sobre, int imagem) {
+    public Animal(String nome, String idade, String especie, String localizacao, String porte, HashMap<String, Boolean> temperamento, HashMap<String, Boolean> saude, String doencas, String sobre, int imagem) {
         this.nome = nome;
         this.idade = idade;
         this.especie = especie;
@@ -108,6 +111,14 @@ public class Animal implements Serializable {
     public void setEspecie(String especie) {
         this.especie = especie;
     }
+    
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
     public String getLocalizacao() {
         return localizacao;
@@ -133,19 +144,19 @@ public class Animal implements Serializable {
         this.imagem = imagem;
     }
 
-    public ArrayList<String> getTemperamento() {
+    public HashMap<String, Boolean> getTemperamento() {
         return temperamento;
     }
 
-    public void setTemperamento(ArrayList<String> temperamento) {
+    public void setTemperamento(HashMap<String, Boolean> temperamento) {
         this.temperamento = temperamento;
     }
 
-    public ArrayList<String> getSaude() {
+    public HashMap<String, Boolean> getSaude() {
         return saude;
     }
 
-    public void setSaude(ArrayList<String> saude) {
+    public void setSaude(HashMap<String, Boolean> saude) {
         this.saude = saude;
     }
 
@@ -163,5 +174,28 @@ public class Animal implements Serializable {
 
     public void setSobre(String sobre) {
         this.sobre = sobre;
+    }
+
+    public Map<String, Object> convertMap() {
+
+        HashMap<String, Object> animalMap = new HashMap<>();
+        animalMap.put("nome", getNome());
+        animalMap.put("sexo", getSexo());
+        animalMap.put("idade", getIdade());
+        animalMap.put("porte", getPorte());
+        animalMap.put("temperamento", getTemperamento());
+        animalMap.put("saude", getSaude());
+        animalMap.put("sobre", getSobre());
+        animalMap.put("adocao", getAdoptData().convertMap());
+        animalMap.put("apadrinhamento", getProvideData().convertMap());
+        animalMap.put("ajuda", getHelpData().convertMap());
+
+        return animalMap;
+    }
+
+    public void salvar() {
+        Map<String, Object> animal = convertMap();
+        FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+        dbRef.collection("animal").add(animal);
     }
 }

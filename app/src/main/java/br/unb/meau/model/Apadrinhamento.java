@@ -1,6 +1,8 @@
 package br.unb.meau.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Apadrinhamento {
     private boolean terms;
@@ -48,5 +50,14 @@ public class Apadrinhamento {
 
     public void setFinancialNeeds(boolean[] financialNeeds) {
         this.financialNeeds = financialNeeds;
+    }
+
+    public Map<String, Object> convertMap() {
+        HashMap<String, Object> myMap = new HashMap<>();
+        myMap.put("ajudaFinanceira", isFinancialSupport());
+        myMap.put("termos", isTerms());
+        myMap.put("visitas", isVisit());
+        myMap.put("necessidadesFinanceiras", getFinancialNeeds());
+        return myMap;
     }
 }
