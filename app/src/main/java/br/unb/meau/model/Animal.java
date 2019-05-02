@@ -1,11 +1,11 @@
 package br.unb.meau.model;
 
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Animal implements Serializable {
 
@@ -49,25 +49,12 @@ public class Animal implements Serializable {
         this.provideData = provideData;
     }
 
+
     public Animal() {
-        this.nome = "";
-        this.dono = "";
-        this.idade = "";
-        this.especie = "";
-        this.localizacao = "";
-        this.porte = "";
-        this.sexo = "";
-        this.imagem = "";
-        this.temperamento = new HashMap<String, Boolean>();
-        this.saude = new HashMap<String, Boolean>();
-        this.doencas = "";
-        this.sobre = "";
-        this.adoptData = new Adocao();
-        this.helpData = new Ajuda();
-        this.provideData = new Apadrinhamento();
+
     }
 
-    public Animal(String nome, String idade, String especie, String localizacao, String porte, String sexo, int imagem) {
+    public Animal(String nome, String idade, String especie, String localizacao, String porte, String sexo, String imagem) {
         this.dono = "";
         this.nome = nome;
         this.idade = idade;
@@ -96,6 +83,7 @@ public class Animal implements Serializable {
         this.sobre = sobre;
         this.imagem = imagem;
     }
+
 
     public String getNome() {
         return nome;
@@ -196,21 +184,22 @@ public class Animal implements Serializable {
     public Map<String, Object> convertMap() {
 
         HashMap<String, Object> animalMap = new HashMap<>();
-        animalMap.put("name", getNome());
-        animalMap.put("gender", getSexo());
-        animalMap.put("age", getIdade());
-        animalMap.put("size", getPorte());
-        animalMap.put("temper", getTemperamento());
-        animalMap.put("health", getSaude());
-        animalMap.put("about", getSobre());
-        animalMap.put("picture", getImagem());
+        animalMap.put("nome", getNome());
+        animalMap.put("localizacao", getLocalizacao());
+        animalMap.put("sexo", getSexo());
+        animalMap.put("idade", getIdade());
+        animalMap.put("porte", getPorte());
+        animalMap.put("temperamento", getTemperamento());
+        animalMap.put("saude", getSaude());
+        animalMap.put("sobre", getSobre());
+        animalMap.put("imagem", getImagem());
         if (getAdoptData() != null) {
-            animalMap.put("adopting", getAdoptData().convertMap());
+            animalMap.put("AdoptData", getAdoptData().convertMap());
         } else if (getProvideData() != null) {
-            animalMap.put("providing", getProvideData().convertMap());
+            animalMap.put("ProvideData", getProvideData().convertMap());
         }
         if (getHelpData() != null) {
-            animalMap.put("helping", getHelpData().convertMap());
+            animalMap.put("HelpData", getHelpData().convertMap());
         }
 
         return animalMap;
@@ -219,7 +208,7 @@ public class Animal implements Serializable {
     public void salvar() {
         Map<String, Object> animal = convertMap();
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
-        animal.put("owner", dbRef.document(getDono()));
+        animal.put("dono", getDono());
         dbRef.collection("animals").add(animal);
     }
 }

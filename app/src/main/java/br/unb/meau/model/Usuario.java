@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class Usuario implements Serializable {
     private String id;
+    private String Local;
     private String nome;
     private String idade;
     private String email;
@@ -42,6 +43,14 @@ public class Usuario implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLocal() {
+        return Local;
+    }
+
+    public void setLocal(String local) {
+        Local = local;
     }
 
     public String getNome() {
@@ -133,14 +142,14 @@ public class Usuario implements Serializable {
     public void salvar() {
         Map<String, Object> usuario = convertMap();
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
-        dbRef.collection("user").document(getId()).set(usuario);
+        dbRef.collection("users").document(getId()).set(usuario);
     }
 
     public void atualizar() {
 
         Map<String, Object> usuario = convertMap();
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
-        DocumentReference userRef = dbRef.collection("user").document(getId());
+        DocumentReference userRef = dbRef.collection("users").document(getId());
         userRef.update(usuario);
     }
 
@@ -148,7 +157,7 @@ public class Usuario implements Serializable {
         Map objeto = new HashMap();
         objeto.put("picPath", getPicPath());
         FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
-        DocumentReference userRef = dbRef.collection("user").document(getId());
+        DocumentReference userRef = dbRef.collection("users").document(getId());
         userRef.update(objeto);
     }
 
@@ -168,4 +177,5 @@ public class Usuario implements Serializable {
 
         return userMap;
     }
+
 }

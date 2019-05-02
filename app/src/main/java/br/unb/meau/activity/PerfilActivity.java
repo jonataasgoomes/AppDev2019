@@ -32,7 +32,7 @@ public class PerfilActivity extends AppCompatActivity {
             campoNomeUsuarioPerfil, campoHistPerfil;
 
     private ImageView imagePerfil;
-    private Usuario usuarioLogado, usuarioDados;
+    private Usuario usuarioLogado;
     private FirebaseFirestore dataBaseRef;
     private DocumentReference userRef;
     private String TAG = "Error";
@@ -54,7 +54,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (!(UserFirebase.getUsuarioAtual() == null)) {
             usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
             dataBaseRef = FirebaseFirestore.getInstance();
-            userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+            userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
         }
 
 
@@ -86,7 +86,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void recuperarDadosUsuario() {
-        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
         userRef.addSnapshotListener(this,
                 new EventListener<DocumentSnapshot>() {
                     @Override
@@ -120,7 +120,6 @@ public class PerfilActivity extends AppCompatActivity {
             recuperarDadosUsuario();
             recuperarFoto();
         }
-
 
     }
 

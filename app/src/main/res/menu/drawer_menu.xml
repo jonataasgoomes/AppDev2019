@@ -67,12 +67,14 @@
         <item
             android:id="@+id/ajudar_um_pet"
             android:checkable="true"
+            android:enabled="false"
             android:title="Ajudar um pet" />
     </group>
     <group
         android:id="@+id/grp_apadrinhar_pet"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/apadrinhar_um_pet"
             android:checkable="true"
             android:title="Apadrinhar um pet" />
@@ -91,6 +93,7 @@
         android:id="@+id/grp_dicas"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/dicas"
             android:checkable="true"
             android:title="Dicas" />
@@ -99,6 +102,7 @@
         android:id="@+id/grp_eventos"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/eventos"
             android:checkable="true"
             android:title="Eventos" />
@@ -107,6 +111,7 @@
         android:id="@+id/grp_legis"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/legislacao"
             android:checkable="true"
             android:title="Legislação" />
@@ -123,6 +128,7 @@
         android:id="@+id/grp_hist"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/hist_de_adocao"
             android:checkable="true"
             android:title="Historias de adoção" />
@@ -140,6 +146,7 @@
         android:id="@+id/grp_priv"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/privacidade"
             android:title="Privacidade" />
     </group>
