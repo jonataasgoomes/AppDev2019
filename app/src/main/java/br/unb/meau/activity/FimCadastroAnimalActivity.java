@@ -25,7 +25,8 @@ public class FimCadastroAnimalActivity extends AppCompatActivity {
         meusPetsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MeusPetsActivity.class);
                 startActivity(intent);
             }
         });

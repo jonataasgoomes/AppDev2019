@@ -7,32 +7,32 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import br.unb.meau.R;
@@ -40,19 +40,25 @@ import br.unb.meau.fragment.CadastroAdocaoFragment;
 import br.unb.meau.fragment.CadastroAjudaFragment;
 import br.unb.meau.fragment.CadastroApadrinhamentoFragment;
 import br.unb.meau.helper.ConfigFirebase;
+import br.unb.meau.helper.UserFirebase;
 import br.unb.meau.model.Adocao;
 import br.unb.meau.model.Ajuda;
 import br.unb.meau.model.Animal;
 import br.unb.meau.model.Apadrinhamento;
+import br.unb.meau.model.Usuario;
 import br.unb.meau.viewmodel.CadastroDoAnimalViewModel;
 
 public class CadastroDoAnimalActivity extends AppCompatActivity implements CadastroApadrinhamentoFragment.OnFragmentInteractionListener, CadastroAdocaoFragment.OnFragmentInteractionListener, CadastroAjudaFragment.OnFragmentInteractionListener {
     private Button adoptButton, helpButton, provideButton, saveButton, addPics;
     private Bitmap selectedImage;
     private Animal toSave;
+    private String TAG;
     CadastroDoAnimalViewModel mViewModel;
     private static final int SELECTION_GALERY = 200;
     private AlertDialog dialog;
+    private Usuario usuarioLogado;
+    private FirebaseFirestore dataBaseRef;
+    private DocumentReference userRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,12 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
         toolbar.setBackgroundResource(R.color.colorAmarelo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        if (!(UserFirebase.getUsuarioAtual() == null)) {
+            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+            dataBaseRef = FirebaseFirestore.getInstance();
+            userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
+        }
 
         adoptButton = findViewById(R.id.adopt_button);
         helpButton = findViewById(R.id.help_button);
@@ -242,9 +254,13 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             CheckBox view = findViewById(healthArray[i]);
             health.put(view.getText().toString(), view.isChecked());
         }
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+
+
+
         toSave = new Animal(
-                "user/" + user.getUid(),
+                ("/users/" + usuarioLogado.getId()),
                 nameText.getText().toString(),
                 getCheckedOption(age),
                 getCheckedOption(species),
@@ -257,6 +273,27 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
                 aboutText.getText().toString(),
                 ""
         );
+
+        userRef.addSnapshotListener(this,
+                new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        if (documentSnapshot.exists()) {
+                            Usuario userLoc = documentSnapshot.toObject(Usuario.class);
+                            String cidade = userLoc.getCidade();
+                            String estado = userLoc.getEstado();
+                            String localizacao = cidade + " - " + estado;
+
+                            toSave.setLocalizacao(localizacao);
+
+                            userLoc.setLocal(localizacao);
+                        } else if (e != null) {
+                            Log.w(TAG, "Got an exception");
+                        }
+                    }
+                }
+        );
+
 
         if (mViewModel.getAdopting()) {
             CheckBox cb1 = findViewById(R.id.adopt_demand_box_1);
@@ -312,7 +349,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             //Salvar imagem no storage
             StorageReference imgRef = storageRef.child("imagens")
                     .child("animals")
-                    .child(user.getUid() + ts + ".jpeg");
+                    .child(usuarioLogado.getId() + ts + ".jpeg");
             StorageTask<UploadTask.TaskSnapshot> uploadTask = imgRef.putBytes(setupImage(selectedImage)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
 
@@ -327,6 +364,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
                                     toSave.setImagem(url.toString());
                                     toSave.salvar();
                                     dialog.cancel();
+                                    finish();
                                     Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
                                     startActivity(intent);
                                 }
@@ -335,6 +373,7 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
             });
         } else {
             toSave.salvar();
+            finish();
             Intent intent = new Intent(getApplicationContext(), FimCadastroAnimalActivity.class);
             startActivity(intent);
         }
@@ -393,9 +432,17 @@ public class CadastroDoAnimalActivity extends AppCompatActivity implements Cadas
 
     }
 
+
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return false;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStop();
+    }
+
+
 }

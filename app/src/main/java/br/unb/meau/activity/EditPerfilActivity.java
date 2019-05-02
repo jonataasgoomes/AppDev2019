@@ -67,7 +67,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
         storageRef = ConfigFirebase.getFirebaseStorage();
         dataBaseRef = FirebaseFirestore.getInstance();
-        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -248,7 +248,7 @@ public class EditPerfilActivity extends AppCompatActivity {
     }
 
     private void recuperarDadosUsuario() {
-        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
         userRef.addSnapshotListener(this,
                 new EventListener<DocumentSnapshot>() {
                     @Override

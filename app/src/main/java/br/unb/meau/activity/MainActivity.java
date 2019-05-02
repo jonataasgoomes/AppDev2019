@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.menu_sair:
                 deslogar();
                 finish();
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 overridePendingTransition(0, 0);
                 Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show();
                 closeDrawer();
