@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,7 +38,9 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
     @Override
     public AnimalViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View itemLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_animal, viewGroup, false);
+        View itemLista = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.card_animal,
+                        viewGroup, false);
         return new AnimalViewHolder(itemLista);
 
 
@@ -46,8 +48,7 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
 
     @Override
     public void onBindViewHolder(@NonNull final AnimalViewHolder animalViewHolder, int i) {
-        Animal animal = animais.get(i);
-
+        final Animal animal = animais.get(i);
         Uri uriFotoAnimal = Uri.parse(animal.getImagem());
 
         Glide.with(context).load(uriFotoAnimal).into(animalViewHolder.imagemAnimal);
@@ -71,7 +72,8 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
         animalViewHolder.buttonCurtir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "BOTAO CURTIR", Toast.LENGTH_LONG).show();
+                animalViewHolder.buttonCurtir.setImageResource(R.drawable.ic_favorite_red_24dp);
+                Toast.makeText(v.getContext(),  animal.getNome() + " foi curtido", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -90,7 +92,7 @@ public class CardAnimalAdapter extends RecyclerView.Adapter<CardAnimalAdapter.An
         private TextView textSexo;
         private TextView textPorte;
         private TextView textIdade;
-        private Button buttonCurtir;
+        private ImageButton buttonCurtir;
         private LinearLayout qtdInteressados;
 
         public AnimalViewHolder(@NonNull View itemView) {

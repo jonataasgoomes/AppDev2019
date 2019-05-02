@@ -118,7 +118,11 @@
                 android:text="@string/text_localizacao"
                 android:textAlignment="center"
                 android:textColor="@color/text_field_perfil" />
-
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textPerfil5"
                 android:layout_width="match_parent"
@@ -137,6 +141,7 @@
                 android:text="@string/text_endereco"
                 android:textAlignment="center"
                 android:textColor="@color/text_field_perfil" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textPerfil6"
@@ -177,6 +182,7 @@
                 android:textColor="@color/text_field_perfil" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/textPerfil8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -187,6 +193,7 @@
                 android:textSize="12sp" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/textHistoricoPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,6 +203,7 @@
                 android:textColor="@color/text_field_perfil" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/buttonEditarPerfil"
                 android:layout_width="232dp"
                 android:layout_height="40dp"
@@ -203,6 +211,17 @@
                 android:background="@color/colorAzul"
                 android:padding="0dp"
                 android:text="@string/editar_perfil"
+                android:textColor="@color/text_gray_color" />
+            <Button
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:id="@+id/buttonAceitar"
+                android:layout_width="232dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/colorAzul"
+                android:padding="0dp"
+                android:text="@string/editar_aceitar"
                 android:textColor="@color/text_gray_color" />
         </LinearLayout>
 

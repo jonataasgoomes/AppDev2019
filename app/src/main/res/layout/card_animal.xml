@@ -40,13 +40,14 @@
                 android:textColor="@color/text_card_color"
                 android:textSize="16sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/buttonCurtir"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:drawableEnd="@drawable/ic_favorite_border_black_animal_24dp" />
+                android:layout_weight="6"
+                android:src="@drawable/ic_favorite_border_black_animal_24dp"
+                />
 
         </LinearLayout>
 
@@ -60,7 +61,6 @@
             android:scaleType="centerCrop" />
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layoutInfoAnimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -112,8 +112,8 @@
                 android:textColor="@color/text_card_color" />
         </LinearLayout>
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layoutCountInteressado"
+            android:visibility="gone"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_width="match_parent"

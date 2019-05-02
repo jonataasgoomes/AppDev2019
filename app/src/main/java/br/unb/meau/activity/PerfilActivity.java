@@ -26,13 +26,13 @@ import br.unb.meau.model.Usuario;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    private Button btnEditarPerfil;
+    private Button btnEditarPerfil, btnAceitar;
     private TextView campoNomePerfil, campoNomeCompletoPerfil, campoIdadePerfil,
             campoEmailPerfil, campoLocPerfil, campoEndPerfil, campoTelPerfil,
             campoNomeUsuarioPerfil, campoHistPerfil;
 
     private ImageView imagePerfil;
-    private Usuario usuarioLogado;
+    private Usuario usuarioLogado,usuarioSelecionado;
     private FirebaseFirestore dataBaseRef;
     private DocumentReference userRef;
     private String TAG = "Error";
@@ -51,11 +51,10 @@ public class PerfilActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //inicializa os campos e configurações iniciais
         initCampos();
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
-            dataBaseRef = FirebaseFirestore.getInstance();
-            userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
-        }
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        dataBaseRef = FirebaseFirestore.getInstance();
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
+
 
 
         btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +84,8 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
 
-    private void recuperarDadosUsuario() {
+    private void recuperarDadosUsuarioLogado() {
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
         userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
         userRef.addSnapshotListener(this,
                 new EventListener<DocumentSnapshot>() {
@@ -112,13 +112,53 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
 
+    private void recuperarDadosUsuario(){
+        Bundle bundle  = getIntent().getExtras();
+        if (bundle != null){
+            usuarioSelecionado =(Usuario) bundle.getSerializable( "usuarioSelecionado");
+            getSupportActionBar().setTitle(usuarioSelecionado.getNome());
+
+            Uri uriFotoAnimal = Uri.parse(usuarioSelecionado.getPicPath());
+            Glide.with(this).load(uriFotoAnimal).into(imagePerfil);
+
+            campoNomePerfil.setText(usuarioSelecionado.getNome());
+            campoIdadePerfil.setText(usuarioSelecionado.getIdade());
+            campoEmailPerfil.setText(usuarioSelecionado.getEmail());
+            campoLocPerfil.setText(usuarioSelecionado.getLocal());
+            campoTelPerfil.setText(usuarioSelecionado.getTelefone());
+            campoNomeUsuarioPerfil.setText(usuarioSelecionado.getUsuario());
+
+        }
+
+    }
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            recuperarDadosUsuario();
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        Bundle bundle  = getIntent().getExtras();
+        if (bundle != null){
+            usuarioSelecionado =(Usuario) bundle.getSerializable( "perfilSelecionado");
+            getSupportActionBar().setTitle(usuarioSelecionado.getNome());
+
+            Uri uriFotoAnimal = Uri.parse(usuarioSelecionado.getPicPath());
+            Glide.with(this).load(uriFotoAnimal).into(imagePerfil);
+            campoNomeCompletoPerfil.setText(usuarioSelecionado.getNome());
+            campoNomePerfil.setText(usuarioSelecionado.getNome());
+            campoIdadePerfil.setText(usuarioSelecionado.getIdade());
+            campoEmailPerfil.setText(usuarioSelecionado.getEmail());
+            campoLocPerfil.setText(usuarioSelecionado.getCidade());
+            campoTelPerfil.setText(usuarioSelecionado.getTelefone());
+            campoNomeUsuarioPerfil.setText(usuarioSelecionado.getUsuario());
+            btnAceitar.setVisibility(View.VISIBLE);
+            campoHistPerfil.setVisibility(View.GONE);
+
+        }else{
+            recuperarDadosUsuarioLogado();
             recuperarFoto();
+            btnEditarPerfil.setVisibility(View.VISIBLE);
+            campoEndPerfil.setVisibility(View.VISIBLE);
         }
 
     }
@@ -135,6 +175,7 @@ public class PerfilActivity extends AppCompatActivity {
         campoTelPerfil = findViewById(R.id.textTelefonePerfil);
         campoHistPerfil = findViewById(R.id.textHistoricoPerfil);
         btnEditarPerfil = findViewById(R.id.buttonEditarPerfil);
+        btnAceitar = findViewById(R.id.buttonAceitar);
     }
 
     @Override

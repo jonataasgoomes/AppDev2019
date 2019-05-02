@@ -13,7 +13,6 @@ import br.unb.meau.helper.ConfigFirebase;
 
 public class SplashActivity extends AppCompatActivity {
     private FirebaseAuth auth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

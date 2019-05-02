@@ -1,5 +1,6 @@
 package br.unb.meau.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -96,7 +97,8 @@ public class AnimalPerfilActivity extends AppCompatActivity {
         btnInteressados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent interessados = new Intent(getApplicationContext(),InteressadosActivity.class);
+                startActivity(interessados);
             }
         });
 
