@@ -192,6 +192,7 @@ public class Animal implements Serializable {
         animalMap.put("temperamento", getTemperamento());
         animalMap.put("saude", getSaude());
         animalMap.put("sobre", getSobre());
+        animalMap.put("doencas", getDoencas());
         animalMap.put("imagem", getImagem());
         if (getAdoptData() != null) {
             animalMap.put("AdoptData", getAdoptData().convertMap());
