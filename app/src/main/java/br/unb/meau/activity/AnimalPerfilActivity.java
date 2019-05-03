@@ -10,8 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 import br.unb.meau.R;
 import br.unb.meau.helper.UserFirebase;
@@ -91,6 +95,18 @@ public class AnimalPerfilActivity extends AppCompatActivity {
         btnAdotar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                HashMap<String, Object> interestedMap = new HashMap<>();
+                interestedMap.put("pet", animalSelecionado.getId());
+                interestedMap.put("from", usuarioLogado.getId());
+                interestedMap.put("to", animalSelecionado.getDono());
+                interestedMap.put("finished", 0);
+                interestedMap.put("type", "adopt");
+
+                FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+                dbRef.collection("transactions").add(interestedMap);
+
+                Toast.makeText(getApplicationContext(), "Adicionado", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -98,6 +114,7 @@ public class AnimalPerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent interessados = new Intent(getApplicationContext(),InteressadosActivity.class);
+                interessados.putExtra("animalSelecionado", animalSelecionado);
                 startActivity(interessados);
             }
         });

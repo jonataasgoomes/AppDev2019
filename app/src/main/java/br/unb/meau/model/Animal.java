@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class Animal implements Serializable {
 
+    private String id;
     private String dono;
     private String nome;
     private String idade;
@@ -24,6 +25,14 @@ public class Animal implements Serializable {
     private Adocao adoptData;
     private Ajuda helpData;
     private Apadrinhamento provideData;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Adocao getAdoptData() {
         return adoptData;

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Usuario implements Serializable {
+    private String transId;
     private String id;
     private String Local;
     private String nome;
@@ -24,6 +25,14 @@ public class Usuario implements Serializable {
     private String senha;
     private String picPath;
     private Bitmap imagem;
+
+    public String getTransId() {
+        return transId;
+    }
+
+    public void setTransId(String transId) {
+        this.transId = transId;
+    }
 
     public Bitmap getImagem() {
         return imagem;

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,6 +19,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Nullable;
 
 import br.unb.meau.R;
@@ -25,7 +29,6 @@ import br.unb.meau.helper.UserFirebase;
 import br.unb.meau.model.Usuario;
 
 public class PerfilActivity extends AppCompatActivity {
-
     private Button btnEditarPerfil, btnAceitar;
     private TextView campoNomePerfil, campoNomeCompletoPerfil, campoIdadePerfil,
             campoEmailPerfil, campoLocPerfil, campoEndPerfil, campoTelPerfil,
@@ -62,6 +65,24 @@ public class PerfilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent editPerfil = new Intent(getApplicationContext(), EditPerfilActivity.class);
                 startActivity(editPerfil);
+            }
+        });
+        btnAceitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Notificaremos o usuario que a solicitação foi aceita",
+                        Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(), usuarioSelecionado.getTransId(),
+                        Toast.LENGTH_LONG).show();
+                Map objeto = new HashMap();
+                objeto.put("finished", 1);
+                FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+                DocumentReference userRef = dbRef.collection("transactions").document(usuarioSelecionado.getTransId());
+                userRef.update(objeto);
+
+                finish();
+
             }
         });
 
