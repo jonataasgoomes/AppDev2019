@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,10 +18,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import br.unb.meau.R;
 import br.unb.meau.helper.UserFirebase;
+import br.unb.meau.model.Adocao;
 import br.unb.meau.model.Animal;
+import br.unb.meau.model.Apadrinhamento;
 import br.unb.meau.model.Usuario;
+import io.opencensus.internal.StringUtil;
 
 public class AnimalPerfilActivity extends AppCompatActivity {
 
@@ -81,7 +89,42 @@ public class AnimalPerfilActivity extends AppCompatActivity {
             idade.setText(animalSelecionado.getIdade());
             localizacao.setText(animalSelecionado.getLocalizacao());
             sobre.setText(animalSelecionado.getSobre());
+            castrado.setText(animalSelecionado.getSaude().get("Castrado") ? "Sim" : "Não");
+            vermifugado.setText(animalSelecionado.getSaude().get("Vermifugado") ? "Sim" : "Não");
+            vacinado.setText(animalSelecionado.getSaude().get("Vacinado") ? "Sim" : "Não");
+            doencas.setText((animalSelecionado.getDoencas() == null || animalSelecionado.getDoencas().isEmpty()) ? "Nenhuma" : animalSelecionado.getDoencas());
+            String[] temperList = animalSelecionado.getTemperamento().keySet().toArray(new String[0]);
+            temperamento.setText(TextUtils.join(", ", temperList));
+            ArrayList<String> exigenciasList = new ArrayList<>();
+            if (animalSelecionado.getProvideData() != null) {
+                Apadrinhamento provideData = animalSelecionado.getProvideData();
+                if (provideData.isFinancialSupport()) {
+                    exigenciasList.add("Ajuda Financeira");
+                }
+                if(provideData.isTerms()){
+                    exigenciasList.add("Termos de Apadrinhamento");
+                }
+                if (provideData.isVisit()){
+                    exigenciasList.add("Visitas");
+                }
+            } else if (animalSelecionado.getAdoptData() != null) {
+                Adocao provideData = animalSelecionado.getAdoptData();
+                if (provideData.isTerms()){
+                    exigenciasList.add("Termos de adoção");
+                }
+                if (provideData.isPictures()){
+                    exigenciasList.add("Fotos");
+                }
+                if(provideData.isPostAdoptionHelp()){
+                    exigenciasList.add("Ajuda Pos Adoção");
+                }
+                if (provideData.isVisit()){
+                    exigenciasList.add("Visitas");
+                }
 
+
+            }
+            exigencias.setText(TextUtils.join(", ", exigenciasList));
             if(animalSelecionado.getDono().equals("/users/"+usuarioLogado.getId())){
                 linearViewMeusPets.setVisibility(View.VISIBLE);
 

@@ -285,7 +285,8 @@
                         android:layout_height="1dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:background="#c0c0c0" />
+                        android:background="#c0c0c0"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -294,12 +295,14 @@
                         android:fontFamily="@font/roboto"
                         android:text="EXIGÊNCIAS DO DOADOR"
                         android:textColor="@color/colorAmarelo1"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/textExigencias"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <View
                         android:layout_width="fill_parent"
