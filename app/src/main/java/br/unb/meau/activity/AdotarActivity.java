@@ -58,7 +58,9 @@ public class AdotarActivity extends AppCompatActivity {
                         List<Animal> cardsAnimal = new ArrayList<>();
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                cardsAnimal.add( document.toObject(Animal.class));
+                                Animal animal = document.toObject(Animal.class);
+                                animal.setId(document.getId());
+                                cardsAnimal.add(animal);
                             }
                             recyclerAnimal = findViewById(R.id.recyclerAnimal);
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
