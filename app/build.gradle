@@ -33,12 +33,15 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
 
     //Dependencias do firebase
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-database:16.1.0'
-    implementation 'com.google.firebase:firebase-auth:16.2.1'
-    implementation 'com.google.firebase:firebase-firestore:18.2.0'
-    implementation 'com.google.firebase:firebase-storage:16.1.0'
+
+    implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-firestore:19.0.0'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
     implementation 'com.firebaseui:firebase-ui-storage:4.3.1'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
 
     //circle image
     implementation 'de.hdodenhof:circleimageview:3.0.0'
