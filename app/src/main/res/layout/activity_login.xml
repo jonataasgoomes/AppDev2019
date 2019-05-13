@@ -64,13 +64,16 @@
             app:layout_constraintTop_toBottomOf="@+id/editEmail"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/buttonFacebook"
-            style="@style/button_primary_facebook"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="entrar com facebook"
-            app:layout_constraintBottom_toTopOf="@+id/buttonGoogle"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGoogle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />

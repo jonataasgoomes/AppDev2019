@@ -14,6 +14,7 @@
     <string name="nome_animal">Nome do animal</string>
     <string name="content_img_animal">Imagem de um animal</string>
     <string name="especie_animal">Espécie</string>
+    <string name="sexo_animal">Sexo</string>
     <string name="idade_animal">Idade</string>
     <string name="porte_animal">Porte</string>
     <string name="localizacao_animal">Localização</string>
@@ -115,6 +116,7 @@
     <string name="text_localizacao">Localização</string>
     <string name="text_histórico">Histórico</string>
     <string name="editar_perfil">Editar Perfil</string>
+    <string name="editar_aceitar">Aceitar</string>
     <string name="btnAdocao">TERMO DE ADOÇÂO</string>
     <string name="btnApadrinhamento">TERMO DE APADRANHAMENTO</string>
     <string name="textTermo1">O termo de adoção é um termo que oficializa o processo de adoção de um animal. Similarmente funciona o termo de apadrinhamento.</string>

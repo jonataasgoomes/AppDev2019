@@ -5,19 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_view_color"
     android:orientation="vertical"
-    tools:context=".activity.MeusPetsActivity">
+    tools:context=".activity.InteressadosActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/main_toolbar">
     </include>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerAnimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerInteressado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

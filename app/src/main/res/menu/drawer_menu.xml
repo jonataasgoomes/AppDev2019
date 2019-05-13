@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="48dp">
     <group
         android:id="@+id/grp_perfil"
@@ -39,7 +40,7 @@
         <item
             android:icon="@drawable/ic_pets_black_24dp"
             android:id="@+id/atalhos"
-            android:checkable="false"
+            android:checkable="true"
             android:title="Atalhos"
             />
     </group>
@@ -66,12 +67,14 @@
         <item
             android:id="@+id/ajudar_um_pet"
             android:checkable="true"
+            android:enabled="false"
             android:title="Ajudar um pet" />
     </group>
     <group
         android:id="@+id/grp_apadrinhar_pet"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/apadrinhar_um_pet"
             android:checkable="true"
             android:title="Apadrinhar um pet" />
@@ -82,7 +85,7 @@
         <item
             android:icon="@drawable/ic_info_black_24dp"
             android:id="@+id/informacoes"
-            android:checkable="false"
+            android:checkable="true"
             android:title="Informações" />
     </group>
 
@@ -90,6 +93,7 @@
         android:id="@+id/grp_dicas"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/dicas"
             android:checkable="true"
             android:title="Dicas" />
@@ -98,6 +102,7 @@
         android:id="@+id/grp_eventos"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/eventos"
             android:checkable="true"
             android:title="Eventos" />
@@ -106,6 +111,7 @@
         android:id="@+id/grp_legis"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/legislacao"
             android:checkable="true"
             android:title="Legislação" />
@@ -122,6 +128,7 @@
         android:id="@+id/grp_hist"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/hist_de_adocao"
             android:checkable="true"
             android:title="Historias de adoção" />
@@ -131,14 +138,15 @@
         android:checkableBehavior="single">
         <item
             android:icon="@drawable/ic_settings_black_24dp"
-            android:id="@+id/item4"
-            android:checkable="false"
+            android:id="@+id/conf"
+            android:checkable="true"
             android:title="Configurações"/>
     </group>
     <group
         android:id="@+id/grp_priv"
         android:checkableBehavior="single">
         <item
+            android:enabled="false"
             android:id="@+id/privacidade"
             android:title="Privacidade" />
     </group>

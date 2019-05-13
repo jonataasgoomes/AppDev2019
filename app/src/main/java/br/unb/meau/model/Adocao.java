@@ -1,18 +1,19 @@
 package br.unb.meau.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Adocao {
     private boolean terms;
     private boolean pictures;
     private boolean visit;
     private boolean postAdoptionHelp;
-    private boolean[] postAdoptionPeriods = new boolean[3];
+    private HashMap<String, Boolean> postAdoptionPeriods = new HashMap<>();
 
     public Adocao() {
     }
 
-    public Adocao(boolean terms, boolean pictures, boolean visit, boolean postAdoptionHelp, boolean[] postAdoptionPeriods) {
+    public Adocao(boolean terms, boolean pictures, boolean visit, boolean postAdoptionHelp, HashMap<String, Boolean> postAdoptionPeriods) {
         this.terms = terms;
         this.pictures = pictures;
         this.visit = visit;
@@ -52,11 +53,21 @@ public class Adocao {
         this.postAdoptionHelp = postAdoptionHelp;
     }
 
-    public boolean[] getPostAdoptionPeriods() {
+    public HashMap<String, Boolean> getPostAdoptionPeriods() {
         return postAdoptionPeriods;
     }
 
-    public void setPostAdoptionPeriods(boolean[] postAdoptionPeriods) {
+    public void setPostAdoptionPeriods(HashMap<String, Boolean> postAdoptionPeriods) {
         this.postAdoptionPeriods = postAdoptionPeriods;
+    }
+
+    public Map<String, Object> convertMap() {
+        HashMap<String, Object> myMap = new HashMap<>();
+        myMap.put("termos", isTerms());
+        myMap.put("fotos", isPictures());
+        myMap.put("ajudaPosAdocao", isPostAdoptionHelp());
+        myMap.put("visitas", isVisit());
+        myMap.put("periodoPosAdocao", getPostAdoptionPeriods());
+        return myMap;
     }
 }

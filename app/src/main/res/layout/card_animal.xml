@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -39,13 +40,14 @@
                 android:textColor="@color/text_card_color"
                 android:textSize="16sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/buttonCurtir"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:drawableEnd="@drawable/ic_favorite_border_black_animal_24dp" />
+                android:layout_weight="6"
+                android:src="@drawable/ic_favorite_border_black_animal_24dp"
+                />
 
         </LinearLayout>
 
@@ -54,13 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/cachorro1"
             android:contentDescription="@string/content_img_animal"
             android:fadingEdge="vertical"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/cachorro1" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
+            android:id="@+id/layoutInfoAnimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -71,12 +72,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textEspecie"
+                    android:id="@+id/textSexo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:text="@string/especie_animal"
+                    android:text="@string/sexo_animal"
                     android:textAlignment="center"
                     android:textColor="@color/text_card_color" />
 
@@ -109,6 +110,22 @@
                 android:text="@string/localizacao_animal"
                 android:textAlignment="center"
                 android:textColor="@color/text_card_color" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layoutCountInteressado"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/text_card_color"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 NOVOS INTERESADOS"/>
+
         </LinearLayout>
     </LinearLayout>
 

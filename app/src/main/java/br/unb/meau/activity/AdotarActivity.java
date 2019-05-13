@@ -1,25 +1,30 @@
 package br.unb.meau.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.unb.meau.R;
 import br.unb.meau.adapter.CardAnimalAdapter;
-import br.unb.meau.helper.RecyclerItemClickListener;
 import br.unb.meau.model.Animal;
 
 public class AdotarActivity extends AppCompatActivity {
     private RecyclerView recyclerAnimal;
-    private List<Animal> cardsAnimais = new ArrayList<>();
+    private FirebaseFirestore db;
+    private String TAG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,77 +39,40 @@ public class AdotarActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Configurar RecyclerView
-        recyclerAnimal = findViewById(R.id.recyclerAnimal);
+        // Configurar RecyclerView
+        db = FirebaseFirestore.getInstance();
+
 
         //Definindo layout do Animal
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerAnimal.setLayoutManager(layoutManager);
+        recuperarAnimais();
 
-        //Definindo adaptador
-        carregarCards();
-        CardAnimalAdapter adapter = new CardAnimalAdapter(cardsAnimais, this);
-        recyclerAnimal.setAdapter(adapter);
-
-        recyclerAnimal.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(),
-                recyclerAnimal, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Animal cardSelecionado = cardsAnimais.get(position);
-                Intent cardPerfil = new Intent(getApplicationContext(), AnimalPerfilActivity.class);
-                cardPerfil.putExtra("animalSelecionado", cardSelecionado);
-                startActivity(cardPerfil);
-            }
-
-            @Override
-            public void onLongItemClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        }));
 
     }
 
-    public void carregarCards() {
-        Animal animal = new Animal(
-                "RAGNAR",
-                "FILHOTE",
-                "MACHO",
-                "ASA SUL - DF",
-                "GRANDE",
-                R.drawable.cachorro1);
-        this.cardsAnimais.add(animal);
+    public void recuperarAnimais() {
+        db.collection("animals")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<Animal> cardsAnimal = new ArrayList<>();
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Animal animal = document.toObject(Animal.class);
+                                animal.setId(document.getId());
+                                cardsAnimal.add(animal);
+                            }
+                            recyclerAnimal = findViewById(R.id.recyclerAnimal);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                            recyclerAnimal.setLayoutManager(layoutManager);
+                            CardAnimalAdapter adapter = new CardAnimalAdapter(cardsAnimal, getApplicationContext());
+                            recyclerAnimal.setAdapter(adapter);
 
-        animal = new Animal(
-                "LOLLA",
-                "ADULTO",
-                "FEMÊA",
-                "ASA NORTE - DF",
-                "MEDIO",
-                R.drawable.cachorro2);
-        this.cardsAnimais.add(animal);
-
-        animal = new Animal(
-                "CHOKYTO",
-                "FILHOTE",
-                "MACHO",
-                "SOBRADINHO - DF",
-                "PEQUENO",
-                R.drawable.cachorro3);
-        this.cardsAnimais.add(animal);
-
-        animal = new Animal(
-                "OLIVER",
-                "ADULTO",
-                "MACHO",
-                "TAGUATINGA -DF",
-                "GRANDE",
-                R.drawable.cachorro4);
-        this.cardsAnimais.add(animal);
-
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     @Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.unb.meau">
+    package="br.unb.meau">  
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -9,7 +10,8 @@
         android:roundIcon="@mipmap/ic_meau_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.FavoritosActivity"></activity>
+        <activity android:name=".activity.InteressadosActivity"></activity>
+        <activity android:name=".activity.FavoritosActivity" />
         <activity android:name=".activity.MeusPetsActivity" />
         <activity android:name=".activity.AnimalPerfilActivity" />
         <activity android:name=".activity.AdicionarFotoActivity" />

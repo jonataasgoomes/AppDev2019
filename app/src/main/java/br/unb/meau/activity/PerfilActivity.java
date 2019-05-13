@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,6 +19,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Nullable;
 
 import br.unb.meau.R;
@@ -25,14 +29,13 @@ import br.unb.meau.helper.UserFirebase;
 import br.unb.meau.model.Usuario;
 
 public class PerfilActivity extends AppCompatActivity {
-
-    private Button btnEditarPerfil;
+    private Button btnEditarPerfil, btnAceitar;
     private TextView campoNomePerfil, campoNomeCompletoPerfil, campoIdadePerfil,
             campoEmailPerfil, campoLocPerfil, campoEndPerfil, campoTelPerfil,
             campoNomeUsuarioPerfil, campoHistPerfil;
 
     private ImageView imagePerfil;
-    private Usuario usuarioLogado, usuarioDados;
+    private Usuario usuarioLogado,usuarioSelecionado;
     private FirebaseFirestore dataBaseRef;
     private DocumentReference userRef;
     private String TAG = "Error";
@@ -51,11 +54,10 @@ public class PerfilActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //inicializa os campos e configurações iniciais
         initCampos();
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
-            dataBaseRef = FirebaseFirestore.getInstance();
-            userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
-        }
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        dataBaseRef = FirebaseFirestore.getInstance();
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
+
 
 
         btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +65,24 @@ public class PerfilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent editPerfil = new Intent(getApplicationContext(), EditPerfilActivity.class);
                 startActivity(editPerfil);
+            }
+        });
+        btnAceitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Notificaremos o usuario que a solicitação foi aceita",
+                        Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(), usuarioSelecionado.getTransId(),
+                        Toast.LENGTH_LONG).show();
+                Map objeto = new HashMap();
+                objeto.put("finished", 1);
+                FirebaseFirestore dbRef = FirebaseFirestore.getInstance();
+                DocumentReference userRef = dbRef.collection("transactions").document(usuarioSelecionado.getTransId());
+                userRef.update(objeto);
+
+                finish();
+
             }
         });
 
@@ -85,8 +105,9 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
 
-    private void recuperarDadosUsuario() {
-        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+    private void recuperarDadosUsuarioLogado() {
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
         userRef.addSnapshotListener(this,
                 new EventListener<DocumentSnapshot>() {
                     @Override
@@ -112,15 +133,54 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
 
+    private void recuperarDadosUsuario(){
+        Bundle bundle  = getIntent().getExtras();
+        if (bundle != null){
+            usuarioSelecionado =(Usuario) bundle.getSerializable( "usuarioSelecionado");
+            getSupportActionBar().setTitle(usuarioSelecionado.getNome());
+
+            Uri uriFotoAnimal = Uri.parse(usuarioSelecionado.getPicPath());
+            Glide.with(this).load(uriFotoAnimal).into(imagePerfil);
+
+            campoNomePerfil.setText(usuarioSelecionado.getNome());
+            campoIdadePerfil.setText(usuarioSelecionado.getIdade());
+            campoEmailPerfil.setText(usuarioSelecionado.getEmail());
+            campoLocPerfil.setText(usuarioSelecionado.getLocal());
+            campoTelPerfil.setText(usuarioSelecionado.getTelefone());
+            campoNomeUsuarioPerfil.setText(usuarioSelecionado.getUsuario());
+
+        }
+
+    }
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (!(UserFirebase.getUsuarioAtual() == null)) {
-            recuperarDadosUsuario();
-            recuperarFoto();
-        }
+        usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
+        Bundle bundle  = getIntent().getExtras();
+        if (bundle != null){
+            usuarioSelecionado =(Usuario) bundle.getSerializable( "perfilSelecionado");
+            getSupportActionBar().setTitle(usuarioSelecionado.getNome());
 
+            Uri uriFotoAnimal = Uri.parse(usuarioSelecionado.getPicPath());
+            Glide.with(this).load(uriFotoAnimal).into(imagePerfil);
+            campoNomeCompletoPerfil.setText(usuarioSelecionado.getNome());
+            campoNomePerfil.setText(usuarioSelecionado.getNome());
+            campoIdadePerfil.setText(usuarioSelecionado.getIdade());
+            campoEmailPerfil.setText(usuarioSelecionado.getEmail());
+            campoLocPerfil.setText(usuarioSelecionado.getCidade());
+            campoTelPerfil.setText(usuarioSelecionado.getTelefone());
+            campoNomeUsuarioPerfil.setText(usuarioSelecionado.getUsuario());
+            btnAceitar.setVisibility(View.VISIBLE);
+            campoHistPerfil.setVisibility(View.GONE);
+
+        }else{
+            recuperarDadosUsuarioLogado();
+            recuperarFoto();
+            btnEditarPerfil.setVisibility(View.VISIBLE);
+            campoEndPerfil.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -136,6 +196,7 @@ public class PerfilActivity extends AppCompatActivity {
         campoTelPerfil = findViewById(R.id.textTelefonePerfil);
         campoHistPerfil = findViewById(R.id.textHistoricoPerfil);
         btnEditarPerfil = findViewById(R.id.buttonEditarPerfil);
+        btnAceitar = findViewById(R.id.buttonAceitar);
     }
 
     @Override

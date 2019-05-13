@@ -26,6 +26,8 @@ import br.unb.meau.model.Usuario;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText campoEmail, campoSenha;
+    private Button btnFacebook;
+    private Button btnGoogle;
     private Button btnEntrar;
     private Usuario usuario;
     private FirebaseAuth auth;
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         UsuarioLogado();
+
         //configurando a barra de navegação
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.editEmail);
         campoSenha = findViewById( R.id.editSenha);
         btnEntrar = findViewById(R.id.buttonEntrar);
+        btnFacebook = findViewById(R.id.buttonFacebook);
+        btnGoogle = findViewById(R.id.buttonGoogle);
 
         //botão entrada para o Login.
         btnEntrar.setOnClickListener(new View.OnClickListener() {

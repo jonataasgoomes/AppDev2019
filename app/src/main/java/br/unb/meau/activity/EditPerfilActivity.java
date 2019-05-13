@@ -67,7 +67,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         usuarioLogado = UserFirebase.getAuthDadosUsuarioLogado();
         storageRef = ConfigFirebase.getFirebaseStorage();
         dataBaseRef = FirebaseFirestore.getInstance();
-        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -172,6 +172,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            dialog.cancel();
                             Toast.makeText(EditPerfilActivity.this,
                                     "Erro ao carregar a imagem", Toast.LENGTH_SHORT).show();
 
@@ -193,7 +194,7 @@ public class EditPerfilActivity extends AppCompatActivity {
 
                             Toast.makeText(EditPerfilActivity.this,
                                     "Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
-                            dialog.cancel();
+
                         }
                     });
                     imageEditPerfil.setImageBitmap(imagem);
@@ -226,6 +227,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         usuarioLogado.atualizarFoto();
         Toast.makeText(EditPerfilActivity.this,
                 "Foto atualizada", Toast.LENGTH_SHORT).show();
+        dialog.cancel();
     }
 
     //Metodo para iniciar os componentes
@@ -246,7 +248,7 @@ public class EditPerfilActivity extends AppCompatActivity {
     }
 
     private void recuperarDadosUsuario() {
-        userRef = dataBaseRef.collection("user").document(usuarioLogado.getId());
+        userRef = dataBaseRef.collection("users").document(usuarioLogado.getId());
         userRef.addSnapshotListener(this,
                 new EventListener<DocumentSnapshot>() {
                     @Override

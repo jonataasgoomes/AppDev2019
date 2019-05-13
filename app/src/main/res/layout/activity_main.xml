@@ -36,6 +36,7 @@
                 app:layout_constraintStart_toStartOf="@+id/buttonAjudar" />
 
             <Button
+                android:enabled="false"
                 android:id="@+id/buttonAjudar"
                 style="@style/button_intro"
                 android:layout_height="42dp"
